@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:width="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Sign Up</title>
+<!--CHANGE TITLE HERE-->
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!--CHANGE LINK TO CSS HERE-->
+    {%load staticfiles%}
+    <link rel="stylesheet" href="{% static 'Authentication/CSS/signUp.css'%}">
+    <!--<link rel="stylesheet" href="../../static/Authentication/CSS/signUp.css">-->
+
+    <!--  -->
+</head>
+
+
+<body>
+
+<!--/* NAVIGATION BAR */-->
+<div class="wrapper">
+    <header>
+        <nav>
+            <div class="menu-icon">
+                <i class="fa fa-bars fa-2x"></i>
+            </div>
+
+            <div class="logo">
+
+                <img src="../../static/Authentication/IMAGES/WoolBug2.png" style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.5em;" >
+                <div class="logoContent">
+                    BYTE PRO
+                </div>
+
+            </div>
+
+            <div class="menu">
+                <ul>
+
+                    <li><a href="#contact" class="btn">Contact</a></li>
+                                                                                                                            <!--ADDED SIGNIN LINK-->
+                    <li><a href="/authentication/signin/" class="btn btn-primary btn-lg" role="button">Sign In</a></li>
+
+                </ul>
+            </div>
+
+        </nav>
+
+    </header>
+</div>
+
+
+<!--/* MAIN CONTENTS WHICH WILL LATER BE USED AS BLOCK CONTENT*/-->
+<div class="container">
+    <div class="signUp-block">
+        <h1>Sign Up</h1>
+        <input type="text" value="" placeholder="Name" id="name" />
+        <input type="text" value="" placeholder="Username" id="username" />
+        <input type="email" value="" placeholder="Email" id="email" />
+        <input type="password" value="" placeholder="Password" id="password" />
+        <input type="password" value="" placeholder="Confirm Password" id="confirmPassword" />
+
+        <button>Sign Up</button>
+        <br>
+        <br>
+        <a href="/authentication/recovery/">
+                                                                                                                            <!--ADDED RECOVERY LINK-->
+            <button>Forgot your password?</button>
+        </a>
+            <!--<a >forget your password</a>-->
+    </div>
+
+</div>
+
+
+
+<!--/* LOWER CONTACT SPACE*/-->
+<div class="content">
+    <a name="contact">
+        <div class="contact">
+            <ul>
+                <li>Chinmoy Acharjee</li>
+                <li>Sabik Abtahee</li>
+            </ul>
+    </a>
+</div>
+
+
+
+
+<!--/* SCRIPT PART*/-->
+<script type="text/javascript">
+
+
+
+    $(document).ready(function() {
+        $(".menu-icon").on("click", function() {
+            $("nav ul").toggleClass("showing");
+        });
+    });
+
+    // Scrolling Effect
+
+    $(window).on("scroll", function() {
+        if($(window).scrollTop()) {
+            $('nav').addClass('black');
+        }
+
+        else {
+            $('nav').removeClass('black');
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

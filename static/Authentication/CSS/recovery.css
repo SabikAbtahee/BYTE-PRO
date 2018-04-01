@@ -1,0 +1,269 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+}
+
+body {
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: lighter;
+}
+
+header {
+    width: 100%;
+    height: 20vh;
+
+}
+.wrapper{
+    width: 100%;
+}
+.container{
+    margin-top: -200px;
+    width: 100%;
+    height: 1000px;
+    height: border-box;
+    background: url(../IMAGES/background5.png) no-repeat 50% 50%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.content {
+    background:gainsboro;
+    width: 100%;
+    color: midnightblue;
+    font-size: 20px;
+    font-family: "century gothic";
+    line-height: 30px;
+    text-align: justify;
+
+}
+.content ul{
+    line-height: 60px;
+    list-style: none;
+    padding: 0;
+    text-align: justify;
+    margin: 0;
+    padding-right: 40px;
+    transition: 1s;
+}
+.content ul li{
+
+    padding: 16px 40px;;
+}
+
+.logo {
+    line-height: 60px;
+    position: fixed;
+    float: left;
+    margin: 16px 46px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 2px;
+
+}
+.logoContent{
+    margin-top: -0.05em;
+    float: right;
+    font-size: 1.5em;
+}
+
+
+nav {
+    position: fixed;
+    width: 100%;
+    line-height: 60px;
+}
+
+nav ul {
+    line-height: 60px;
+    list-style: none;
+    background: rgba(0, 0, 0, 0);
+    overflow: hidden;
+    color: #fff;
+    padding: 0;
+    text-align: right;
+    margin: 0;
+    padding-right: 40px;
+    transition: 1s;
+}
+
+nav.black ul {
+    background: #000;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 16px 40px;;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+.menu-icon {
+    line-height: 60px;
+    width: 100%;
+    background: #000;
+    text-align: right;
+    box-sizing: border-box;
+    padding: 15px 24px;
+    cursor: pointer;
+    color: #fff;
+    display: none;
+}
+
+.btn {
+    /*padding: 14px 24px;*/
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 150px;
+
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+
+}
+
+.btn-primary {
+    border-radius: 20px;
+    background: #4CAF50;
+    color: #ffffff;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, .2);
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    /*background: #33a6cc;*/
+    border-radius: 20px;
+    background: #ffffff;
+    color: #4CAF50;
+}
+
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
+
+
+.recovery-block {
+    width: 550px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    border-top: 5px solid #ff656c;
+    margin-left: 50%;
+    margin-top: 20%;
+
+}
+
+.recovery-block h1 {
+    text-align: center;
+    color: rgb(64,55,88);
+    font-size: 19px;
+
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.recovery-block input {
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    /*font-family: Montserrat;*/
+    padding: 0 20px 0 50px;
+    outline: none;
+}
+
+.recovery-block input#email {
+    background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px top no-repeat;
+    background-size: 16px 80px;
+
+}
+
+.recovery-block input#email:focus {
+    background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px bottom no-repeat;
+    background-size: 16px 80px;
+
+
+}
+
+.recovery-block input:active, .recovery-block input:focus {
+    border: 1px solid #ff656c;
+}
+
+.recovery-block button {
+    width: 100%;
+    height: 40px;
+    background: rgb(64,55,88);
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: #fff;
+    font-weight: bold;
+    /**/
+    /*text-transform: uppercase;*/
+    font-size: 16px;
+    font-family: Montserrat;
+    outline: none;
+    cursor: pointer;
+
+
+}
+
+.recovery-block button:hover {
+    background: #ff7b81;
+}
+.recovery-block a{
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    /*font-family: Montserrat;*/
+    padding-top: 20px;
+
+}
+
+/**/
+@media(max-width: 786px) {
+
+    .logo {
+        position: fixed;
+        top: 0;
+        margin-top: 16px;
+    }
+
+    nav ul {
+        max-height: 0px;
+        background: #000;
+    }
+
+    nav.black ul {
+        background: #000;
+    }
+
+    .showing {
+        max-height: 34em;
+    }
+
+    nav ul li {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 24px;
+        text-align: center;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+}
