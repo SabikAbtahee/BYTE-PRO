@@ -38,7 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
+
     'Authentication.apps.AuthenticationConfig',
+    'Database.apps.DatabaseConfig',
+=======
+    'Authentication.apps.AuthenticationConfig',
+>>>>>>> af2b13902b8da9bf936dd179aa15958befa19449
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -79,8 +85,13 @@ WSGI_APPLICATION = 'SPL2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+<<<<<<< HEAD
+        'NAME': 'test2',
+        'USER': 'root',
+=======
         'NAME': 'SPL2',
         'USER': 'Sabik',
+>>>>>>> af2b13902b8da9bf936dd179aa15958befa19449
         'PASSWORD' : 'iit123',
     }
 }

@@ -1,14 +1,12 @@
 from django.db import models
 
 # Create your models here.
-<<<<<<< HEAD
-=======
 from datetime import datetime
 
 def user_directory_path(instance, filename):
     return '{0}/{1}'.format(instance.name, filename)
 
-class User(models.Model):
+class UsersAll(models.Model):
     name = models.CharField(max_length=200)
     userName = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
@@ -20,6 +18,5 @@ class User(models.Model):
         return self.name + "-" + self.email
 
 class SkillTag(models.Model):
-    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    user=models.ForeignKey(UsersAll, on_delete=models.CASCADE)
     skilltag=models.CharField(max_length=20)
->>>>>>> af2b13902b8da9bf936dd179aa15958befa19449
