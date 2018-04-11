@@ -28,3 +28,12 @@ $ git push
 15. login users into a normal page showing there name
 
 ////////////////////////////////////////////////////////////////
+
+1. Sign up sign in done
+2. Recovery done
+3. Mail send baki @@@@@@@@@@@
+4. Profile management not done
+5. Desingning baki
+6. Skilltags baki
+7.
+

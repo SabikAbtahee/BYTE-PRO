@@ -50,7 +50,7 @@
                 <ul>
 
                     <li><a href="#contact" class="btn">Contact</a></li>
-                                                                                                                            <!--ADDED SIGNIN LINK-->
+                                                                                                                            
                     <li><a href="/authentication/signin/" class="btn btn-primary btn-lg" role="button">Sign In</a></li>
 
                 </ul>
@@ -66,17 +66,39 @@
 <div class="container">
     <div class="signUp-block">
         <h1>Sign Up</h1>
-        <input type="text" value="" placeholder="Name" id="name" />
-        <input type="text" value="" placeholder="Username" id="username" />
-        <input type="email" value="" placeholder="Email" id="email" />
-        <input type="password" value="" placeholder="Password" id="password" />
-        <input type="password" value="" placeholder="Confirm Password" id="confirmPassword" />
+        <form  action="/authentication/signup/" method="POST">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+                <p>Something Wrong</p>
+            {% endif %}
 
-        <button>Sign Up</button>
-        <br>
-        <br>
-        <a href="/authentication/recovery/">
-                                                                                                                            <!--ADDED RECOVERY LINK-->
+           <!--  <input type="text" value="" placeholder="Name" id="name" name="name" required id = ""/> -->
+
+            <input type="text" value="" placeholder="Username" id="username" name="{{form.username.name}}"  required id = "{{form.username.id}}"/>
+            {% if form.username.errors %}<li>{{ form.username.label }}: {{ form.username.errors|striptags }}</li>
+            {% endif %}
+            
+
+            <input type="email" value="" placeholder="Email" id="email" name="{{form.email.name}}"  required id = "{{form.email.id}}""/>
+            {% if form.email.errors %}<li>{{ form.email.label }}: {{ form.email.errors|striptags }}</li>
+            {% endif %}
+            
+
+            <input type="password" value="" placeholder="Password" id="password" name="{{form.password1.name}}"  required id = "{{form.password1.id}}"/>
+            {% if form.password1.errors %}<li>{{ form.password1.label }}: {{ form.password1.errors|striptags }}</li>
+            {% endif %}
+            <input type="password" value="" placeholder="Confirm Password" id="confirmPassword" name="{{form.password2.name}}"  required id = "{{form.password2.id}}"/>
+            {% if form.password2.errors %}<li>{{ form.password2.label }}: {{ form.password2.errors|striptags }}</li>
+            {% endif %}
+            <button type="submit">Sign Up</button>
+            <input name="csrfmiddlewaretoken" value="3pVLxcAhPVWeJJ7vaau2nsrTMSZdmFXqNTImhWXImebeaudsqZ4PCLzQEgNSaSOo" type="hidden">
+            <br>
+            <br>
+        </form>
+
+        <a href="/authentication/reset_password/">
+                                    
             <button>Forgot your password?</button>
         </a>
             <!--<a >forget your password</a>-->

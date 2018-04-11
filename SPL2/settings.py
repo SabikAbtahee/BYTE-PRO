@@ -38,19 +38,39 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'Authentication.apps.AuthenticationConfig',
+    'Database.apps.DatabaseConfig',
+    'ProfileManagement.apps.ProfilemanagementConfig',
+    'Project.apps.ProjectConfig',
 ]
+
+
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+   #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+
+
+# MIDDLEWARE_CLASSES = [
+# 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+#     'django.middleware.security.SecurityMiddleware',
+#     'django.contrib.sessions.middleware.SessionMiddleware',
+#     'django.middleware.common.CommonMiddleware',
+#    # 'django.middleware.csrf.CsrfViewMiddleware',
+#     'django.contrib.auth.middleware.AuthenticationMiddleware',
+#
+#     'django.contrib.messages.middleware.MessageMiddleware',
+#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+# ]
 
 ROOT_URLCONF = 'SPL2.urls'
 
@@ -79,7 +99,7 @@ WSGI_APPLICATION = 'SPL2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'SPL2',
+        'NAME': 'git1',
         'USER': 'Sabik',
         'PASSWORD' : 'iit123',
     }
@@ -127,4 +147,17 @@ STATICFILES_DIRS =[
     os.path.join(BASE_DIR, "static")
 ]
 
+# ------------------------
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 25 #587
+EMAIL_HOST_PASSWORD = 'cs819829'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'bytepro123@gmail.com'
+# SERVER_EMAIL    = 'bytepro123@gmail.com'
+# EMAIL_BACKEND  = 'django.core.mail.backends.smtp.EmailBackend'
+# ------------------------
 
+LOGIN_REDIRECT_URL = '/home/'
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')

@@ -20,12 +20,19 @@ from django.contrib import admin
 from django.views.generic.base import TemplateView
 
 from django.conf.urls import include
-
+from django.conf import settings
+from django.views.static import serve
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^authentication/', include('Authentication.urls')),
-    # url(r'', TemplateView.as_view(template_name='home.html'), name='home'),
+    url(r'^profilemanagement/', include('ProfileManagement.urls')),
+    url(r'^home/', include('Project.urls')),
 
 ]
+
+if(settings.DEBUG):
+    urlpatterns+=[url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT,}),]
+
+

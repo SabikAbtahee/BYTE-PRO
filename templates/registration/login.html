@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:width="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Sign In</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+
+        {%load staticfiles%}
+        <link rel="stylesheet" href="{% static 'Authentication/CSS/signIn.css'%}">
+
+        <!--  -->
+    </head>
+
+
+    <body>
+
+        <!--/* NAVIGATION BAR */-->
+        <div class="wrapper">
+            <header>
+                <nav>
+                    <div class="menu-icon">
+                        <i class="fa fa-bars fa-2x"></i>
+                    </div>
+
+                    <div class="logo">
+
+                        <img src="../../static/Authentication/IMAGES/WoolBug2.png" style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.5em;" >
+                       <div class="logoContent">
+                        BYTE PRO
+                       </div>
+
+                    </div>
+
+                    <div class="menu">
+                        <ul>
+
+                            <li><a href="#contact" class="btn">Contact</a></li>                                                                                            
+                            <li><a href="/authentication/signup/" class="btn btn-primary btn-lg" role="button">Sign up</a></li>
+
+                        </ul>
+                    </div>
+
+                </nav>
+
+            </header>
+        </div>
+
+
+        <!--/* MAIN CONTENTS WHICH WILL LATER BE USED AS BLOCK CONTENT*/-->
+        <div class="container">
+            <div class="login-block">
+                <h1>Sign In</h1>
+                <form method = "post" action="{% url 'login' %}">
+                    {%csrf_token%}
+
+                    <input type="{{form.username.type}}"  placeholder="Username or Email" id="username_email"  name="{{form.username.html_name}}"/>
+
+                    <input type="password"  placeholder="Password" id="password" name="{{form.password.html_name}}"/>
+                    
+                    <!-- Signin Errors -->
+                    {% if form.non_field_errors %}
+                      <div class="non-field-errors" style="">
+                        {% for err in form.non_field_errors %}
+                          <p class="form-error">{{ err }}</p>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                    <!-- *** -->
+
+                    <button type = "submit"> Sign In</button>    
+                </form>
+                
+                <br>
+                <br>
+                <a href="/authentication/reset_password/">
+                <button>Forgot your password?</button>
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!--/* LOWER CONTACT SPACE*/-->
+        <div class="content">
+            <a name="contact">
+                <div class="contact">
+                    <ul>
+                        <li>Chinmoy Acharjee</li>
+                        <li>Sabik Abtahee</li>
+                    </ul>
+                </div>
+            </a>
+        </div>
+
+
+
+
+        <!--/* SCRIPT PART*/-->
+        <script type="text/javascript">
+
+
+
+            $(document).ready(function() {
+                $(".menu-icon").on("click", function() {
+                    $("nav ul").toggleClass("showing");
+                });
+            });
+
+            // Scrolling Effect
+
+            $(window).on("scroll", function() {
+                if($(window).scrollTop()) {
+                    $('nav').addClass('black');
+                }
+
+                else {
+                    $('nav').removeClass('black');
+                }
+            })
+
+
+        </script>
+
+    </body>
+</html>

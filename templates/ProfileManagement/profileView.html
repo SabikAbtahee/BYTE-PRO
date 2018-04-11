@@ -1,0 +1,60 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+
+
+
+<body>
+	<div>
+		{% if user.is_authenticated %}
+			<h4>Welcome {{user.username}}</h4>
+			<h5>Welcome {{user.email}}</h5>
+
+		<form id="usrform" method="post" action="/profilemanagement/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3>NAME:</h3>
+			<input type="text" value="{{userInformation.name}}" placeholder="" id="name" name="name"/>
+            <br>
+            <br>
+            <br>
+            <h3>Biography:</h3>
+			<textarea   rows="4" cols="50" name="biography" form="usrform" id="biography" name="biography">{{userInformation.biography}}</textarea>
+            <br>
+            <br>
+            <br>
+            <h3>Profile Picture</h3>
+
+            <input type="file"  name="pictureUpload" value="{{userInformation.profilePicture.url}}"/>
+            <img src='{{userInformation.profilePicture.url}}' alt="painai" height="50em" width="50em">
+            <br>
+{#            <button type="file">UPLOAD PROFILE PICTURE</button>#}
+            <br>
+            <br>
+            <h3>Skilltags</h3>
+
+            <select name="skillTags" multiple>
+              <option value="C++">C++</option>
+              <option value="C">C</option>
+              <option value="JAVA">JAVA</option>
+              <option value="Python">Python</option>
+            </select>
+            <br>
+            <br>
+            <button type="submit"> SAVE </button>
+
+        {% else %}
+            <h2>You are not logged in</h2>
+            {%endif%}
+
+		</form>
+	</div>
+</body>
+
+
+
+
+</html>
