@@ -1,17 +1,31 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
+# ----------------Default Authentication------------------
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
+# ------------------          *****         --------------
 
 
 from . import views
+
 urlpatterns = [
+    # url('signin/', views.Authentication().signIn, name='signIn'),
+    url(r'^signup/', views.Authentication().signUp, name='signUp2'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.Authentication().activate, name='activate'),
+    url(r'^signin', auth_views.login, name = "login"),
+    url(r'^logout', auth_views.logout, name = "logout"),
+
+    
+   	url(r'^reset_password_confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',
+        views.PasswordResetConfirmView.as_view(), name='reset_password_confirm'),
+    url(r'^reset_password',
+        views.ResetPasswordRequestView.as_view()),
+
+    # ----------------
+    # url(r'^home/', views.Authentication().index, name = "index"),
+    url(r'^home/',include('Project.urls')),
+	# ----------------
+	
 
 
-
-
-    url('signin/', views.Authentication().signIn, name='signIn'),
-    url('signup/', views.Authentication().signUp, name='signUp'),
-    url('recovery/', views.Authentication().recovery, name='recovery'),
-<<<<<<< HEAD
-    url('adduser/', views.Authentication().adduser, name='adduser'),
-=======
->>>>>>> af2b13902b8da9bf936dd179aa15958befa19449
 ]
