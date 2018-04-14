@@ -4,9 +4,11 @@ class CustomUserAuth(object):
 
     def authenticate(self, username=None, password=None):
         try:
+
             user = Database.models.customUser.objects.get(email=username)
             if user.check_password(password):
                 return user
+
         except Database.models.customUser.DoesNotExist:
             return None
 

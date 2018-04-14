@@ -34,7 +34,7 @@ import Database
 
 class Authentication(object):
     
-# -----------------Sign Up--------------------------
+# ----------------------------------------------------------------------------------Sign Up------------------------------------------------------------------------------
     
     def signUp(self, request):
         if request.method == 'POST':
@@ -46,34 +46,31 @@ class Authentication(object):
                 userInformation=Database.models.UserInformation(user=user)
                 userInformation.save()
                 current_site = get_current_site(request)
+
                 message = render_to_string('Authentication/AccountActivation/acc_active_email.html', {
                     'user':user, 'domain':current_site.domain,
                     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                     'token': account_activation_token.make_token(user),
                 })
-                #mail_subject = 'Activate your BYTE PRO account.'
+
                 to_email = form.cleaned_data.get('email')
+                subject = "Activate your BYTE PRO account."
+                self.sendEmail(message, to_email , subject)
 
-                #email = EmailMessage(mail_subject, message, to=[to_email])
-                print('message:', message)
 
-                #print('email:', email)
-                self.accountActivateEmail(message, to_email)
-                #email.send()
-                return HttpResponse('Please confirm your email address to complete the registration.')
-                 #return render(request, 'acc_active_sent.html')
+                return render(request, 'Authentication/ActivationLink.html')
         else:
             form = SignupForm()
         return render(request, 'Authentication/signUp.html', {'form': form})
-
-    def accountActivateEmail(self, body, reciever):
+# ----------------------------------------------------------------------------------Send Email------------------------------------------------------------------------------
+    def sendEmail(self, body, reciever, subject):
         fromaddr = "bytepro123@gmail.com"
         
         toaddr = str(reciever)
         msg = MIMEMultipart()
         msg['From'] = fromaddr
         msg['To'] = toaddr
-        msg['Subject'] = "Activate your BYTE PRO account."
+        msg['Subject'] = subject
 
         body = body
         msg.attach(MIMEText(body, 'plain'))
@@ -86,7 +83,7 @@ class Authentication(object):
         server.quit()
 
 
-# ----------------- Account Activation After Signing Up--------------------------
+# --------------------------------------------------------------------- Account Activation After Signing Up------------------------------------------------------------------------------
     def activate(self, request, uidb64, token):
         try:
             uid = force_text(urlsafe_base64_decode(uidb64))
@@ -97,11 +94,12 @@ class Authentication(object):
             user.is_active = True
             user.save()
             login(request, user)
-            return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+            # return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+            return render(request, 'Authentication/ActivationConfirmedLink.html')
         else:
             return HttpResponse('Activation link is invalid!')
 
-# ---------------------Try-Temporary---------------------------
+# --------------------------------------------------------------------------------------Try-Temporary--------------------------------------------------------------------------------------------
     def adduser(self,request):
     	if(request.method=="POST"):
     		# request.POST.get('is_private', False)
@@ -128,12 +126,12 @@ class Authentication(object):
         context={'userInformation':userInformation}
 
         return render(request, 'Authentication/index.html',context)
-# ------------------------ **************** -------------------
+# --------------------------------------------------------------- **************** ----------------------------------------------------------
 
 
 
 
-# ------------------ Password Recovery ------------------
+# ----------------------------------------------------------------------------------- Password Recovery ----------------------------------------------------------------------
 class ResetPasswordRequestView(FormView):
 
     template_name = "registration/password_reset_form.html"

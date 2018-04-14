@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Database.apps.DatabaseConfig',
     'ProfileManagement.apps.ProfilemanagementConfig',
     'Project.apps.ProjectConfig',
+    'multiselectfield',
 ]
 
 
@@ -99,7 +100,7 @@ WSGI_APPLICATION = 'SPL2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'git1',
+        'NAME': 'git5',
         'USER': 'Sabik',
         'PASSWORD' : 'iit123',
     }
