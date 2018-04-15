@@ -23,8 +23,14 @@ class UserInformation(models.Model):
         ('C++', 'C++'),
         ('JAVA', 'JAVA'),
         ('PYTHON', 'PYTHON'),
+        ('RUBY','RUBY'),
+        ('C#', 'C#'),
+        ('FORTRAN', 'FORTRAN'),
+        ('JAVASCRIPT', 'JAVASCRIPT'),
+        ('HTML','HTML'),
+        ('CSS','CSS'),
     )
-    skilltag = MultiSelectField(default='NONE',max_length=20, choices=skills)
+    skilltag = MultiSelectField(default='NONE',max_length=200, choices=skills)
 
     def __str__(self):
         return self.name

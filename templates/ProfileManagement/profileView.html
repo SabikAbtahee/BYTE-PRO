@@ -3,7 +3,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{#    <!-- Bootstrap core CSS -->#}
+{#    <link href="css/bootstrap.min.css" rel="stylesheet">#}
+{#    <!-- Material Design Bootstrap -->#}
+{#    <link href="css/mdb.min.css" rel="stylesheet">#}
+{#    <!-- Your custom styles (optional) -->#}
+{#    <link href="css/style.css" rel="stylesheet">#}
+
+
+    {%load staticfiles%}
+    <link rel="stylesheet" href="{% static 'ProfileManagement/CSS/ProfileManagement.css'%}">
+    <link rel="stylesheet" href="{% static 'ProfileManagement/CSS/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'ProfileManagement/CSS/mdb.min.css'%}">
+    <link rel="stylesheet" href="{% static 'ProfileManagement/CSS/style.css'%}">
+
+
+	<title>Profile Management</title>
+
+
+
 </head>
 
 
@@ -36,12 +68,32 @@
             <br>
             <h3>Skilltags</h3>
 
+
+
+{#            <select name="skillTags" multiple>#}
+{#            <select name="skillTags" class="mdb-select colorful-select dropdown-primary" multiple>#}
+            <div>
+                {% for value in userInformation.skilltag %}
+                      {{ value }}
+
+                {% endfor %}
+            </div>
+
+
             <select name="skillTags" multiple>
-              <option value="C++">C++</option>
-              <option value="C">C</option>
-              <option value="JAVA">JAVA</option>
-              <option value="PYTHON">Python</option>
+                {% for value,text in userInformation.skills %}
+                      <option value={{ value }}>{{ text }}</option>
+
+                {% endfor %}
             </select>
+
+
+
+
+
+
+
+
 
             <br>
             <br>
@@ -53,6 +105,23 @@
 
 		</form>
 	</div>
+
+
+
+
+    <script type="text/javascript" src="../../static/ProfileManagement/SCRIPT/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../../static/ProfileManagement/SCRIPT/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../../static/ProfileManagement/SCRIPT/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../../static/ProfileManagement/SCRIPT/mdb.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.mdb-select').material_select();
+	});
+		</script>
 </body>
 
 

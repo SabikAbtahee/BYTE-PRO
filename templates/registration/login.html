@@ -46,7 +46,7 @@
                         <ul>
 
                             <li><a href="#contact" class="btn">Contact</a></li>                                                                                            
-                            <li><a href="/authentication/signup/" class="btn btn-primary btn-lg" role="button">Sign up</a></li>
+                            <li><a href="{% url 'signUp2' %}" class="btn btn-primary btn-lg" role="button">Sign up</a></li>
 
                         </ul>
                     </div>
@@ -84,7 +84,8 @@
                 
                 <br>
                 <br>
-                <a href="/authentication/reset_password/">
+                <a href="{% url 'reset_password' %}">
+
                 <button>Forgot your password?</button>
                 </a>
 

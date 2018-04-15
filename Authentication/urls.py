@@ -19,7 +19,7 @@ urlpatterns = [
    	url(r'^reset_password_confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',
         views.PasswordResetConfirmView.as_view(), name='reset_password_confirm'),
     url(r'^reset_password',
-        views.ResetPasswordRequestView.as_view()),
+        views.ResetPasswordRequestView.as_view() , name='reset_password'),
 
     # ----------------
     # url(r'^home/', views.Authentication().index, name = "index"),
