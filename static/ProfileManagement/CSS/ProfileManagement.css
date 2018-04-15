@@ -3,10 +3,105 @@ html, body {
     padding: 0;
     width: 100%;
 
-    background: url(../IMAGE/grass-background.jpg) no-repeat center center fixed;
+    background: url(../IMAGE/codeback2.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 
+
+}
+.main {
+
+    margin-left: -15%;
+    margin-right: -15%;
+    font-size: 20px;
+    padding: 30px 10px;
+    margin-top: 5px;
+    font-family: "Courier New";
+    font-weight: bold;
+    border-radius: 10px;
+	border-color: rgb(223,226,229);
+	border-width: 2px;
+	border-style: solid;
+    background-color: floralwhite;
+
+}
+.box{
+     border-radius: 10px;
+     margin-right: -1%;
+}
+
+/*.multiselect {*/
+  /*width: 200px;*/
+/*}*/
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+
+.name{
+    margin-left: 20%;
+}
+
+.column {
+    float: left;
+    width: 49%;
+    text-align: center;
+    margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+#upload-photo {
+   opacity: 0;
+   /*position: absolute;*/
+   z-index: -1;
+}
+
+.btn-primary{
+    border-radius: 0;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    font-family: 'Verdana';
+}
+
+.check{
+    text-align: left;
+}
+.selectBox{
+
+}
+.col-sm-2{
+    text-align: right;
 }

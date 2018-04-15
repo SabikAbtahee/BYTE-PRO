@@ -159,6 +159,6 @@ DEFAULT_FROM_EMAIL = 'bytepro123@gmail.com'
 # EMAIL_BACKEND  = 'django.core.mail.backends.smtp.EmailBackend'
 # ------------------------
 
-LOGIN_REDIRECT_URL = '/home/'
+LOGIN_REDIRECT_URL = '/projectmanagement/'
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')

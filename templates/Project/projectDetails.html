@@ -1,0 +1,68 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/projectDetails.css' %}">
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">        
+        <div class= "projectDetailsDiv">
+            <h3>{{project.projectName}}</h3>
+            <h5>{{project.projectDescription}}</h5>
+            <h6>Created At: {{project.projectCreatedAt}} </h6> 
+            <hr>
+        </div>
+
+        <div class="instruction">
+            
+            <div>
+                <!-- {%load staticfiles%} -->
+                <a href="/projectmanagement/{{project.projectName}}/addfiles/">
+                    <button class="btn btn-success">Upload</button>
+                </a>
+                <button class="btn btn-primary">Download</button>
+            </div>        
+        </div> 
+        
+
+        <div class="filesMainDiv">
+            {% for file in files%}
+            
+            <div class="filesDiv">
+                <div class="filenameAndImage">
+                    {%load staticfiles%}
+                    <img src="../../static/Project/IMAGES/code-file.png" width="15" height="15" >
+                    <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/">{{file.fileName}}</a>
+                </div>
+                <div class="fileType">
+                    {{file.fileType}}
+                </div>
+                <div class="modificationTime">
+                    {{file.fileSize}}
+                </div>
+                <div class="modificationTime">
+                    {{file.modificationTime}}
+                </div>
+                <span class="fix"></span>
+
+            </div>
+            {%endfor%}
+
+             
+                
+            
+
+            <!--  -->
+
+            
+
+            
+        </div>        
+    </div>
+            
+
+{% endblock %}

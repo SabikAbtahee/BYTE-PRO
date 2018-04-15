@@ -1,0 +1,30 @@
+
+
+
+
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/projectDetails.css' %}">
+
+    <link rel="stylesheet" href="{% static 'Project/CSS/styles/github.css' %}">
+    <script src="{% static 'Project/SCRIPT/highlight.pack.js' %}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+        <pre>
+		<code class={{ file.fileType }}>
+{% for line in lines %} {{ forloop.counter }}   {{line}}
+{%endfor%}
+
+		</code>
+	</pre>
+    </div>
+
+
+{% endblock %}

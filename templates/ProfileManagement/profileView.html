@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{% static 'ProfileManagement/CSS/mdb.min.css'%}">
     <link rel="stylesheet" href="{% static 'ProfileManagement/CSS/style.css'%}">
 
+    <script type="text/javascript" src="{% static 'ProfileManagement/SCRIPT/profileManagement.js'%}"></script>
 
 	<title>Profile Management</title>
 
@@ -41,64 +42,87 @@
 
 
 <body>
-	<div>
+	<div class="container" align="center">
 		{% if user.is_authenticated %}
-			<h4>Welcome {{user.username}}</h4>
-			<h5>Welcome {{user.email}}</h5>
+            <br>
+            <br>
+            <br>
+            <br>
+        <div class="main">
 
-		<form id="usrform" method="post" action="/profilemanagement/" enctype="multipart/form-data">
+		<form id="usrform" method="post" action="/profilemanagement/" enctype="multipart/form-data" class="form-group" >
             {% csrf_token %}
-            <h3>NAME:</h3>
-			<input type="text" value="{{userInformation.name}}" placeholder="" id="name" name="name"/>
-            <br>
-            <br>
-            <br>
-            <h3>Biography:</h3>
-			<textarea   rows="4" cols="50" name="biography" form="usrform" id="biography" name="biography">{{userInformation.biography}}</textarea>
-            <br>
-            <br>
-            <br>
-            <h3>Profile Picture</h3>
 
-            <input type="file"  name="pictureUpload" value="{{userInformation.profilePicture.url}}"/>
-            <img src='{{userInformation.profilePicture.url}}' alt="painai" height="50em" width="50em">
-            <br>
-{#            <button type="file">UPLOAD PROFILE PICTURE</button>#}
-            <br>
-            <br>
-            <h3>Skilltags</h3>
+            <div class="row">
+                <div class="column">
+
+                </div>
 
 
+                <div class="column" >
+                    <img src='{{userInformation.profilePicture.url}}' alt="painai" height="180em" width="200em">
+{#            <input type="file"  name="pictureUpload" value="{{userInformation.profilePicture.url}}" id="upload-photo" />#}
+                    <br>
 
-{#            <select name="skillTags" multiple>#}
-{#            <select name="skillTags" class="mdb-select colorful-select dropdown-primary" multiple>#}
-            <div>
-                {% for value in userInformation.skilltag %}
-                      {{ value }}
+                    <label class="btn btn-primary btn-lg btn-file" style="font-size: 15px;font-family: 'Verdana'; border-radius: 10px;margin-right: 10px;">
+                    Browse <input type="file" name="pictureUpload" style="display: none; font-size: 20px" value="{{userInformation.profilePicture.url}}">
+                </label>
 
-                {% endfor %}
+
+                    </div>
             </div>
 
 
-            <select name="skillTags" multiple>
-                {% for value,text in userInformation.skills %}
-                      <option value={{ value }}>{{ text }}</option>
 
-                {% endfor %}
-            </select>
+            <div class="form-group row" >
+                <label class="col-sm-2 col-form-label" for="username">USERNAME</label>
+                  <p class="col-sm-0 col-form-label">{{user.username}}</p>
+            </div>
 
-
-
-
-
-
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="email">EMAIL</label>
+                <p class="col-sm-0 col-form-label">{{user.email}}</p>
+            </div>
 
 
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="usr">NAME</label>
+                <input type="text"  value="{{userInformation.name}}"  id="name" name="name" class="box col-sm-9 col-form-label"/>
+            </div>
 
-            <br>
-            <br>
-            <button type="submit"> SAVE </button>
+            <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="Biography">BIOGRAPHY</label>
+                  <textarea name="biography" class="box col-sm-9 col-form-label" aria-label="With textarea">{{userInformation.biography}}</textarea>
+            </div>
 
+
+
+
+
+            <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="Skilltags">SKILLTAGS</label>
+
+                        <div class="multiselect box col-sm-9 col-form-label">
+                             <div class="selectBox" onclick="showCheckboxes()">
+                      <select>
+                        <option>{% for value in userInformation.skilltag %}
+                                      {{ value }},
+                                {% endfor %}</option>
+                      </select>
+                  <div class="overSelect"></div>
+                </div>
+                <div id="checkboxes" class="check">
+                    {% for value,text in userInformation.skills %}
+                        <label> <input type="checkbox" name="skillTags" id={{ text }} value={{ value }} />  {{ text }}  </label>
+                            {% endfor %}
+                </div>
+                </div>
+
+
+            </div>
+
+            <button type="submit" class="btn btn-amber btn-lg" style="font-size: 20px;font-family: 'Courier New';font-weight: bold;border-radius: 10px;"> SAVE </button>
+        </div>
         {% else %}
             <h2>You are not logged in</h2>
             {%endif%}

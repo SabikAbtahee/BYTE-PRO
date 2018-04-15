@@ -7,6 +7,9 @@ from multiselectfield import MultiSelectField
 def user_directory_path(instance, filename):
     return '{0}/{1}'.format(instance.user.username, filename)
 
+def file_upload_path(instance, filename):
+    return '{0}/{1}/{2}'.format(instance.user.username, instance.project.projectName, filename)
+
 class UserInformation(models.Model):
 
     user = models.OneToOneField(
@@ -64,3 +67,24 @@ class ProjectTag(models.Model):
 
     def __str__(self):
         return self.projecttag
+
+
+class File(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+
+    file = models.FileField(upload_to=file_upload_path, )
+    fileName = models.CharField(max_length=200)
+    fileDescription = models.TextField(blank=True)
+    fileSize = models.IntegerField()
+
+    fileType = models.CharField(max_length=15)
+    modificationTime = models.DateTimeField(default=datetime.now, blank=True)
+
+
+class Version(models.Model):
+    file=models.ForeignKey(File,on_delete=models.CASCADE)
+    fileContent=models.TextField(default="First File")
+    versionDescription = models.TextField(blank=True)
+    versionFilename = models.CharField(max_length=200)
+

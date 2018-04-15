@@ -26,7 +26,7 @@
     </head>
 
 
-    <body>
+    <body style="background-color: rgb(233,235,238);">
 
         <!--/* NAVIGATION BAR */-->
         <div class="wrapper">
@@ -38,7 +38,7 @@
 
                     <div class="logo">
 
-                        <img src="WoolBug2.png" style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.8em;" >
+                        <img src="../../static/Authentication/IMAGES/WoolBug2.png" style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.8em;" >
                         <div class="logoContent">
                             BYTE PRO
                         </div>
@@ -54,7 +54,7 @@
                                 </form>
                             </li>
                             <li><a href="#contact" class="btn">Contact</a></li>
-                            <li><img src="propic.jpg" height = "50" width = "50" style="border-style: solid;border-radius: 50%; border-width: 3px;"></li>
+                            <li><img src="{{userInformation.profilePicture.url}}" height = "50" width = "50" style="border-style: solid;border-radius: 50%; border-width: 3px;"></li>
                         </ul>
                     </div>
 
@@ -80,18 +80,7 @@
 
         {% block content %}
 
-            {% endblock %}
-{#        <div class="main">#}
-{#            <h3>You have total 5 projects..</h3>#}
-{##}
-{#            <p></p>#}
-{#            <p>Scroll down the page to see the result.</p>#}
-{#            <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>#}
-{#            <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>#}
-{#            <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>#}
-{#            <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>#}
-{#        </div>#}
-
+        {% endblock %}
 
 
         <!-- *** -->

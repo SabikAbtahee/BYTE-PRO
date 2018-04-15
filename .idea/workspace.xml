@@ -2,18 +2,68 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0151b35-469a-484f-bc0e-486a318d74b2" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Database/migrations/0001_initial.py" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/BYTE-PRO" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Data Modeling/5.2.1 Noun Parsing.xlsx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Data Modeling/5.2.2 Analysis for finalizing data objects.docx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Data Modeling/5.2.2 Potential Data Objects.docx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Data Modeling/5.2.3 Final Data Object.docx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Data Modeling/Scenario 2.docx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Main Report/SRS_Main.docx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Scenario/Copy of Usage Scenario.docx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Scenario/Requirements.docx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Scenario/Scenario 2.docx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Scenario/Usage Scenario.docx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/Authentication/IMAGES/nn.pptx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Authentication/desktop.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Authentication/login_activity.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Authentication/login_swimlane.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Authentication/logout_activity.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Authentication/logout_swimlane.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Authentication/recovery-swimlane.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Authentication/recovery_activity.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Authentication/signup-swimlane.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Authentication/signup_activity.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Communication/Developer_Notification_activity.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Communication/Developer_notification_swimlane.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Communication/desktop.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Communication/project_notification_activity.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Communication/projectnotification_activity.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Profile Management/Profile management_activity.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Profile Management/desktop.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Profile Management/profile_management_swimlane.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Project Management/File_management_activity.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Project Management/File_management_swimlane.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Project Management/Issue_creation_activity.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Project Management/Issue_creation_swimlane.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Project Management/Manage_version_activity.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Project Management/desktop.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Project Management/manage_version-swimlane.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Project Management/project_planning_main_activity.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Project Management/project_planning_swimlane.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Project Management/rebase_activity.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Project Management/rebase_swimlane.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Search/Search_swimlane.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Search/desktop.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/Search/search.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Activity and swimlane/desktop.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Data Modeling/5.2.1 Noun Parsing.xlsx (1).gsheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Data Modeling/5.2.1 Noun Parsing.xlsx.gsheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Data Modeling/5.2.4 Data Object Relations.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Data Modeling/desktop.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Main Report/SRS_Main.docx.gdoc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Main Report/desktop.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Scenario/Requirements.docx.gdoc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Scenario/Usage Scenario.docx.gdoc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Scenario/desktop.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Usecase/Level 0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Usecase/Level 1.1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Usecase/Level 1.4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Usecase/Level 1.5.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Usecase/Level 1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Usecase/Lvl1.2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/Usecase/desktop.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SRS FOR GITHUB/desktop.ini" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Authentication/urls.py" afterPath="$PROJECT_DIR$/Authentication/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/admin.py" afterPath="$PROJECT_DIR$/Database/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/models.py" afterPath="$PROJECT_DIR$/Database/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProfileManagement/views.py" afterPath="$PROJECT_DIR$/ProfileManagement/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SPL2/settings.py" afterPath="$PROJECT_DIR$/SPL2/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Authentication/recovery.html" afterPath="$PROJECT_DIR$/templates/Authentication/recovery.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Authentication/signIn.html" afterPath="$PROJECT_DIR$/templates/Authentication/signIn.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Authentication/signUp.html" afterPath="$PROJECT_DIR$/templates/Authentication/signUp.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/ProfileManagement/profileView.html" afterPath="$PROJECT_DIR$/templates/ProfileManagement/profileView.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/registration/login.html" afterPath="$PROJECT_DIR$/templates/registration/login.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,101 +92,95 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="ProfileManagement.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/ProfileManagement/CSS/ProfileManagement.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="profileView.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/ProfileManagement/profileView.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="76" column="30" lean-forward="false" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Database/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="signIn.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Authentication/signIn.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="104" column="39" lean-forward="true" selection-start-line="104" selection-start-column="8" selection-end-line="104" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="48" column="56" lean-forward="false" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="signUp.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Authentication/signUp.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="53" column="46" lean-forward="false" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="recovery.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Authentication/recovery.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="51" column="46" lean-forward="false" selection-start-line="51" selection-start-column="46" selection-end-line="51" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Authentication/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="14" column="51" lean-forward="false" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="51" />
-              <folding />
+            <state relative-caret-position="655">
+              <caret line="77" column="76" lean-forward="false" selection-start-line="77" selection-start-column="76" selection-end-line="77" selection-end-column="76" />
+              <folding>
+                <element signature="n#style#0;n#label#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#label#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Database/views.py">
+        <entry file="file://$PROJECT_DIR$/ProfileManagement/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="425">
+              <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project/urls.py">
+      <file leaf-file-name="projectDetails.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/Project/CSS/projectDetails.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+            <state relative-caret-position="221">
+              <caret line="13" column="4" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="16" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SPL2/urls.py">
+      <file leaf-file-name="fileDetails.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/Project/fileDetails.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+            <state relative-caret-position="323">
+              <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="projectDetails.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/Project/projectDetails.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/Project/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="612">
+              <caret line="40" column="69" lean-forward="false" selection-start-line="40" selection-start-column="69" selection-end-line="40" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/Project/CSS/base.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="project.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/Project/CSS/project.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1055">
+              <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -166,34 +210,38 @@
       <list>
         <option value="$PROJECT_DIR$/ProfileManagement/urls.py" />
         <option value="$PROJECT_DIR$/TRACK.txt" />
-        <option value="$PROJECT_DIR$/static/Project/CSS/base.css" />
-        <option value="$PROJECT_DIR$/Project/views.py" />
-        <option value="$PROJECT_DIR$/Project/urls.py" />
         <option value="$PROJECT_DIR$/templates/Authentication/index.html" />
         <option value="$PROJECT_DIR$/templates/Home/home.html" />
         <option value="$PROJECT_DIR$/templates/registration/password_reset_form.html" />
         <option value="$PROJECT_DIR$/templates/Home/base.html" />
-        <option value="$PROJECT_DIR$/SPL2/urls.py" />
         <option value="$PROJECT_DIR$/static/Project/CSS/project.css" />
-        <option value="$PROJECT_DIR$/static/Project/CSS/projectMain.css" />
-        <option value="$PROJECT_DIR$/templates/Project/base.html" />
-        <option value="$PROJECT_DIR$/templates/Project/home.html" />
         <option value="$PROJECT_DIR$/Authentication/backends.py" />
         <option value="$PROJECT_DIR$/templates/Authentication/ActivationLink.html" />
         <option value="$PROJECT_DIR$/static/Authentication/CSS/ActivationLink.css" />
         <option value="$PROJECT_DIR$/templates/Authentication/ActivationConfirmedLink.html" />
         <option value="$PROJECT_DIR$/Authentication/views.py" />
         <option value="$PROJECT_DIR$/ProfileManagement/forms.py" />
-        <option value="$PROJECT_DIR$/SPL2/settings.py" />
         <option value="$PROJECT_DIR$/Database/admin.py" />
-        <option value="$PROJECT_DIR$/ProfileManagement/views.py" />
-        <option value="$PROJECT_DIR$/Database/models.py" />
-        <option value="$PROJECT_DIR$/static/ProfileManagement/CSS/ProfileManagement.css" />
         <option value="$PROJECT_DIR$/Authentication/urls.py" />
         <option value="$PROJECT_DIR$/templates/Authentication/signIn.html" />
         <option value="$PROJECT_DIR$/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/templates/Authentication/signUp.html" />
         <option value="$PROJECT_DIR$/templates/Authentication/recovery.html" />
+        <option value="$PROJECT_DIR$/Project/urls.py" />
+        <option value="$PROJECT_DIR$/SPL2/urls.py" />
+        <option value="$PROJECT_DIR$/SPL2/settings.py" />
+        <option value="$PROJECT_DIR$/static/ProfileManagement/SCRIPT/profileManagement.js" />
+        <option value="$PROJECT_DIR$/static/Project/SCRIPT/highlight.pack.js" />
+        <option value="$PROJECT_DIR$/static/Project/CSS/projectDetails.css" />
+        <option value="$PROJECT_DIR$/static/Project/CSS/projectMain.css" />
+        <option value="$PROJECT_DIR$/templates/Project/home.html" />
+        <option value="$PROJECT_DIR$/static/Project/CSS/base.css" />
+        <option value="$PROJECT_DIR$/templates/Project/fileDetails.html" />
+        <option value="$PROJECT_DIR$/Database/models.py" />
+        <option value="$PROJECT_DIR$/Project/views.py" />
+        <option value="$PROJECT_DIR$/templates/Project/base.html" />
+        <option value="$PROJECT_DIR$/ProfileManagement/views.py" />
+        <option value="$PROJECT_DIR$/static/ProfileManagement/CSS/ProfileManagement.css" />
         <option value="$PROJECT_DIR$/templates/ProfileManagement/profileView.html" />
       </list>
     </option>
@@ -251,24 +299,6 @@
               <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="git-prototype" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="git-prototype" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -298,11 +328,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Authentication" />
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -317,6 +343,60 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProfileManagement" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="git-prototype" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="git-prototype" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProfileManagement" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="git-prototype" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="git-prototype" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="git-prototype" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="git-prototype" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProfileManagement" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -351,11 +431,11 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\sabik\Desktop\DJANGO TESTING\TestTry\media" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\sabik\SPL2\git-prototype\static\Project\CSS" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sabik\Desktop\DJANGO TESTING\TestTry\media" />
     </key>
   </component>
   <component name="RunManager" selected="Django server.TestTry">
@@ -650,10 +730,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3421875" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.334375" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -691,90 +771,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hala/background.jpg" />
-    <entry file="file://$PROJECT_DIR$/media/defaultProfilePic.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TRACK.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="36" column="17" lean-forward="false" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_subject.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="64" column="106" lean-forward="false" selection-start-line="64" selection-start-column="102" selection-end-line="64" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Project/project.html" />
-    <entry file="file://$PROJECT_DIR$/static/Project/CSS/base.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="93" column="16" lean-forward="false" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/Project/CSS/project.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="2" selection-end-line="184" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/Project/CSS/projectMain.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Project/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Project/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="67" lean-forward="false" selection-start-line="4" selection-start-column="67" selection-end-line="4" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Database/migrations/0001_initial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="38" column="10" lean-forward="true" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project/migrations/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Project/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -905,14 +901,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ProfileManagement/forms.py" />
-    <entry file="file://$PROJECT_DIR$/SPL2/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1734">
-          <caret line="102" column="21" lean-forward="false" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Database/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -920,20 +908,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ProfileManagement/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="28" column="46" lean-forward="false" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#35#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Authentication/ActivationLink.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="19" selection-end-column="85" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -948,13 +927,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/ProfileManagement/CSS/ProfileManagement.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -974,34 +947,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SPL2/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="48" column="56" lean-forward="false" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Authentication/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="14" column="51" lean-forward="false" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -1022,27 +971,193 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Authentication/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="14" column="51" lean-forward="false" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SPL2/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="30" column="57" lean-forward="false" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/Project/CSS/addFile.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Authentication/signIn.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
-          <caret line="104" column="39" lean-forward="true" selection-start-line="104" selection-start-column="8" selection-end-line="104" selection-end-column="39" />
+          <caret line="104" column="38" lean-forward="false" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Project/addProject.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SPL2/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="734">
+          <caret line="161" column="40" lean-forward="false" selection-start-line="161" selection-start-column="40" selection-end-line="161" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/ProfileManagement/SCRIPT/profileManagement.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="10" lean-forward="true" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Project/addFile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/Project/SCRIPT/highlight.pack.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="13" column="39" lean-forward="false" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Project/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="67" lean-forward="false" selection-start-line="4" selection-start-column="67" selection-end-line="4" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/Project/CSS/projectMain.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-264">
+          <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Database/models.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="75" column="8" lean-forward="true" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Project/fileDetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="84" column="27" lean-forward="false" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/Project/CSS/base.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Project/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="40" column="69" lean-forward="false" selection-start-line="40" selection-start-column="69" selection-end-line="40" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Project/projectDetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/Project/CSS/project.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1055">
+          <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/Project/CSS/projectDetails.css">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+          <caret line="13" column="4" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="16" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProfileManagement/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/ProfileManagement/CSS/ProfileManagement.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/ProfileManagement/profileView.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="76" column="30" lean-forward="false" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
-          <folding />
+        <state relative-caret-position="655">
+          <caret line="77" column="76" lean-forward="false" selection-start-line="77" selection-start-column="76" selection-end-line="77" selection-end-column="76" />
+          <folding>
+            <element signature="n#style#0;n#label#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#label#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -26,7 +26,8 @@ class ProfileManagement(object):
 
             userInformation.name = name
             userInformation.biography = biography
-            userInformation.skilltag=skilltags
+            if(len(skilltags)>0):
+                userInformation.skilltag=skilltags
 
             userInformation.save()
 

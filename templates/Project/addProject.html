@@ -1,0 +1,58 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/addProject.css' %}">
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+        <div class="addProjectMainContent">
+            <div class="projectCreateingInstruction">
+                <h3>Create Your Project</h3>
+                <p>A project contains all the files you upload, including the revision history. </p>
+                <hr>
+
+            </div>
+
+            <div class="addProjectForm">
+                <form action="/projectmanagement/addproject/" method = 'post'>
+                    
+                    <label for="Enter Project Name">Enter Project Name:</label>
+                    
+                    <div class="form-inline">
+                        <label for="Enter Project Name"><a href="{{user.username}}">{{user.username}}</a>/</label>
+                        <input type="text" class="form-control" id="project" placeholder="Enter Project Name" name="projectName">
+                        <label for="afteradded" hidden></label>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="form-group">
+                        <label for="Project Description">Project Description:</label>
+                        <textarea class="form-control" id="projDesc" placeholder="Tell about your project" name="projectDescription"></textarea>
+                    </div>
+                    
+                    <div>
+                        <input type="radio" name="accessType" value="Public"> Public<label>[Anyone can see your project]</label>
+                        
+                        <hr>
+
+                        <input type="radio" name="accessType" value="Private"> Private <label>[Only you  can see your project]</label>
+                    </div>
+                
+                <button type="submit" class="btn btn-success">Add Project</button>
+              </form>
+            </div>
+        </div>
+        
+    
+            
+                
+    </div>
+            
+
+{% endblock %}

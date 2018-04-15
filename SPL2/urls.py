@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^authentication/', include('Authentication.urls')),
     url(r'^profilemanagement/', include('ProfileManagement.urls')),
-    url(r'^home/', include('Project.urls')),
+    url(r'^projectmanagement/', include('Project.urls')),
 
 ]
 
