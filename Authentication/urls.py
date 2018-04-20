@@ -13,7 +13,8 @@ urlpatterns = [
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.Authentication().activate, name='activate'),
     url(r'^signin', auth_views.login, name = "login"),
-    url(r'^logout', auth_views.logout, name = "logout"),
+    # url(r'^logout', auth_views.logout, name = "logout"),
+    url(r'^logout', views.Authentication().signUp, name = "logout"),
 
     
    	url(r'^reset_password_confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',

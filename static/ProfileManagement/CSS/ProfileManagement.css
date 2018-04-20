@@ -11,8 +11,8 @@ html, body {
 
 
 }
-.main {
 
+.main {
     margin-left: -15%;
     margin-right: -15%;
     font-size: 20px;
@@ -21,10 +21,11 @@ html, body {
     font-family: "Courier New";
     font-weight: bold;
     border-radius: 10px;
-	border-color: rgb(223,226,229);
+	/*border-color: rgb(223,226,229);*/
+    border-color: rgb(223,226,229);
 	border-width: 2px;
 	border-style: solid;
-    background-color: floralwhite;
+    background-color: whitesmoke;
 
 }
 .box{
@@ -94,6 +95,14 @@ html, body {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     font-family: 'Verdana';
+
+}
+.btn-success{
+    border-radius: 0;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    font-family: 'Verdana';
+    border-radius: 10px;
 }
 
 .check{

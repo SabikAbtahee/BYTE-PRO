@@ -38,4 +38,5 @@ class SetPasswordForm(forms.Form):
                     self.error_messages['password_mismatch'],
                     code='password_mismatch',
                     )
+
         return password2

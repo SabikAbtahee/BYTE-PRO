@@ -52,10 +52,12 @@
 
 		<form id="usrform" method="post" action="/profilemanagement/" enctype="multipart/form-data" class="form-group" >
             {% csrf_token %}
-
+            {% if form.errors %}
+                <p>Something Wrong</p>
+            {% endif %}
             <div class="row">
                 <div class="column">
-
+                    <a href="{% url 'homepage' %}" class="btn btn-success" style="font-size: 20px" >PROJECT</a>
                 </div>
 
 
@@ -76,23 +78,23 @@
 
             <div class="form-group row" >
                 <label class="col-sm-2 col-form-label" for="username">USERNAME</label>
-                  <p class="col-sm-0 col-form-label">{{user.username}}</p>
+                  <p class="col-sm-0 col-form-label" id="username">{{user.username}}</p>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="email">EMAIL</label>
-                <p class="col-sm-0 col-form-label">{{user.email}}</p>
+                <p class="col-sm-0 col-form-label" id="email">{{user.email}}</p>
             </div>
 
 
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label" for="usr">NAME</label>
+              <label class="col-sm-2 col-form-label" for="name">NAME</label>
                 <input type="text"  value="{{userInformation.name}}"  id="name" name="name" class="box col-sm-9 col-form-label"/>
             </div>
 
             <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="Biography">BIOGRAPHY</label>
-                  <textarea name="biography" class="box col-sm-9 col-form-label" aria-label="With textarea">{{userInformation.biography}}</textarea>
+                  <textarea name="biography" class="box col-sm-9 col-form-label" aria-label="With textarea" id="Biography">{{userInformation.biography}}</textarea>
             </div>
 
 
@@ -102,7 +104,7 @@
             <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="Skilltags">SKILLTAGS</label>
 
-                        <div class="multiselect box col-sm-9 col-form-label">
+                        <div class="multiselect box col-sm-9 col-form-label" id="Skilltags">
                              <div class="selectBox" onclick="showCheckboxes()">
                       <select>
                         <option>{% for value in userInformation.skilltag %}
@@ -117,11 +119,31 @@
                             {% endfor %}
                 </div>
                 </div>
-
-
             </div>
 
-            <button type="submit" class="btn btn-amber btn-lg" style="font-size: 20px;font-family: 'Courier New';font-weight: bold;border-radius: 10px;"> SAVE </button>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="OldPass">Old Password</label>
+                <input type="password" class="box col-sm-9 col-form-label " placeholder="Enter old Password" id="OldPass" name={{ form.old_password.name }}  />
+                <div class="box col-sm-9 col-form-label " id="error"></div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="NewPass">New Password</label>
+                <input type="password" class="box col-sm-9 col-form-label" placeholder="Enter new Password" id="NewPass" name={{ form.new_password1.name }}   />
+                {% if form.new_password1.errors %}<li>{{ form.new_password1.label }}: {{ form.new_password1.errors|striptags }}</li>
+            {% endif %}
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="ConPass">Confirm Password</label>
+                <input type="password" class="box col-sm-9 col-form-label" placeholder="Confirm new Password"  id="ConPass" name={{ form.new_password2.name }}   />
+                {% if form.new_password2.errors %}<li>{{ form.new_password2.label }}: {{ form.new_password2.errors|striptags }}</li>
+            {% endif %}
+            </div>
+
+            <button id='save' type="submit" class="btn btn-amber btn-lg" style="font-size: 20px;font-family: 'Courier New';font-weight: bold;border-radius: 10px;"> SAVE </button>
+        <input name="csrfmiddlewaretoken" value="3pVLxcAhPVWeJJ7vaau2nsrTMSZdmFXqNTImhWXImebeaudsqZ4PCLzQEgNSaSOo" type="hidden">
+
         </div>
         {% else %}
             <h2>You are not logged in</h2>
@@ -142,9 +164,72 @@
     <script type="text/javascript" src="../../static/ProfileManagement/SCRIPT/mdb.min.js"></script>
 
 <script type="text/javascript">
+
+    		$("#OldPass").change(function () {
+		    var password = $(this).val();
+		    $.ajax({
+                type:"POST",
+		      	url: "/ajax/passwordCheck/",
+
+		      	data: {
+		        	'oldPass': password
+		     	},
+		      	dataType: 'json',
+                success: function (data) {
+		        	if (data.is_taken) {
+		          		document.getElementById('error').innerHTML =data.is_taken
+                        if(data.check==false){
+		          		    document.getElementById("save").disabled = true;
+                        }
+                        else if(data.check==true){
+                            document.getElementById("save").disabled = false;
+                        }
+{#                        alert(data.is_taken)#}
+		        	}
+
+		     	}
+			});
+
+		});
+
+
+    		$("#ConPass").change(function () {
+		    var password = $(this).val();
+		    var password2 = $("#NewPass").val();
+		    if(password==password2 && password.length>=8){
+		        document.getElementById("save").disabled = false;
+            }
+            else{
+		        document.getElementById("save").disabled = true;
+            }
+
+		});
+    		$("#NewPass").change(function () {
+		    var password = $(this).val();
+		    var password2 = $("#ConPass").val();
+		    if(password==password2 && password.length>=8){
+		        document.getElementById("save").disabled = false;
+            }
+            else{
+		        document.getElementById("save").disabled = true;
+            }
+
+		});
+
+
+
+
+
+
 	$(document).ready(function() {
 		$('.mdb-select').material_select();
 	});
+
+
+
+
+
+
 		</script>
 </body>
 

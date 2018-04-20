@@ -1,9 +1,13 @@
 from django.shortcuts import render
-
+from passlib.hash import pbkdf2_sha256
+from django.contrib.auth import authenticate
+from django.contrib import messages
 # Create your views here.
 import Database
 from django.contrib.auth.models import User
-
+from django.http import JsonResponse
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 class ProfileManagement(object):
 
     def get_pro_pic(self,pic):
@@ -15,6 +19,12 @@ class ProfileManagement(object):
 
         context = {'userInformation': userInformation, 'user': user }
         if(request.method=='POST'):
+            # ##################################PASSWORD CHANGE FORM#######################
+            form = PasswordChangeForm(data=request.POST ,user=request.user)
+            if form.is_valid():
+
+                user=form.save()
+                user.is_active = False
             if(len(request.FILES)!=0):
                 pic = request.FILES['pictureUpload']
                 # print(pic)
@@ -30,8 +40,29 @@ class ProfileManagement(object):
                 userInformation.skilltag=skilltags
 
             userInformation.save()
+            #return render(request, 'ProfileManagement/profileView.html', context)
+        else:
+            form = PasswordChangeForm(user=request.user)
+            context['form']=form
+        update_session_auth_hash(request, user)
+        return render(request, 'ProfileManagement/profileView.html', context)
 
+    def passwordCheck(self,request):
+        user=request.user
 
+        password = request.POST.get('oldPass', None)
 
+        y=authenticate(request,username=user,password=password)
 
-        return render(request, 'ProfileManagement/profileView.html',context)
+        if(y is None):
+            error="Old password does not match"
+            bools=False
+        else:
+            error="Old password Matches"
+            bools = True
+        data = {
+            'is_taken': error,
+            'check':bools,
+        }
+
+        return JsonResponse(data)

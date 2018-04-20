@@ -22,13 +22,15 @@ from django.views.generic.base import TemplateView
 from django.conf.urls import include
 from django.conf import settings
 from django.views.static import serve
-
+import ProfileManagement
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^authentication/', include('Authentication.urls')),
     url(r'^profilemanagement/', include('ProfileManagement.urls')),
     url(r'^projectmanagement/', include('Project.urls')),
+
+    url(r'^ajax/passwordCheck/$', ProfileManagement.views.ProfileManagement().passwordCheck , name="passwordCheck"),
 
 ]
 

@@ -16,6 +16,15 @@ header {
     height: 20vh;
 
 }
+
+
+/*/*************************************/
+
+
+
+
+
+
 .wrapper{
     width: 100%;
 }
@@ -67,6 +76,8 @@ header {
 nav {
     position: fixed;
     width: 100%;
+    overflow: hidden;
+    /*z-index: -5;*/
     /*line-height: 60px;*/
 }
 
@@ -103,7 +114,7 @@ nav ul li a {
     color: black;
     padding: 6px 15px;
     margin: 8px 0;
-    box-sizing: border-box
+    box-sizing: border-box;
     border: 2px solid red;
     border-radius: 4px;
 }
@@ -218,3 +229,8 @@ nav ul li a {
     }
 
 }
+
+
+
+
+/*****************************************************************/

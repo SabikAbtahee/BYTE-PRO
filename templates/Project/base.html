@@ -22,6 +22,10 @@
 
         {% endblock %}
 
+
+
+
+
         <!--  -->
     </head>
 
@@ -53,7 +57,12 @@
                                     <button class = "btn btn-success">Search..</button>
                                 </form>
                             </li>
-                            <li><a href="#contact" class="btn">Contact</a></li>
+                            <li ><a href="#contact" class="btn btn-primary btn-lg">CONTACT</a></li>
+
+                            <li>
+                                <a href="{% url 'profileView' %}" class="btn btn-primary btn-lg" role="button">PROFILE</a>
+                            </li>
+                            <li><a href="{% url 'logout' %}" class="btn btn-primary btn-lg" role="button">LOGOUT</a></li>
                             <li><img src="{{userInformation.profilePicture.url}}" height = "50" width = "50" style="border-style: solid;border-radius: 50%; border-width: 3px;"></li>
                         </ul>
                     </div>
@@ -119,17 +128,16 @@
                 });
             });
 
-            // Scrolling Effect
 
-            $(window).on("scroll", function() {
-                if($(window).scrollTop()) {
-                    $('nav').addClass('black');
-                }
 
-                else {
-                    $('nav').removeClass('black');
-                }
-            })
+
+
+
+
+
+
+
+
 
 
         </script>

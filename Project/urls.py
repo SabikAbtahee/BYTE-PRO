@@ -15,7 +15,12 @@ urlpatterns = [
     url(r'^addproject/', views.Project().addProject, name='addProject'),
 
     url(r'^(?P<projectname>[\w\-]+)/(?P<id>[0-9]+)/',views.Project().fileDetails, name = 'fileDetails'),
+
+    url(r'^(?P<projectname>[\w\-]+)/downloadfiles/',views.Project().downloadFiles, name = 'downloadFiles'),
+    url(r'^(?P<projectname>[\w\-]+)/downloadfiles/',views.Project().downloadFiles, name = 'downloadFiles'),
     url(r'^(?P<projectname>[\w\-]+)/addfiles/',views.Project().addFile, name = 'addFile'),
     # here can be change[we can use project name or project id.]
     url(r'^(?P<projectname>[\w\-]+)/',views.Project().projectDetails, name = 'projectDetails'),
+
+    # url(r'^(?P<projectname>[\w\-]+)/', views.Project().individualDownload, name = 'fileDownload'),
 ]

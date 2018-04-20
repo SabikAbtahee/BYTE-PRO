@@ -24,15 +24,24 @@
                 <a href="/projectmanagement/{{project.projectName}}/addfiles/">
                     <button class="btn btn-success">Upload</button>
                 </a>
-                <button class="btn btn-primary">Download</button>
+                <a href="/projectmanagement/{{project.projectName}}/downloadfiles/">
+                    <button class="btn btn-primary">Download</button>
+                </a>
+
+
+
+
             </div>        
         </div> 
         
 
         <div class="filesMainDiv">
+
+
             {% for file in files%}
             
             <div class="filesDiv">
+            
                 <div class="filenameAndImage">
                     {%load staticfiles%}
                     <img src="../../static/Project/IMAGES/code-file.png" width="15" height="15" >
@@ -48,21 +57,18 @@
                     {{file.modificationTime}}
                 </div>
                 <span class="fix"></span>
+                  <di<a href={{ file }} download={{ file.fileName }} class="{{ file.fileName }}">Download</a></div>
+
 
             </div>
             {%endfor%}
 
-             
-                
-            
+        </div>
 
-            <!--  -->
 
-            
-
-            
         </div>        
     </div>
+
             
 
 {% endblock %}

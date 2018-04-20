@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 from datetime import datetime
 from multiselectfield import MultiSelectField
-
+import os
+from django.conf import settings
 def user_directory_path(instance, filename):
     return '{0}/{1}'.format(instance.user.username, filename)
 
@@ -81,6 +82,11 @@ class File(models.Model):
     fileType = models.CharField(max_length=15)
     modificationTime = models.DateTimeField(default=datetime.now, blank=True)
 
+    def relative_path(self):
+        return os.path.relpath(self.path, settings.MEDIA_ROOT)
+
+    def __str__(self):
+        return str(self.file)
 
 class Version(models.Model):
     file=models.ForeignKey(File,on_delete=models.CASCADE)

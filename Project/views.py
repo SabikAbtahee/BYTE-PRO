@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 from django.conf import settings
 import os
 
+import os, tempfile, zipfile, mimetypes
+from wsgiref.util import FileWrapper
+from django.conf import settings
 
 class Project(object):
     def homePage(self, request):
@@ -139,6 +142,31 @@ class Project(object):
         return render(request, 'Project/fileDetails.html', context)
 
 
+    def downloadFiles(self, request, projectname):
+        user = request.user
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        project = Database.models.Project.objects.get(projectName=projectname)
+
+        pass
 
 
+#     #################################################
 
+    # def send_file(self, request):
+    #
+    #     filename = settings.BASE_DIR + < file_name >
+    #     download_name = "example.csv"
+    #     wrapper = FileWrapper(open(filename))
+    #     content_type = mimetypes.guess_type(filename)[0]
+    #     response = HttpResponse(wrapper, content_type=content_type)
+    #     response['Content-Length'] = os.path.getsize(filename)
+    #     response['Content-Disposition'] = "attachment; filename=%s" % download_name
+    #     return response
+
+    # def individualDownload(self,request,file):
+    #     import zipfile
+    #
+    #     jungle_zip = zipfile.ZipFile('C:\\Stories\\Fantasy\\jungle.zip', 'w')
+    #     jungle_zip.write('C:\\Stories\\Fantasy\\jungle.pdf', compress_type=zipfile.ZIP_DEFLATED)
+    #
+    #     jungle_zip.close()
