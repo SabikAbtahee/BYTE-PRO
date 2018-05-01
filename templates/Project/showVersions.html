@@ -1,0 +1,58 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/fileDetails.css' %}">
+    <link rel="stylesheet" href="{% static 'Project/CSS/styles/github.css' %}">
+    <script src="{% static 'Project/SCRIPT/highlight.pack.js' %}"></script>
+    <script src="{% static 'Project/SCRIPT/highlightjs-line-numbers.min.js' %}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>hljs.initLineNumbersOnLoad();</script>
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+        {% if noVersions%}
+        <div>
+            This File has no versions yet.
+        </div>
+        {%else%}
+        <div class = "fileContentsAndCode">
+            {%for version in  versions%}
+            
+
+            
+            <div class="filesDetailsDiv">
+                <div class="filenameAndImage">
+                   {{version.versionFilename}}
+                </div>
+                <div class="fileType">
+                    {{version.file.fileType}} type
+                </div>
+                <div class="versionFileSize">
+                    {{version.versionFileSize}} bytes
+                </div>
+                <div class="modificationTime">
+                    {{version.versionModificationTime}}
+                </div>
+                <div class="reabsebtn">
+                    <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/{{version.id}}/rebase"><button class = "btn btn-primary"><b>Re-Base This Version!</b></button></a>
+                </div>
+
+                <span class="fix"></span>
+
+            </div>
+            <div class = "codeDiv">
+                <pre>
+            <code class={{ version.file.fileType }}>{{version.fileContent}}</code>
+        </pre>
+            </div>
+        {%endfor%}    
+        </div>
+        {%endif%}
+
+
+
+{% endblock %}

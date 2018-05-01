@@ -5,6 +5,7 @@ from datetime import datetime
 from multiselectfield import MultiSelectField
 import os
 from django.conf import settings
+
 def user_directory_path(instance, filename):
     return '{0}/{1}'.format(instance.user.username, filename)
 
@@ -93,4 +94,9 @@ class Version(models.Model):
     fileContent=models.TextField(default="First File")
     versionDescription = models.TextField(blank=True)
     versionFilename = models.CharField(max_length=200)
+    versionFileSize = models.IntegerField()
+    versionModificationTime =  models.DateTimeField(default=datetime.now, blank=True)
 
+class AssignDeveloper(models.Model):
+    project= models.ForeignKey(Project)
+    assignDeveloper=models.ForeignKey(User)

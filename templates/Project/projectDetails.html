@@ -17,58 +17,77 @@
             <hr>
         </div>
 
+
+        <div class= "assignDevelopers">
+
+            <form method="post" action="/comm/{{ project.projectName }}/assigndeveloper/" class="form-inline" style = "left: 50%;">
+                <label for="Enter Project Name">Assign Developer: </label>
+                <input type="text" name="assignDeveloper" id='assignDeveloper' class="form-control" list="searchUser" autocomplete="off">
+                <datalist id="searchUser">
+                    {% for user in alluser %}
+                        <option value={{ user.username }}>
+                    {% endfor %}
+                </datalist>
+
+                <button id="search" class = "btn btn-info" class="form-control"><b>Assign Developer</b></button>
+            </form>
+            <p>Assigned Developrs: {{ assignDevelopers|length }}</p>
+            <hr>
+        </div>
+
+
         <div class="instruction">
             
             <div>
                 <!-- {%load staticfiles%} -->
                 <a href="/projectmanagement/{{project.projectName}}/addfiles/">
-                    <button class="btn btn-success">Upload</button>
+                    <button class="btn btn-success">  Upload  </button>
                 </a>
                 <a href="/projectmanagement/{{project.projectName}}/downloadfiles/">
-                    <button class="btn btn-primary">Download</button>
+                    <button class="btn btn-primary">Download ZIP</button>
                 </a>
-
-
-
+                <a href="/projectmanagement/{{project.projectName}}/projectProgress/">
+                    <button class="btn btn-warning">Project Progress</button>
+                </a>
 
             </div>        
         </div> 
         
 
         <div class="filesMainDiv">
+            <table class="table">
+                <tbody>
+                {%for file in files%}
+                    <tr align="center">
+                        <td align="left">
+                            {%load staticfiles%}
+                            <img src="../../static/Project/IMAGES/code-file.png" width="15" height="15" >
+                            <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/">{{file.fileName}}</a>
+                        </td>
 
+                        <td>
+                            {{file.fileType}}
+                        </td>
 
-            {% for file in files%}
-            
-            <div class="filesDiv">
-            
-                <div class="filenameAndImage">
-                    {%load staticfiles%}
-                    <img src="../../static/Project/IMAGES/code-file.png" width="15" height="15" >
-                    <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/">{{file.fileName}}</a>
-                </div>
-                <div class="fileType">
-                    {{file.fileType}}
-                </div>
-                <div class="modificationTime">
-                    {{file.fileSize}}
-                </div>
-                <div class="modificationTime">
-                    {{file.modificationTime}}
-                </div>
-                <span class="fix"></span>
-                  <di<a href={{ file }} download={{ file.fileName }} class="{{ file.fileName }}">Download</a></div>
+                        <td>
+                             {{file.fileSize}}
+                        </td>
 
+                        <td>
+                            {{file.modificationTime}}
+                        </td>
 
-            </div>
-            {%endfor%}
+                        <td align="right">
+                            <a href={{ file.file.url }} download><button class="btn btn-info">DOWNLOAD</button></a>
 
-        </div>
-
-
+                            <a href="/projectmanagement/{{project.projectName}}/{{ file.id }}/deletefile/"><button class="btn btn-danger">DELETE</button></a>
+                        </td>
+                    </tr>
+                {%endfor%}
+                </tbody>
+            </table>
         </div>        
     </div>
-
             
 
 {% endblock %}

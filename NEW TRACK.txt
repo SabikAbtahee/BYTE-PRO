@@ -1,0 +1,33 @@
+TODO
+1. 
+2. Assign developer
+3. Search
+4. Comment
+5. Issue
+6. Rebase
+7. Release
+8. Project Progress
+9. MERGE
+10. Account recovery
+11. Notification
+12. Project showcasing
+
+
+IN PROGRESS
+1. Project name checking if same exists, space exists
+2. Upload without giving file
+3. Recovery
+4. upload refering project progress and assign developer
+5.
+
+DONE:
+1. Authentication
+2. Upload
+3. Download
+4. Profile management
+5. Version control
+6. DELETE
+
+-------->NEED to make HTML Page<--------
+1. no found [while searching]
+2. not login page [if user is not authenticated]

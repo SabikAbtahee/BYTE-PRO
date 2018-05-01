@@ -41,6 +41,7 @@
 	
 }
 .totalproject button{
+
 	margin-left: 37%;
 	font-size: 20px;
 	border-radius: 5px;
@@ -50,6 +51,7 @@
 	color: green;
 	background-color: white; 
 	transition: 0.3s;
+
 }
 
 .allProjects a{

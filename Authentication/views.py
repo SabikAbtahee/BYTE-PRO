@@ -21,7 +21,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage
-
+from django.contrib.auth import logout
 # ------------------ Email ------------------
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -126,6 +126,15 @@ class Authentication(object):
         context={'userInformation':userInformation}
 
         return render(request, 'Authentication/index.html',context)
+
+
+
+
+    def logout(self,request):
+
+        response = logout(request)
+
+        return render(response, 'Authentication/signOut.html')
 # --------------------------------------------------------------- **************** ----------------------------------------------------------
 
 

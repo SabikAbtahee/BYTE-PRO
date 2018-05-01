@@ -1,0 +1,49 @@
+.main {
+    margin-left: 249px;
+    margin-right: 249px;
+    font-size: 20px;
+    padding: 30px 10px;
+    margin-top: -100px;
+
+
+}
+.col-md-4{
+    width: 32%;
+    background-color: whitesmoke;
+
+    padding: 30px 10px;
+    margin:2px;
+
+
+}
+
+.cellContainer {
+  width: 33.33%;
+  float: left;
+  background-color: rgb(233,235,238);
+
+}
+.columnss{
+    text-align: center;
+    margin:10px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+
+
+}
+
+.columnButton{
+    text-align: center;
+    margin:10px;
+    border-radius: 5px;
+    background-color: rgb(233,235,238);
+
+}
+.textAreaa{
+    width: 100%;
+    border-radius: 5px;
+}
+.x{
+
+    width: 100%;
+}

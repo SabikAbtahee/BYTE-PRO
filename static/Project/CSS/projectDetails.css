@@ -6,7 +6,29 @@
     margin-top: -100px;
      
 }
+
+.column{
+	float: left;
+	width: 20%;
+}
+.row:after{
+	content: "";
+	display: table;
+	clear: both;
+}
 .projectDetailsDiv, .instruction{
+	margin-top: 20px;
+	background-color: white;
+	font-family: Arial;
+	color: black;
+	border-radius: 5px;
+	border-color: rgb(223,226,229);
+	border-width: 2px;
+	border-style: solid;
+	padding: 20px;
+}
+
+.assignDevelopers{
 	margin-top: 20px;
 	background-color: white;
 	font-family: Arial;
@@ -29,23 +51,44 @@
 	border-color: rgb(223,226,229);
 	border-width: 2px;
 	border-style: solid;
-	/*padding: 20px;*/
-
-
+	
 	border-top-width: 5px;
 	border-top-style: solid;
 	border-top-color: rgb(64,55,88);
 	border-top-right-radius: 5px;
 	border-top-left-radius: 5px;   
 }
+table{
+	font-family: arial;
+	font-size: 17px;
+}
+table:hover{
+	background-color: rgb(255,255,220); 
+	transition: 0.5s;
+}
+tr{
+	padding-left:10px;
+	border-radius: 5px;
+	border-color: rgb(223,226,229);
+	border-width: 2px;
+	border-style: solid;
+}
+tr:hover{
+	border-left-width: 5px;
+	border-left-color: rgb(64,55,88);
+	border-left-style: solid;
+	transition: 0.3s;
 
-.filesDiv {
+}
+
+/*.filesDiv {
+
     border-radius: 2px;
 	border-color: rgb(223,226,229);
 	border-width: 1px;
 	border-style: dashed;
     text-align: justify;
-    padding-left: 10px;
+    padding-left: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 10px;
@@ -61,7 +104,9 @@
     width: 100%;
     display: inline-block;
 }
-
+.downloadDiv{
+	align-content: center;
+}
 .filesDiv:hover{
 	border-left-width: 10px;
 	border-left-color: rgb(64,55,88);
@@ -69,7 +114,7 @@
 	transition: 0.3s;
 
 
-}
+}*/
 
 @media(max-width: 1500px) {
 
@@ -81,4 +126,5 @@
     }
     
 }
+
 

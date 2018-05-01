@@ -1,0 +1,72 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/projectProgress.css' %}">
+
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+
+    <div class="row">
+      <div class="cellContainer">
+                <div class="columnss" >TO-DO</div>
+
+                <div class="columnButton" >
+                    <form method="post" class="form-group" name="TO-DO" id="TO-DO">
+                        <textarea  class="textAreaa" placeholder="Enter Description" ></textarea>
+
+                    </form>
+                </div>
+                <div class="columnButton" ><button class="btn btn-danger x">+</button></div>
+
+      </div>
+      <div class="cellContainer">
+                <div class="columnss" >IN-PROGRESS</div>
+
+
+
+            <div class="columnButton" >
+                    <form class="form-group" method="post" class="form-group" name="IN-PROGRESS" id="IN-PROGRESS">
+                        <textarea  class="textAreaa" placeholder="Enter Description"></textarea>
+
+                    </form>
+                </div>
+                <div class="columnButton" ><button class="btn btn-danger x">+</button></div>
+      </div>
+
+      <div class="cellContainer">
+                <div class="columnss" >DONE</div>
+
+
+              <div class="columnButton" >
+                    <form class="form-group" method="post" class="form-group" name="DONE" id="DONE">
+                        <textarea  class="textAreaa" placeholder="Enter Description"></textarea>
+
+                    </form>
+                </div>
+                 <div class="columnButton" ><button class="btn btn-danger x">+</button></div>
+      </div>
+</div>
+
+
+    </div>
+
+
+{% endblock %}
+
+
+
+{#            <tr>TO-DO</tr>#}
+{##}
+{##}
+{##}
+{#            <td style="background-color: red">w</td>#}
+{#            <td style="background-color: green">d</td>#}
+{#                <div class="col-lg-2" style="background-color: #00a8c6">s</div>#}
+{#                <div class="col-lg-2" style="background-color: red">w</div>#}
+{#                <div class="col-lg-2" style="background-color: green">e</div>#}
+{##}
+{#<tr>IN_PROGRESS</tr>#}
+{#            <tr>DONE</tr>#}

@@ -1,0 +1,63 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/projectSettings.css' %}">
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+        <div class= "projectDetailsDiv">
+            <h3>{{project.projectName}}</h3>
+            <h5>{{project.projectDescription}}</h5>
+            <h6>Created At: {{project.projectCreatedAt}} </h6>
+            <hr>
+        </div>
+
+
+        <div class="developerMainDiv">
+            <h3>Assigned Developers</h3>
+            <table class="table">
+                <tbody>
+                {% for developer in assignDevelopers %}
+                    <tr align="center">
+                        <td align="left">
+                            {%load staticfiles%}
+                            <p>{{ developer.assignDeveloper.username }}</p>
+                        </td>
+
+                        <td>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        </td>
+
+                        <td align="left">
+                            {{ developer.assignDeveloper.email }}
+                        </td>
+
+                        <td align="left">
+                            <form method="post" action="/search/">
+                                <input type="text" name="searchinput" value="{{ developer.assignDeveloper.username }}" hidden>
+
+                                <button id="search" class = "btn btn-info" >View <b>{{ developer.assignDeveloper.username }}</b></button>
+                            </form>
+                        </td>
+
+                        <td align="right">
+
+                            <a href="/projectmanagement/{{project.projectName}}/{{ developer.id }}/deletedeveloper/"><button class="btn btn-danger">Remove as <b>{{ developer.assignDeveloper.username }}</b></button></a>
+                        </td>
+                    </tr>
+                {%endfor%}
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+
+
+{% endblock %}

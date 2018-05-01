@@ -32,6 +32,8 @@
 
     <body style="background-color: rgb(233,235,238);">
 
+        
+
         <!--/* NAVIGATION BAR */-->
         <div class="wrapper">
             <header>
@@ -42,7 +44,7 @@
 
                     <div class="logo">
 
-                        <img src="../../static/Authentication/IMAGES/WoolBug2.png" style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.8em;" >
+                        <img src={% static "Authentication/IMAGES/WoolBug2.png" %} style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.8em;" >
                         <div class="logoContent">
                             BYTE PRO
                         </div>
@@ -52,9 +54,19 @@
                     <div class="menu">
                         <ul>
                             <li>
-                                <form>
-                                    <input type="text" name="" class="searchinput">
-                                    <button class = "btn btn-success">Search..</button>
+                                <form method="post" action="/search/">
+                                    <input type="text" name="searchinput" id='searchinput' class="searchinput" list="searchvalues" autocomplete="off">
+                                    <datalist id="searchvalues">
+                                        {% for user in alluser %}
+                                            <option value={{ user.username }}>
+                                        {% endfor %}
+
+                                         {% for project in allprojects %}
+                                            <option value={{ project.projectName }}>
+                                        {% endfor %}
+                                    </datalist>
+
+                                    <button id="search" class = "btn btn-success" >Search..</button>
                                 </form>
                             </li>
                             <li ><a href="#contact" class="btn btn-primary btn-lg">CONTACT</a></li>
@@ -107,12 +119,12 @@
             </a>
         </div>
 
-
-
-
         <!--/* SCRIPT PART*/-->
         <script type="text/javascript">
-            // For opening and closing sid nav bar
+
+
+
+            // For opening and closing side nav bar
             function openNav() {
                 document.getElementById("mySidenav").style.width = "250px";
             }
@@ -127,15 +139,6 @@
                     $("nav ul").toggleClass("showing");
                 });
             });
-
-
-
-
-
-
-
-
-
 
 
 

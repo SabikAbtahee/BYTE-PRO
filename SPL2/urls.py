@@ -32,6 +32,10 @@ urlpatterns = [
 
     url(r'^ajax/passwordCheck/$', ProfileManagement.views.ProfileManagement().passwordCheck , name="passwordCheck"),
 
+    url(r'^search/', include('Search.urls')),
+    url(r'^comm/', include('Communication.urls')),
+
+
 ]
 
 if(settings.DEBUG):

@@ -18,6 +18,7 @@ header {
 }
 .wrapper{
     width: 100%;
+    z-index: 30;
 }
 
 .content {
@@ -103,7 +104,7 @@ nav ul li a {
     color: black;
     padding: 6px 15px;
     margin: 8px 0;
-    box-sizing: border-box
+    box-sizing: border-box;
     border: 2px solid red;
     border-radius: 4px;
 }
@@ -150,16 +151,15 @@ nav ul li a {
 }
 
 .sidenav a:hover {
-    color:#ff656c;
-    /*border-style: dashed;*/
-    background-color: rgb(64,55,80);
-    border-bottom: 1px;
-    border-bottom-color: white;
-    border-bottom-style: solid;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+    color:White;
 
-    /*border-color: #ff656c;*/
+    background-color: rgb(64,55,80);
+    /*border-bottom: 1px;*/
+    /*border-bottom-color: white;*/
+    /*border-bottom-style: solid;*/
+    /*border-bottom-right-radius: 15px;*/
+    /*border-bottom-left-radius: 15px;*/
+
 }
 
 .sidenav .closebtn {

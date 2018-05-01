@@ -1,0 +1,62 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/fileDetails.css' %}">
+
+    <link rel="stylesheet" href="{% static 'Project/CSS/styles/github.css' %}">
+    <script src="{% static 'Project/SCRIPT/highlight.pack.js' %}"></script>
+    <script src="{% static 'Project/SCRIPT/highlightjs-line-numbers.min.js' %}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>hljs.initLineNumbersOnLoad();</script>
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+        <div class = "fileContentsAndCode">
+            <div class="filesDetailsDiv">
+                <div class="filenameAndImage">
+                   {{file.fileName}}
+                </div>
+                <div class="fileType">
+                    {{file.fileType}} type
+                </div>
+                <div class="modificationTime">
+                    {{file.fileSize}} bytes
+                </div>
+                <div>
+                    {{numberOfLines}} lines
+                </div>
+                <div class="modificationTime">
+                    {{file.modificationTime.date}}
+                </div>
+                <span class="fix"></span>
+
+            </div>
+            <hr>
+
+            <div class="previousButtonDiv">
+                <a href={{ file.file.url }} download><button class="btn btn-warning">Download</button></a>
+            </div>
+
+
+            <div class = "clearboth"></div>
+            <hr>
+            <div class = "codeDiv">
+
+                <pre>
+            <code class={{ file.fileType }}>{% for line in lines %} {{line}}
+{%endfor%}
+</code>
+        </pre>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+{% endblock %}
