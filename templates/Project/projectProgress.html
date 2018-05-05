@@ -4,54 +4,174 @@
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'Project/CSS/projectProgress.css' %}">
 
+    {#    <link rel="stylesheet" href="{% static 'ProfileManagement/CSS/ProfileManagement.css'%}">#}
+    {#    <link rel="stylesheet" href="{% static 'ProfileManagement/CSS/bootstrap.min.css'%}">#}
+    {#    <link rel="stylesheet" href="{% static 'ProfileManagement/CSS/mdb.min.css'%}">#}
+    {#    <link rel="stylesheet" href="{% static 'ProfileManagement/CSS/style.css'%}">#}
+
+
+    <script type="text/javascript" src="{% static 'ProfileManagement/SCRIPT/profileManagement.js'%}"></script>
 {% endblock %}
 
 {% block content %}
+
     <div class="main">
 
-    <div class="row">
-      <div class="cellContainer">
+        <div class="row">
+            <div class="cellContainer">
                 <div class="columnss" >TO-DO</div>
+
+                <table class="table">
+                    <tbody>
+                    {% for i in todo %}<tr align="center">
+                        <td class="left" >
+                            {{ i.todo_description }}
+                        </td>
+                        <td class="right">
+                            <form method="post" class="form-group">
+                                <textarea  name="todoDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.todo_description }}</textarea>
+                            <button name="DELETE-BUTTON-TODO" value="DELETE-BUTTON-TODO" id='DELETE-BUTTON-TODO' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
+                            </form>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
 
                 <div class="columnButton" >
                     <form method="post" class="form-group" name="TO-DO" id="TO-DO">
-                        <textarea  class="textAreaa" placeholder="Enter Description" ></textarea>
 
+                        <textarea  name="todoDescription" class="textAreaa" placeholder="Enter Description" ></textarea>
+
+
+
+                        <div class="columnButton" ><button name="TO-DO-BUTTON" value="TO-DO-BUTTON" id='TO-DO-BUTTON' type="submit" class="btn btn-danger x">+</button></div>
                     </form>
                 </div>
-                <div class="columnButton" ><button class="btn btn-danger x">+</button></div>
 
-      </div>
-      <div class="cellContainer">
+            </div>
+
+            <div class="cellContainer">
+
                 <div class="columnss" >IN-PROGRESS</div>
 
+                <table class="table">
+                    <tbody>
+                    {% for i in inprogress %}
+                        <tr align="center">
+                            <td class="left" >
+                                {{ i.inProgress_description }}
+                                <br>
+                                {{ i.fileNames }}
+                            </td>
+                            <td class="right">
+                                <form method="post" class="form-group">
+                                <textarea  name="inProgressDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.inProgress_description }}</textarea>
+                            <button name="DELETE-BUTTON-IN" value="DELETE-BUTTON-IN" id='DELETE-BUTTON-IN' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
+                            </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
 
 
-            <div class="columnButton" >
+                <div class="columnButton" >
                     <form class="form-group" method="post" class="form-group" name="IN-PROGRESS" id="IN-PROGRESS">
-                        <textarea  class="textAreaa" placeholder="Enter Description"></textarea>
 
+                        <textarea  name="inProgressDescription" class="textAreaa" placeholder="Enter Description"></textarea>
+
+                        <div >
+
+
+                            <div>
+                                <div  class="selectBox" onclick="showcheckboxes2()">
+                                    <select class="box">
+                                        {#                                        <option>#}
+                                        {#                                            {% for value in userInformation.skilltag %}#}
+                                        {#                                                {{ value }},#}
+                                        {#                                            {% endfor %}#}
+                                        {#                                        </option>#}
+
+                                    </select>
+                                    <div class="overSelect"></div>
+                                </div>
+                                <div id="checkboxes2" class="check">
+                                    {% for f in file %}
+                                        <label> <input type="checkbox" name="filenames1" id="{{ f.fileName }}" value="{{ f.fileName }}" />  {{ f.fileName }}  </label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="columnButton" ><button name="IN-PROGRESS-BUTTON" value="IN-PROGRESS-BUTTON" type="submit" id='IN-PROGRESS-BUTTON'  class="btn btn-danger x">+</button></div>
                     </form>
                 </div>
-                <div class="columnButton" ><button class="btn btn-danger x">+</button></div>
-      </div>
 
-      <div class="cellContainer">
+            </div>
+
+            <div class="cellContainer">
                 <div class="columnss" >DONE</div>
+                <table class="table">
+                    <tbody>
+                    {% for i in done %}
+                        <tr align="center">
+                            <td class="left" >
+                                {{ i.done_description }}
+                                <br>
+                                {{ i.fileNames }}
+                            </td>
+                            <td class="right">
+                              <form method="post" class="form-group">
+                                <textarea  name="doneDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.done_description }}</textarea>
+                            <button name="DELETE-BUTTON-DONE" value="DELETE-BUTTON-DONE" id='DELETE-BUTTON-DONE' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
+                            </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
 
-
-              <div class="columnButton" >
+                <div class="columnButton" >
                     <form class="form-group" method="post" class="form-group" name="DONE" id="DONE">
-                        <textarea  class="textAreaa" placeholder="Enter Description"></textarea>
 
+
+                        <textarea name="doneDescription" class="textAreaa" placeholder="Enter Description"></textarea>
+
+                        <div >
+
+
+                            <div>
+                                <div  class="selectBox" onclick="showCheckboxes()">
+                                    <select class="box">
+
+                                    </select>
+                                    <div class="overSelect"></div>
+                                </div>
+                                <div id="checkboxes" class="check">
+                                    {% for f in file %}
+                                        <label> <input type="checkbox" name="filenames2" id="{{ f.fileName }}" value="{{ f.fileName }}" />  {{ f.fileName }}  </label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div  class="columnButton" ><button name="DONE-BUTTON" value="DONE-BUTTON" id='DONE-BUTTON'  type="submit" class="btn btn-danger x">+</button></div>
                     </form>
                 </div>
-                 <div class="columnButton" ><button class="btn btn-danger x">+</button></div>
-      </div>
-</div>
+            </div>
 
 
+        </div>
     </div>
+
+
+
+
 
 
 {% endblock %}

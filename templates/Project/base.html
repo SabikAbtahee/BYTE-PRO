@@ -2,148 +2,148 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:width="http://www.w3.org/1999/xhtml">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Home</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
-        {%load staticfiles%}
-        <link rel="stylesheet" href="{% static 'Project/CSS/project.css'%}">
+    {%load staticfiles%}
+    <link rel="stylesheet" href="{% static 'Project/CSS/project.css'%}">
 
-        {% block css_link %}
+    {% block css_link %}
 
-        {% endblock %}
-
-
+    {% endblock %}
 
 
 
-        <!--  -->
-    </head>
 
 
-    <body style="background-color: rgb(233,235,238);">
-
-        
-
-        <!--/* NAVIGATION BAR */-->
-        <div class="wrapper">
-            <header>
-                <nav>
-                    <div class="menu-icon">
-                        <i class="fa fa-bars fa-2x"></i>
-                    </div>
-
-                    <div class="logo">
-
-                        <img src={% static "Authentication/IMAGES/WoolBug2.png" %} style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.8em;" >
-                        <div class="logoContent">
-                            BYTE PRO
-                        </div>
-
-                    </div>
-
-                    <div class="menu">
-                        <ul>
-                            <li>
-                                <form method="post" action="/search/">
-                                    <input type="text" name="searchinput" id='searchinput' class="searchinput" list="searchvalues" autocomplete="off">
-                                    <datalist id="searchvalues">
-                                        {% for user in alluser %}
-                                            <option value={{ user.username }}>
-                                        {% endfor %}
-
-                                         {% for project in allprojects %}
-                                            <option value={{ project.projectName }}>
-                                        {% endfor %}
-                                    </datalist>
-
-                                    <button id="search" class = "btn btn-success" >Search..</button>
-                                </form>
-                            </li>
-                            <li ><a href="#contact" class="btn btn-primary btn-lg">CONTACT</a></li>
-
-                            <li>
-                                <a href="{% url 'profileView' %}" class="btn btn-primary btn-lg" role="button">PROFILE</a>
-                            </li>
-                            <li><a href="{% url 'logout' %}" class="btn btn-primary btn-lg" role="button">LOGOUT</a></li>
-                            <li><img src="{{userInformation.profilePicture.url}}" height = "50" width = "50" style="border-style: solid;border-radius: 50%; border-width: 3px;"></li>
-                        </ul>
-                    </div>
-
-                </nav>
-
-            </header>
-        </div>
+    <!--  -->
+</head>
 
 
-        <!-- side Nav -->
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#">Projects</a>
-
-            <a href="#">Code</a>
-            <a href="#">Issues</a>
-            <a href="#">Comments</a>
-            <a href="#">Assigned Developers</a>
-        </div>
-
-        <span style="font-size:30px;cursor:pointer; color: rgb(64,55,88);" onclick="openNav()">&#9776;</span>
+<body style="background-color: rgb(233,235,238);">
 
 
-        {% block content %}
 
-        {% endblock %}
+<!--/* NAVIGATION BAR */-->
+<div class="wrapper">
+    <header>
+        <nav>
+            <div class="menu-icon">
+                <i class="fa fa-bars fa-2x"></i>
+            </div>
 
+            <div class="logo">
 
-        <!-- *** -->
-
-        <!--/* LOWER CONTACT SPACE*/-->
-        </div>
-        <div class="content">
-            <a name="contact">
-                <div class="contact">
-                    <ul>
-                        <li>Chinmoy Acharjee</li>
-                        <li>Sabik Abtahee</li>
-                    </ul>
+                <img src={% static "Authentication/IMAGES/WoolBug2.png" %} style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.8em;" >
+                <div class="logoContent">
+                    BYTE PRO
                 </div>
-            </a>
+
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li>
+                        <form method="post" action="/search/">
+                            <input type="text" name="searchinput" id='searchinput' class="searchinput" list="searchvalues" autocomplete="off">
+                            <datalist id="searchvalues">
+                                {% for user in alluser %}
+                                    <option value={{ user.username }}>
+                                {% endfor %}
+
+                                {% for project in allprojects %}
+                                    <option value={{ project.projectName }}>
+                                {% endfor %}
+                            </datalist>
+
+                            <button id="search" class = "btn btn-success" >Search..</button>
+                        </form>
+                    </li>
+                    <li ><a href="#contact" class="btn btn-primary btn-lg">CONTACT</a></li>
+
+                    <li>
+                        <a href="{% url 'profileView' %}" class="btn btn-primary btn-lg" role="button">PROFILE</a>
+                    </li>
+                    <li><a href="{% url 'logout' %}" class="btn btn-primary btn-lg" role="button">LOGOUT</a></li>
+                    <li><img src="{{userInformation.profilePicture.url}}" height = "50" width = "50" style="border-style: solid;border-radius: 50%; border-width: 3px;"></li>
+                </ul>
+            </div>
+
+        </nav>
+
+    </header>
+</div>
+
+
+<!-- side Nav -->
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">Projects</a>
+
+    <a href="#">Code</a>
+    <a href="#">Issues</a>
+    <a href="#">Comments</a>
+    <a href="#">Assigned Developers</a>
+</div>
+
+<span style="font-size:30px;cursor:pointer; color: rgb(64,55,88);" onclick="openNav()">&#9776;</span>
+
+
+{% block content %}
+
+{% endblock %}
+
+
+<!-- *** -->
+
+<!--/* LOWER CONTACT SPACE*/-->
+</div>
+<div class="content">
+    <a name="contact">
+        <div class="contact">
+            <ul>
+                <li>Chinmoy Acharjee</li>
+                <li>Sabik Abtahee</li>
+            </ul>
         </div>
+    </a>
+</div>
 
-        <!--/* SCRIPT PART*/-->
-        <script type="text/javascript">
-
-
-
-            // For opening and closing side nav bar
-            function openNav() {
-                document.getElementById("mySidenav").style.width = "250px";
-            }
-
-            function closeNav() {
-                document.getElementById("mySidenav").style.width = "0";
-            }
-
-
-            $(document).ready(function() {
-                $(".menu-icon").on("click", function() {
-                    $("nav ul").toggleClass("showing");
-                });
-            });
+<!--/* SCRIPT PART*/-->
+<script type="text/javascript">
 
 
 
+    // For opening and closing side nav bar
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
 
-        </script>
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
 
-    </body>
+
+    $(document).ready(function() {
+        $(".menu-icon").on("click", function() {
+            $("nav ul").toggleClass("showing");
+        });
+    });
+
+
+
+
+</script>
+
+</body>
 </html>

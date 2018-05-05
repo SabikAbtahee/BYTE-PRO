@@ -18,7 +18,7 @@
         <div class = "fileContentsAndCode">
             <div class="filesDetailsDiv">
                 <div class="filenameAndImage">
-                   {{file.fileName}}
+                    {{file.fileName}}
                 </div>
                 <div class="fileType">
                     {{file.fileType}} type
@@ -38,22 +38,22 @@
             <hr>
             <div class="previousButtonDiv">
                 <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/versions">
-                <button class="btn btn-success">Show Previous Versions</button>
-                </a>    
+                    <button class="btn btn-success">Show Previous Versions</button>
+                </a>
             </div>
 
             <div class="previousButtonDiv">
                 <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/comparewithprevious">
-                <button class="btn btn-primary">Compare With Previous</button>
-                </a>    
+                    <button class="btn btn-primary">Compare With Previous</button>
+                </a>
             </div>
             <div class="previousButtonDiv">
-                <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/edit"><button class="btn btn-info">Edit</button></a>    
+                <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/edit"><button class="btn btn-info">Edit</button></a>
             </div>
             <div class="previousButtonDiv">
-                <a href={{ file.file.url }} download><button class="btn btn-warning">Download</button></a>    
+                <a href={{ file.file.url }} download><button class="btn btn-warning">Download</button></a>
             </div>
-            
+
 
             <div class = "clearboth"></div>
             <hr>
@@ -61,14 +61,14 @@
                 
                 <pre>
             <code class={{ file.fileType }}>{% for line in lines %} {{line}}
-{%endfor%}
+            {%endfor%}
 </code>
-        </pre>    
+        </pre>
             </div>
-            
+
         </div>
 
-        
+
     </div>
 
 

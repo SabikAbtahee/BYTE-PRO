@@ -2,7 +2,7 @@
 
 {% block css_link %}
     {% load staticfiles %}
-    
+
     <link rel="stylesheet" type="text/css" href="{% static 'Project/CSS/editFile.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'Project/CSS/codemirror/lib/codemirror.css'%}">
     <!-- themes -->
@@ -20,47 +20,47 @@
 
                     <div class="form-inline">
 
-                    <label for="Enter Project Name">
-                        <a href="/profilemanagement/">
-                            {{user.username}}
-                        </a>
-                        /
-                        <a href="/projectmanagement/{{project.projectName}}">
-                            {{project.projectName}}
-                        </a>
-                        /
-                        {{file.fileName}}
-                    </label>    
-                        
+                        <label for="Enter Project Name">
+                            <a href="/profilemanagement/">
+                                {{user.username}}
+                            </a>
+                            /
+                            <a href="/projectmanagement/{{project.projectName}}">
+                                {{project.projectName}}
+                            </a>
+                            /
+                            {{file.fileName}}
+                        </label>
+
                     </div>
-                    
+
                     <hr>
-                    
+
                     <div class="form-group">
                         <label for="File Description">File Description:</label>
                         <textarea class="form-control" id="projDesc" placeholder="About your editing file" name="fileDescription"></textarea>
                     </div>
-                    
+
                     <div class="codeDiv">
                             <textarea  style="z-index: ;" class="codemirror-textarea" name="code">
 {% for line in lines %}{{line}}
-{%endfor%}</textarea>     
-                        </div>
-                <hr>
-                <button type="submit" class="btn btn-success">Add File</button>
-              </form>
+{%endfor%}</textarea>
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn btn-success">Add File</button>
+                </form>
             </div>
-        </div>        
+        </div>
     </div>
-    
-     
+
+
 
     {% load staticfiles %}
     <script type ="text/javascript" src="{% static 'Project/SCRIPT/jquery.min.js' %}"></script>
     <script src="{% static 'Project/CSS/codemirror/lib/codemirror.js'%}"></script>
     <script src="{% static 'Project/CSS/codemirror/mode/clike/clike.js' %}"></script>
 
-    
+
     <script>
         // toLowerCase()
         $(document).ready(function(){

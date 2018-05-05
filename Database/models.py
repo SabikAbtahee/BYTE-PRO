@@ -52,12 +52,19 @@ class UserInformation(models.Model):
 
 
 
+
+
+
+
 class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     projectName=models.CharField(max_length=250,blank=False)
     projectDescription = models.TextField(blank=False)
     accessType = models.CharField(default="Public" , max_length=25)
     projectCreatedAt = models.DateTimeField(default=datetime.now, blank=True)
+
+
+
 
     def __str__(self):
         return self.projectName
@@ -69,6 +76,7 @@ class ProjectTag(models.Model):
 
     def __str__(self):
         return self.projecttag
+
 
 
 class File(models.Model):
@@ -89,6 +97,21 @@ class File(models.Model):
     def __str__(self):
         return str(self.file)
 
+class Todo(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+    todo_description= models.TextField(blank=True)
+class InProgress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    fileNames = models.TextField(blank=True)
+    inProgress_description = models.TextField(blank=True)
+class Done(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    fileNames = models.TextField(blank=True)
+    done_description = models.TextField(blank=True)
+
 class Version(models.Model):
     file=models.ForeignKey(File,on_delete=models.CASCADE)
     fileContent=models.TextField(default="First File")
@@ -100,3 +123,4 @@ class Version(models.Model):
 class AssignDeveloper(models.Model):
     project= models.ForeignKey(Project)
     assignDeveloper=models.ForeignKey(User)
+

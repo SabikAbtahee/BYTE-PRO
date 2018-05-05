@@ -15,7 +15,7 @@
                 <form action="/projectmanagement/{{project.projectName}}/addfiles/" method = 'post' enctype="multipart/form-data">
                     <!-- {% csrf_token %} -->
                     <div class="form-inline">
-                        
+
                         <label for="Enter Project Name">
                             <a href="/profilemanagement/">
                                 {{user.username}}
@@ -25,22 +25,22 @@
                                 {{project.projectName}}
                             </a>
                         </label>
-                        
+
                         <input type="file" class="" id="file" name="file" multiple>
                         <label for="afteradded" hidden></label>
                     </div>
-                    
+
                     <hr>
-                    
+
                     <div class="form-group">
                         <label for="File Description">File Description:</label>
                         <textarea class="form-control" id="projDesc" placeholder="About your uploading file" name="fileDescription"></textarea>
                     </div>
-                <button type="submit" class="btn btn-success">Add File</button>
-              </form>
+                    <button type="submit" class="btn btn-success">Add File</button>
+                </form>
             </div>
-        </div>     
+        </div>
     </div>
-            
+
 
 {% endblock %}

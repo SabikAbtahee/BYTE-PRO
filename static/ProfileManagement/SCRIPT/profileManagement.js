@@ -19,14 +19,31 @@
 
 
 var expanded = false;
-
+var expanded2 = false;
 function showCheckboxes() {
-  var checkboxes = document.getElementById("checkboxes");
-  if (!expanded) {
-    checkboxes.style.display = "block";
-    expanded = true;
-  } else {
-    checkboxes.style.display = "none";
-    expanded = false;
-  }
+
+ 
+    if (!expanded2) {
+        checkboxes.style.display = "block";
+        expanded2 = true;
+    }
+    else if(expanded2){
+        checkboxes.style.display = "none";
+        expanded2 = false;
+    }
+
 }
+
+function showcheckboxes2() {
+
+    if (!expanded) {
+        checkboxes2.style.display = "block";
+        expanded = true;
+    }
+    else if(expanded){
+        checkboxes2.style.display = "none";
+        expanded = false;
+    }
+}
+
+

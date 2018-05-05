@@ -11,502 +11,556 @@ from datetime import datetime
 
 class Project(object):
     # Rendering Home Page [Project Management]
-        def userIsAuthenticated(self, user):
-            return user.is_authenticated
+    def userIsAuthenticated(self, user):
+        return user.is_authenticated
 
-        def returnAllUserANdProjects(self):
-            allprojects = Database.models.Project.objects.all()
-            alluser = Database.models.User.objects.all()
-            return alluser, allprojects
+    def returnAllUserANdProjects(self):
+        allprojects = Database.models.Project.objects.all()
+        alluser = Database.models.User.objects.all()
+        return alluser, allprojects
 
-        def homePage(self, request):
-            user = request.user
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
-            userInformation = Database.models.UserInformation.objects.get(user=user)
-            projects = Database.models.Project.objects.filter(user=user).order_by('-projectCreatedAt')
+    def homePage(self, request):
+        user = request.user
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        projects = Database.models.Project.objects.filter(user=user).order_by('-projectCreatedAt')
 
-            alluser, allprojects = self.returnAllUserANdProjects()
+        alluser, allprojects = self.returnAllUserANdProjects()
 
 
+        context = {'userInformation': userInformation,
+                   'user': user,
+                   'projects': projects,
+                   'allprojects':allprojects,
+                   'alluser':alluser
+                   }
+        return render(request, 'Project/home.html', context)
+
+    # Where to create folder while creating project.
+    def getProjectUrl(self, username, projectName):
+        return '{0}/{1}/{2}/{3}'.format(settings.MEDIA_ROOT, username, 'Projects', projectName)
+
+    # add project
+    def addProject(self, request):
+        user = request.user
+
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
+
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        if (request.method == 'POST'):
+            projectName = request.POST['projectName']
+            projectDescription = request.POST['projectDescription']
+            accessType = request.POST['accessType']
+            project = Database.models.Project(user=user, projectName=projectName,
+                                              projectDescription=projectDescription,
+                                              accessType=accessType)
+            project.save()
+
+
+            projectUrl = self.getProjectUrl(user.username, projectName)
+            if not os.path.exists(projectUrl):
+                os.makedirs(projectUrl)
+            return redirect('/projectmanagement/')
+        else:
             context = {'userInformation': userInformation,
-                       'user': user,
-                       'projects': projects,
-                       'allprojects':allprojects,
-                       'alluser':alluser
+                       'user': user
                        }
-            return render(request, 'Project/home.html', context)
+            return render(request, 'Project/addProject.html', context)
 
-        # Where to create folder while creating project.
-        def getProjectUrl(self, username, projectName):
-            return '{0}/{1}/{2}/{3}'.format(settings.MEDIA_ROOT, username, 'Projects', projectName)
+    # rendering project details
+    def projectDetails(self, request, projectname):
+        user = request.user
 
-        # add project
-        def addProject(self, request):
-            user = request.user
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
 
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        print(projectname)
+        project = Database.models.Project.objects.get(user=user, projectName=projectname)
+        files = Database.models.File.objects.filter(user=user, project=project).order_by('-modificationTime')
+        alluser, allprojects = self.returnAllUserANdProjects()
+        assignDevelopers = Database.models.AssignDeveloper.objects.filter(project=project)
+        assignDevelopersUserInformation = Database.models.UserInformation.objects.all()
+        context = {'userInformation': userInformation,
+                   'user': user,
+                   'project': project,
+                   'files': files,
+                   'allprojects':allprojects,
+                   'alluser':alluser,
+                   'assignDevelopers': assignDevelopers,
+                   'assignDevelopersUserInformation': assignDevelopersUserInformation
+                   }
+        return render(request, 'Project/projectDetails.html', context)
 
-            userInformation = Database.models.UserInformation.objects.get(user=user)
-            if (request.method == 'POST'):
-                projectName = request.POST['projectName']
-                projectDescription = request.POST['projectDescription']
-                accessType = request.POST['accessType']
-                project = Database.models.Project(user=user, projectName=projectName,
-                                                  projectDescription=projectDescription,
-                                                  accessType=accessType)
-                project.save()
+    # FIle type and and extension
+    def getFileNameAndType(self, fileName):
+        typeOfFile = fileName.split('.')[1]
+        fileNameWdOutExtention = fileName.split('.')[0]
 
-                projectUrl = self.getProjectUrl(user.username, projectName)
-                if not os.path.exists(projectUrl):
-                    os.makedirs(projectUrl)
-                return redirect('/projectmanagement/')
-            else:
-                context = {'userInformation': userInformation,
-                           'user': user
-                           }
-                return render(request, 'Project/addProject.html', context)
+        if (typeOfFile == 'cpp'):
+            typeOfFile = 'C++'
+        elif (typeOfFile == 'cs'):
+            typeOfFile = 'C#'
+        elif (typeOfFile == 'css'):
+            typeOfFile = 'CSS'
+        elif (typeOfFile == 'html' or typeOfFile == 'htm'):
+            typeOfFile = 'html'
+        elif (typeOfFile == 'java' or typeOfFile == 'jsp'):
+            typeOfFile = 'Java'
+        elif (typeOfFile == 'javascript' or typeOfFile == 'js' or typeOfFile == 'jsx'):
+            typeOfFile = 'JavaScript'
+        elif (
+                                    typeOfFile == 'php' or typeOfFile == 'php3' or typeOfFile == 'php4' or typeOfFile == 'php5' or typeOfFile == 'php6'):
+            typeOfFile = 'PHP'
+        elif (typeOfFile == 'python' or typeOfFile == 'py'):
+            typeOfFile = 'Python'
+        else:  # rest of the file's types will be considered as C++ file.
+            typeOfFile = 'C++'
 
-        # rendering project details
-        def projectDetails(self, request, projectname):
-            user = request.user
+        return typeOfFile, fileNameWdOutExtention
 
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
+    # -----------------------------------------------------FILE PURPOSE-------------------------------------------
+    # If a file exist in db before
+    def fileExistBefore(self, user, project, fileName):
+        x = Database.models.File.objects.filter(user=user, project=project, fileName=fileName)
+        if (x.count() == 0):
+            return False
+        else:
+            return True
 
-            userInformation = Database.models.UserInformation.objects.get(user=user)
-            print(projectname)
-            project = Database.models.Project.objects.get(user=user, projectName=projectname)
-            files = Database.models.File.objects.filter(user=user, project=project).order_by('-modificationTime')
-            alluser, allprojects = self.returnAllUserANdProjects()
-            assignDevelopers = Database.models.AssignDeveloper.objects.filter(project=project)
-            assignDevelopersUserInformation = Database.models.UserInformation.objects.all()
-            context = {'userInformation': userInformation,
-                       'user': user,
-                       'project': project,
-                       'files': files,
-                       'allprojects':allprojects,
-                       'alluser':alluser,
-                       'assignDevelopers': assignDevelopers,
-                       'assignDevelopersUserInformation': assignDevelopersUserInformation
-                       }
-            return render(request, 'Project/projectDetails.html', context)
+    # return the corresponding files record.
+    def getFileRecord(self, user, project, fileName):
+        return Database.models.File.objects.get(user=user, project=project, fileName=fileName)
 
-        # FIle type and and extension
-        def getFileNameAndType(self, fileName):
-            typeOfFile = fileName.split('.')[1]
-            fileNameWdOutExtention = fileName.split('.')[0]
+    # remove the file from directory
+    def removeFile(self, path):
+        print(path)
+        os.remove(path)
 
-            if (typeOfFile == 'cpp'):
-                typeOfFile = 'C++'
-            elif (typeOfFile == 'cs'):
-                typeOfFile = 'C#'
-            elif (typeOfFile == 'css'):
-                typeOfFile = 'CSS'
-            elif (typeOfFile == 'html' or typeOfFile == 'htm'):
-                typeOfFile = 'html'
-            elif (typeOfFile == 'java' or typeOfFile == 'jsp'):
-                typeOfFile = 'Java'
-            elif (typeOfFile == 'javascript' or typeOfFile == 'js' or typeOfFile == 'jsx'):
-                typeOfFile = 'JavaScript'
-            elif (
-                                        typeOfFile == 'php' or typeOfFile == 'php3' or typeOfFile == 'php4' or typeOfFile == 'php5' or typeOfFile == 'php6'):
-                typeOfFile = 'PHP'
-            elif (typeOfFile == 'python' or typeOfFile == 'py'):
-                typeOfFile = 'Python'
-            else:  # rest of the file's types will be considered as C++ file.
-                typeOfFile = 'C++'
+    # write content in the textfield from file
+    def saveFileContent(self, fileBeforeInDatabase):
+        lines = self.replaceNewLine(self.readFile(fileBeforeInDatabase.file.path))
+        wr = ""
+        for line in lines:
+            for w in line:
+                wr += w
+            wr += "\n"
+        return wr
 
-            return typeOfFile, fileNameWdOutExtention
+    class versionDataClass(object):
+        def __init__(self, fileBeforeInDatabase):
+            self.version = Database.models.Version()
+            self.version.file = fileBeforeInDatabase
+            self.version.versionFileSize = fileBeforeInDatabase.fileSize
+            self.version.versionDescription = fileBeforeInDatabase.fileDescription
+            self.version.versionFilename = fileBeforeInDatabase.fileName
+            self.version.fileContent = Project().saveFileContent(fileBeforeInDatabase)
+            self.version.modificationTime = fileBeforeInDatabase.modificationTime
 
-        # -----------------------------------------------------FILE PURPOSE-------------------------------------------
-        # If a file exist in db before
-        def fileExistBefore(self, user, project, fileName):
-            x = Database.models.File.objects.filter(user=user, project=project, fileName=fileName)
-            if (x.count() == 0):
-                return False
-            else:
-                return True
+        def save(self):
+            self.version.save()
 
-        # return the corresponding files record.
-        def getFileRecord(self, user, project, fileName):
-            return Database.models.File.objects.get(user=user, project=project, fileName=fileName)
+    # RETURN THE BOOLEAN VALUE IF FILE CHANGES.
+    def isChanged(self, tempVersion, fileBeforeInDatabase, user, project):
 
-        # remove the file from directory
-        def removeFile(self, path):
-            print(path)
-            os.remove(path)
+        path = self.getTemporaryFilePath(user.username, project.projectName)
 
-        # write content in the textfield from file
-        def saveFileContent(self, fileBeforeInDatabase):
-            lines = self.replaceNewLine(self.readFile(fileBeforeInDatabase.file.path))
-            wr = ""
-            for line in lines:
-                for w in line:
-                    wr += w
-                wr += "\n"
-            return wr
+        with open(path, 'w') as tempFile:
+            tempFile.write(str(tempVersion.version.fileContent)[:-1])
 
-        class versionDataClass(object):
-            def __init__(self, fileBeforeInDatabase):
-                self.version = Database.models.Version()
-                self.version.file = fileBeforeInDatabase
-                self.version.versionFileSize = fileBeforeInDatabase.fileSize
-                self.version.versionDescription = fileBeforeInDatabase.fileDescription
-                self.version.versionFilename = fileBeforeInDatabase.fileName
-                self.version.fileContent = Project().saveFileContent(fileBeforeInDatabase)
-                self.version.modificationTime = fileBeforeInDatabase.modificationTime
+        file2 = self.replaceTabWithWhiteSpace(self.readFile(fileBeforeInDatabase.file.path))
+        file1 = self.replaceTabWithWhiteSpace(self.readFile(path))
 
-            def save(self):
-                self.version.save()
+        additions, deletations, totalAddition, totalDeletation = self.nDiffDump(file1, file2)
+        if (totalDeletation == 0 and totalAddition == 0): return False
+        return True
 
-        # RETURN THE BOOLEAN VALUE IF FILE CHANGES.
-        def isChanged(self, tempVersion, fileBeforeInDatabase, user, project):
+    # single file upload
 
-            path = self.getTemporaryFilePath(user.username, project.projectName)
+    # multiple file upload
+    def addFile(self, request, projectname):
+        user = request.user
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        project = Database.models.Project.objects.get(user=user, projectName=projectname)
 
+        # if user doesnot select any file then it will be a problem.. WE need to handle this
+        if (request.method == 'POST'):
+            if (len(request.FILES) > 0):
+                for file in request.FILES.getlist("file"):
+
+                    fileDescription = request.POST['fileDescription']
+                    fileName = file.name
+                    fileSize = file.size
+                    fileType, fileNameWdOutExtention = self.getFileNameAndType(fileName)
+
+                    if (self.fileExistBefore(user, project, fileName)):
+
+                        fileBeforeInDatabase = self.getFileRecord(user, project, fileName)
+
+                        tempVersion = self.versionDataClass(fileBeforeInDatabase)
+
+                        self.removeFile(fileBeforeInDatabase.file.path)
+
+                        # overriding
+                        fileBeforeInDatabase.file = file
+                        fileBeforeInDatabase.fileDescription = fileDescription
+                        fileBeforeInDatabase.fileName = fileName
+                        fileBeforeInDatabase.fileSize = fileSize
+                        fileBeforeInDatabase.fileType = fileType
+                        fileBeforeInDatabase.save()
+
+                        if (self.isChanged(tempVersion, fileBeforeInDatabase, user, project)):
+                            tempVersion.save()
+
+                    else:
+                        # new instance
+                        File = Database.models.File()
+
+                        File.user = user
+                        File.project = project
+                        File.file = file
+                        File.fileDescription = fileDescription
+                        File.fileName = fileName
+                        File.fileSize = fileSize
+                        File.fileType = fileType
+                        File.save()
+
+                return redirect('/projectmanagement/' + project.projectName + '/')
+        else:
+            context = {'userInformation': userInformation, 'user': user, 'project': project}
+            return render(request, 'Project/addFile.html', context)
+
+    # File read
+    def readFile(self, fileUrl):
+        f = open(fileUrl, 'r')
+        return f.readlines()
+
+    # it replace both new line and tab
+    def replaceNewLine(self, linesFile):
+        lineWdoutSPNL = []
+
+        for i in range(len(linesFile)):
+            tempLine = linesFile[i].replace('\n', '').replace('\t', "    ")
+            lineWdoutSPNL.append(tempLine)
+
+        return lineWdoutSPNL
+
+    # rendering file details
+    def fileDetails(self, request, projectname, id):
+        user = request.user
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        project = Database.models.Project.objects.get(user=user, projectName=projectname)
+        file = Database.models.File.objects.get(pk=id)
+
+        fileUrl = file.file.path
+        linesInFile = self.replaceNewLine(self.readFile(fileUrl))
+        numberOfLines = len(linesInFile)
+
+        context = {'lines': linesInFile, 'file': file, 'userInformation': userInformation, 'user': user,
+                   'project': project, 'numberOfLines': numberOfLines}
+        # print(self.readFile(fileUrl))
+        return render(request, 'Project/fileDetails.html', context)
+
+    # rendering all the versions
+    def showVersions(self, request, projectname, id):
+        user = request.user
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        project = Database.models.Project.objects.get(user=user, projectName=projectname)
+        file = Database.models.File.objects.get(pk=id)
+
+        versions = Database.models.Version.objects.filter(file=file).order_by('-id')
+
+        noVersions = False
+
+        if (versions.count() == 0):
+            noVersions = True
+
+        context = {
+            'user': user,
+            'userInformation': userInformation,
+            'project': project,
+            'versions': versions,
+            'file': file,
+            'noVersions': noVersions
+        }
+        return render(request, 'Project/showVersions.html', context)
+
+    def nDiffDump(self, file1, file2):
+        diff = difflib.ndiff(file1, file2)
+        p0 = 0
+
+        class add(object):
+            def __init__(self, line, isAddition):
+                self.line = line
+                self.isAddition = isAddition
+
+        class delete(object):
+            def __init__(self, line, isDeletation):
+                self.line = line
+                self.isDeletation = isDeletation
+
+        additions = []
+        deletations = []
+
+        totalAddition = 0
+        totalDeletation = 0
+
+        for line in diff:
+            p0 += 1
+            if (line[0] == '-'):
+                deletations.append(delete(line, True))
+                totalDeletation += 1
+            elif (line[0] == ' '):
+                deletations.append(delete(line, False))
+                additions.append(add(line, False))
+            elif (line[0] == '+'):
+                additions.append(add(line, True))
+                totalAddition += 1
+
+        return additions, deletations, totalAddition, totalDeletation
+
+    def getTemporaryFilePath(self, username, projectname):
+        return os.path.join(settings.BASE_DIR, 'media', username, projectname, 'temp.bp')
+
+    def replaceTabWithWhiteSpace(self, lines):
+        arr = []
+        for line in lines:
+            line = line.replace('\t', '    ')
+            arr.append(line)
+        return arr
+
+    def compareWithPreviousVersion(self, request, projectname, id):
+        user = request.user
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        project = Database.models.Project.objects.get(user=user, projectName=projectname)
+        file = Database.models.File.objects.get(pk=id)
+
+        path = self.getTemporaryFilePath(user.username, project.projectName)
+
+        versions = Database.models.Version.objects.filter(file=file).order_by('-id')
+
+        noVersions = False
+
+        if (versions.count() != 0):
+            noVersions = True
             with open(path, 'w') as tempFile:
-                tempFile.write(str(tempVersion.version.fileContent)[:-1])
+                tempFile.write(str(versions[0].fileContent))
 
-            file2 = self.replaceTabWithWhiteSpace(self.readFile(fileBeforeInDatabase.file.path))
+            file2 = self.replaceTabWithWhiteSpace(self.readFile(file.file.path))
             file1 = self.replaceTabWithWhiteSpace(self.readFile(path))
 
             additions, deletations, totalAddition, totalDeletation = self.nDiffDump(file1, file2)
-            if (totalDeletation == 0 and totalAddition == 0): return False
-            return True
+            self.removeFile(path)
+        else:
+            file2 = self.replaceTabWithWhiteSpace(self.readFile(file.file.path))
+            additions, deletations, totalAddition, totalDeletation = self.nDiffDump([], file2)
 
-        # single file upload
+        context = {
+            'additions': additions,
+            'deletations': deletations,
+            'totalAddition': totalAddition,
+            'totalDeletation': totalDeletation,
+            'user': user,
+            'userInformation': userInformation,
+            'project': project,
+            'file': file
+        }
+        return render(request, 'Project/compareFile.html', context)
 
-        # multiple file upload
-        def addFile(self, request, projectname):
-            user = request.user
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
-            userInformation = Database.models.UserInformation.objects.get(user=user)
-            project = Database.models.Project.objects.get(user=user, projectName=projectname)
+    def createZipFile(self, username, projectName):
+        zippath = os.path.join(settings.BASE_DIR, 'media', username, projectName, 'download')
+        directoryOfFiles = os.path.join(settings.BASE_DIR, 'media', username, projectName)
+        shutil.make_archive(zippath, 'zip', directoryOfFiles)
 
-            # if user doesnot select any file then it will be a problem.. WE need to handle this
-            if (request.method == 'POST'):
-                if (len(request.FILES) > 0):
-                    for file in request.FILES.getlist("file"):
+    def openZipFile(self, username, projectName):
+        return open(os.path.join(settings.BASE_DIR, 'media', username, projectName, 'download.zip'), 'rb')
 
-                        fileDescription = request.POST['fileDescription']
-                        fileName = file.name
-                        fileSize = file.size
-                        fileType, fileNameWdOutExtention = self.getFileNameAndType(fileName)
+    def downloadFiles(self, request, projectname):
 
-                        if (self.fileExistBefore(user, project, fileName)):
+        user = request.user
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        project = Database.models.Project.objects.get(user=user, projectName=projectname)
+        # shutil.make_archive(os.path.join(settings.BASE_DIR, 'media', user.username, project.projectName, 'download'),'zip',  os.path.join(settings.BASE_DIR, 'media', user.username, project.projectName))
+        self.createZipFile(user.username, project.projectName)
 
-                            fileBeforeInDatabase = self.getFileRecord(user, project, fileName)
+        zip_file = self.openZipFile(user.username, project.projectName)
 
-                            tempVersion = self.versionDataClass(fileBeforeInDatabase)
+        # zip_file  = open(os.path.join(settings.BASE_DIR, 'media', user.username, project.projectName, 'download1.zip').format(str(timestamp).encode('utf-8').strip()))
+        response = HttpResponse(zip_file, content_type='application/force-download')
+        response['Content-Disposition'] = 'attachment; filename="%s"' % 'download.zip'
+        return response
 
-                            self.removeFile(fileBeforeInDatabase.file.path)
+    def editFile(self, request, projectname, id):
+        user = request.user
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        project = Database.models.Project.objects.get(user=user, projectName=projectname)
+        file = Database.models.File.objects.get(pk=id)
 
-                            # overriding
-                            fileBeforeInDatabase.file = file
-                            fileBeforeInDatabase.fileDescription = fileDescription
-                            fileBeforeInDatabase.fileName = fileName
-                            fileBeforeInDatabase.fileSize = fileSize
-                            fileBeforeInDatabase.fileType = fileType
-                            fileBeforeInDatabase.save()
-
-                            if (self.isChanged(tempVersion, fileBeforeInDatabase, user, project)):
-                                tempVersion.save()
-
-                        else:
-                            # new instance
-                            File = Database.models.File()
-
-                            File.user = user
-                            File.project = project
-                            File.file = file
-                            File.fileDescription = fileDescription
-                            File.fileName = fileName
-                            File.fileSize = fileSize
-                            File.fileType = fileType
-                            File.save()
-
-                    return redirect('/projectmanagement/' + project.projectName + '/')
-            else:
-                context = {'userInformation': userInformation, 'user': user, 'project': project}
-                return render(request, 'Project/addFile.html', context)
-
-        # File read
-        def readFile(self, fileUrl):
-            f = open(fileUrl, 'r')
-            return f.readlines()
-
-        # it replace both new line and tab
-        def replaceNewLine(self, linesFile):
-            lineWdoutSPNL = []
-
-            for i in range(len(linesFile)):
-                tempLine = linesFile[i].replace('\n', '').replace('\t', "    ")
-                lineWdoutSPNL.append(tempLine)
-
-            return lineWdoutSPNL
-
-        # rendering file details
-        def fileDetails(self, request, projectname, id):
-            user = request.user
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
-            userInformation = Database.models.UserInformation.objects.get(user=user)
-            project = Database.models.Project.objects.get(user=user, projectName=projectname)
-            file = Database.models.File.objects.get(pk=id)
-
-            fileUrl = file.file.path
-            linesInFile = self.replaceNewLine(self.readFile(fileUrl))
-            numberOfLines = len(linesInFile)
-
-            context = {'lines': linesInFile, 'file': file, 'userInformation': userInformation, 'user': user,
-                       'project': project, 'numberOfLines': numberOfLines}
-            # print(self.readFile(fileUrl))
-            return render(request, 'Project/fileDetails.html', context)
-
-        # rendering all the versions
-        def showVersions(self, request, projectname, id):
-            user = request.user
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
-            userInformation = Database.models.UserInformation.objects.get(user=user)
-            project = Database.models.Project.objects.get(user=user, projectName=projectname)
-            file = Database.models.File.objects.get(pk=id)
-
-            versions = Database.models.Version.objects.filter(file=file).order_by('-id')
-
-            noVersions = False
-
-            if (versions.count() == 0):
-                noVersions = True
-
-            context = {
-                'user': user,
-                'userInformation': userInformation,
-                'project': project,
-                'versions': versions,
-                'file': file,
-                'noVersions': noVersions
-            }
-            return render(request, 'Project/showVersions.html', context)
-
-        def nDiffDump(self, file1, file2):
-            diff = difflib.ndiff(file1, file2)
-            p0 = 0
-
-            class add(object):
-                def __init__(self, line, isAddition):
-                    self.line = line
-                    self.isAddition = isAddition
-
-            class delete(object):
-                def __init__(self, line, isDeletation):
-                    self.line = line
-                    self.isDeletation = isDeletation
-
-            additions = []
-            deletations = []
-
-            totalAddition = 0
-            totalDeletation = 0
-
-            for line in diff:
-                p0 += 1
-                if (line[0] == '-'):
-                    deletations.append(delete(line, True))
-                    totalDeletation += 1
-                elif (line[0] == ' '):
-                    deletations.append(delete(line, False))
-                    additions.append(add(line, False))
-                elif (line[0] == '+'):
-                    additions.append(add(line, True))
-                    totalAddition += 1
-
-            return additions, deletations, totalAddition, totalDeletation
-
-        def getTemporaryFilePath(self, username, projectname):
-            return os.path.join(settings.BASE_DIR, 'media', username, projectname, 'temp.bp')
-
-        def replaceTabWithWhiteSpace(self, lines):
-            arr = []
-            for line in lines:
-                line = line.replace('\t', '    ')
-                arr.append(line)
-            return arr
-
-        def compareWithPreviousVersion(self, request, projectname, id):
-            user = request.user
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
-            userInformation = Database.models.UserInformation.objects.get(user=user)
-            project = Database.models.Project.objects.get(user=user, projectName=projectname)
-            file = Database.models.File.objects.get(pk=id)
-
-            path = self.getTemporaryFilePath(user.username, project.projectName)
-
-            versions = Database.models.Version.objects.filter(file=file).order_by('-id')
-
-            noVersions = False
-
-            if (versions.count() != 0):
-                noVersions = True
-                with open(path, 'w') as tempFile:
-                    tempFile.write(str(versions[0].fileContent))
-
-                file2 = self.replaceTabWithWhiteSpace(self.readFile(file.file.path))
-                file1 = self.replaceTabWithWhiteSpace(self.readFile(path))
-
-                additions, deletations, totalAddition, totalDeletation = self.nDiffDump(file1, file2)
-                self.removeFile(path)
-            else:
-                file2 = self.replaceTabWithWhiteSpace(self.readFile(file.file.path))
-                additions, deletations, totalAddition, totalDeletation = self.nDiffDump([], file2)
-
-            context = {
-                'additions': additions,
-                'deletations': deletations,
-                'totalAddition': totalAddition,
-                'totalDeletation': totalDeletation,
-                'user': user,
-                'userInformation': userInformation,
-                'project': project,
-                'file': file
-            }
-            return render(request, 'Project/compareFile.html', context)
-
-        def createZipFile(self, username, projectName):
-            zippath = os.path.join(settings.BASE_DIR, 'media', username, projectName, 'download')
-            directoryOfFiles = os.path.join(settings.BASE_DIR, 'media', username, projectName)
-            shutil.make_archive(zippath, 'zip', directoryOfFiles)
-
-        def openZipFile(self, username, projectName):
-            return open(os.path.join(settings.BASE_DIR, 'media', username, projectName, 'download.zip'), 'rb')
-
-        def downloadFiles(self, request, projectname):
-
-            user = request.user
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
-            userInformation = Database.models.UserInformation.objects.get(user=user)
-            project = Database.models.Project.objects.get(user=user, projectName=projectname)
-            # shutil.make_archive(os.path.join(settings.BASE_DIR, 'media', user.username, project.projectName, 'download'),'zip',  os.path.join(settings.BASE_DIR, 'media', user.username, project.projectName))
-            self.createZipFile(user.username, project.projectName)
-
-            zip_file = self.openZipFile(user.username, project.projectName)
-
-            # zip_file  = open(os.path.join(settings.BASE_DIR, 'media', user.username, project.projectName, 'download1.zip').format(str(timestamp).encode('utf-8').strip()))
-            response = HttpResponse(zip_file, content_type='application/force-download')
-            response['Content-Disposition'] = 'attachment; filename="%s"' % 'download.zip'
-            return response
-
-        def editFile(self, request, projectname, id):
-            user = request.user
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
-            userInformation = Database.models.UserInformation.objects.get(user=user)
-            project = Database.models.Project.objects.get(user=user, projectName=projectname)
-            file = Database.models.File.objects.get(pk=id)
-
-            if (request.method == 'POST'):
-                editedCode = request.POST['code']
-                fileDescription = request.POST['fileDescription']
-
-                tempVersion = self.versionDataClass(file)
-
-                with open(file.file.path, 'w') as tempFile:
-                    tempFile.write(editedCode.replace('\n', ''))
-
-                if (self.isChanged(tempVersion, file, user, project)):
-                    file.fileDescription = fileDescription
-                    file.fileSize = len(editedCode)
-                    file.modificationTime = datetime.now()
-                    tempVersion.save()
-                    file.save()
-                    return redirect('/projectmanagement/' + project.projectName + '/')
-
-            fileUrl = file.file.path
-            linesInFile = self.replaceNewLine(self.readFile(fileUrl))
-            numberOfLines = len(linesInFile)
-
-            context = {'lines': linesInFile, 'file': file, 'userInformation': userInformation, 'user': user,
-                       'project': project, 'numberOfLines': numberOfLines}
-            # print(self.readFile(fileUrl))
-            return render(request, 'Project/editFile.html', context)
-
-        def rebaseFile(self, request, projectname, fid, vid):
-            user = request.user
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
-            userInformation = Database.models.UserInformation.objects.get(user=user)
-            project = Database.models.Project.objects.get(user=user, projectName=projectname)
-            file = Database.models.File.objects.get(pk=fid)
-            version = Database.models.Version.objects.get(pk=vid)
+        if (request.method == 'POST'):
+            editedCode = request.POST['code']
+            fileDescription = request.POST['fileDescription']
 
             tempVersion = self.versionDataClass(file)
-            tempVersion.save()
+
             with open(file.file.path, 'w') as tempFile:
-                tempFile.write(str(version.fileContent)[:-1])
+                tempFile.write(editedCode.replace('\n', ''))
 
-            return redirect('/projectmanagement/' + project.projectName + '/' + fid + '/')
+            if (self.isChanged(tempVersion, file, user, project)):
+                file.fileDescription = fileDescription
+                file.fileSize = len(editedCode)
+                file.modificationTime = datetime.now()
+                tempVersion.save()
+                file.save()
+                return redirect('/projectmanagement/' + project.projectName + '/')
 
-        def deleteFile(self, request, projectname, id):
+        fileUrl = file.file.path
+        linesInFile = self.replaceNewLine(self.readFile(fileUrl))
+        numberOfLines = len(linesInFile)
 
-            user = request.user
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
-            userInformation = Database.models.UserInformation.objects.get(user=user)
-            project = Database.models.Project.objects.get(user=user, projectName=projectname)
-            file = Database.models.File.objects.get(pk=id, user=user, project=project)
-            self.removeFile(file.file.path)
-            file.delete()
-            return redirect('/projectmanagement/' + project.projectName + '/')
+        context = {'lines': linesInFile, 'file': file, 'userInformation': userInformation, 'user': user,
+                   'project': project, 'numberOfLines': numberOfLines}
+        # print(self.readFile(fileUrl))
+        return render(request, 'Project/editFile.html', context)
 
+    def rebaseFile(self, request, projectname, fid, vid):
+        user = request.user
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        project = Database.models.Project.objects.get(user=user, projectName=projectname)
+        file = Database.models.File.objects.get(pk=fid)
+        version = Database.models.Version.objects.get(pk=vid)
 
+        tempVersion = self.versionDataClass(file)
+        tempVersion.save()
+        with open(file.file.path, 'w') as tempFile:
+            tempFile.write(str(version.fileContent)[:-1])
 
-        def projectSettings(self, request, projectname):
-            user = request.user
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
-            userInformation = Database.models.UserInformation.objects.get(user=user)
-            project = Database.models.Project.objects.get(user=user, projectName=projectname)
-            alluser, allprojects = self.returnAllUserANdProjects()
-            assignDevelopers = Database.models.AssignDeveloper.objects.filter(project=project)
-            print(assignDevelopers)
+        return redirect('/projectmanagement/' + project.projectName + '/' + fid + '/')
 
-            context = {'userInformation': userInformation,
-                       'user': user,
-                       'project': project,
-                       'allprojects': allprojects,
-                       'alluser': alluser,
-                       'assignDevelopers': assignDevelopers,
-                       }
+    def deleteFile(self, request, projectname, id):
 
-            return render(request, 'Project/projectSettings.html', context)
-
-        def deleteDeveloper(self, request, projectname, aid):
-
-            user = request.user
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
-
-
-            assignDevelopers = Database.models.AssignDeveloper.objects.get(pk=aid)
-
-            assignDevelopers.delete()
-            return redirect('/projectmanagement/' + projectname + '/projectsettings/')
+        user = request.user
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        project = Database.models.Project.objects.get(user=user, projectName=projectname)
+        file = Database.models.File.objects.get(pk=id, user=user, project=project)
+        self.removeFile(file.file.path)
+        file.delete()
+        return redirect('/projectmanagement/' + project.projectName + '/')
 
 
-        def projectProgress(self,request,projectname):
-            user = request.user
-            if (not self.userIsAuthenticated(user)):
-                return HttpResponse('You need to login')
-            userInformation = Database.models.UserInformation.objects.get(user=user)
-            project = Database.models.Project.objects.get(user=user, projectName=projectname)
-            context = {'userInformation': userInformation,
-                       'user': user,
-                       'project': project,
-                       }
 
-            return render(request,'Project/projectProgress.html',context)
+    def projectSettings(self, request, projectname):
+        user = request.user
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        project = Database.models.Project.objects.get(user=user, projectName=projectname)
+        alluser, allprojects = self.returnAllUserANdProjects()
+        assignDevelopers = Database.models.AssignDeveloper.objects.filter(project=project)
+        print(assignDevelopers)
+
+        context = {'userInformation': userInformation,
+                   'user': user,
+                   'project': project,
+                   'allprojects': allprojects,
+                   'alluser': alluser,
+                   'assignDevelopers': assignDevelopers,
+                   }
+
+        return render(request, 'Project/projectSettings.html', context)
+
+    def deleteDeveloper(self, request, projectname, aid):
+
+        user = request.user
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
+
+
+        assignDevelopers = Database.models.AssignDeveloper.objects.get(pk=aid)
+
+        assignDevelopers.delete()
+        return redirect('/projectmanagement/' + projectname + '/projectsettings/')
+
+
+    def projectProgress(self,request,projectname):
+        user = request.user
+        if (not self.userIsAuthenticated(user)):
+            return HttpResponse('You need to login')
+        userInformation = Database.models.UserInformation.objects.get(user=user)
+        project = Database.models.Project.objects.get(user=user, projectName=projectname)
+        file=Database.models.File.objects.filter(user=user,project=project)
+
+
+        if request.method=='POST':
+
+            if request.POST.get("TO-DO-BUTTON"):
+                description = request.POST.get('todoDescription')
+                if(len(description)>0):
+                    todo = Database.models.Todo(user=user, project=project,todo_description = description)
+                    todo.save()
+            if request.POST.get("IN-PROGRESS-BUTTON"):
+                description = request.POST.get('inProgressDescription')
+                fileNames = request.POST.getlist('filenames1')
+                files = ""
+                for i in fileNames:
+                    files += i
+                if (len(description) > 0):
+                    inprogress = Database.models.InProgress(user=user, project=project,inProgress_description=description,fileNames=files)
+                    inprogress.save()
+
+            if request.POST.get("DONE-BUTTON"):
+                description = request.POST.get('doneDescription')
+                fileNames = request.POST.getlist('filenames2')
+                files=""
+                for i in fileNames:
+                    files+=i+"\n"
+                if (len(description) > 0):
+                    done = Database.models.Done(user=user, project=project,done_description=description,fileNames=files)
+                    done.save()
+
+            if request.POST.get("DELETE-BUTTON-TODO"):
+                description=request.POST.get('todoDescriptionDelete')
+                Database.models.Todo.objects.filter(todo_description = description).delete()
+
+            if request.POST.get("DELETE-BUTTON-IN"):
+                description=request.POST.get('inProgressDescriptionDelete')
+                Database.models.InProgress.objects.filter(inProgress_description = description).delete()
+
+            if request.POST.get("DELETE-BUTTON-DONE"):
+                description=request.POST.get('doneDescriptionDelete')
+                Database.models.Done.objects.filter(done_description = description).delete()
+
+
+        todo = Database.models.Todo.objects.filter(user=user, project=project)
+        inprogress = Database.models.InProgress.objects.filter(user=user, project=project)
+        done = Database.models.Done.objects.filter(user=user, project=project)
+
+
+        context = {'userInformation': userInformation,
+                   'user': user,
+                   'project': project,
+                   'file': file,
+                   'todo':todo,
+                   'inprogress': inprogress,
+                   'done': done,
+                   }
+
+
+        return render(request,'Project/projectProgress.html',context)

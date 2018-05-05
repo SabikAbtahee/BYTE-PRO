@@ -20,40 +20,40 @@
 
             <div class="addProjectForm">
                 <form action="/projectmanagement/addproject/" method = 'post'>
-                    
+
                     <label for="Enter Project Name">Enter Project Name:</label>
-                    
+
                     <div class="form-inline">
                         <label for="Enter Project Name"><a href="{{user.username}}">{{user.username}}</a>/</label>
                         <input type="text" class="form-control" id="project" placeholder="Enter Project Name" name="projectName">
                         <label for="afteradded" hidden></label>
                     </div>
-                    
+
                     <hr>
-                    
+
                     <div class="form-group">
                         <label for="Project Description">Project Description:</label>
                         <textarea class="form-control" id="projDesc" placeholder="Tell about your project" name="projectDescription"></textarea>
                     </div>
-                    
+
                     <div>
                         <input type="radio" name="accessType" value="Public"> Public<label>[Anyone can see your project]</label>
-                        
+
                         <hr>
 
                         <input type="radio" name="accessType" value="Private"> Private <label>[Only you  can see your project]</label>
                     </div>
-                
-                <button type="submit" class="btn btn-success">Add Project</button>
-              </form>
+
+                    <button type="submit" class="btn btn-success">Add Project</button>
+                </form>
             </div>
 
         </div>
-        
-    
-            
-                
+
+
+
+
     </div>
-            
+
 
 {% endblock %}

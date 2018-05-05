@@ -9,11 +9,11 @@
 
 
 {% block content %}
-    <div class="main">        
+    <div class="main">
         <div class= "projectDetailsDiv">
             <h3>{{project.projectName}}</h3>
             <h5>{{project.projectDescription}}</h5>
-            <h6>Created At: {{project.projectCreatedAt}} </h6> 
+            <h6>Created At: {{project.projectCreatedAt}} </h6>
             <hr>
         </div>
 
@@ -37,7 +37,7 @@
 
 
         <div class="instruction">
-            
+
             <div>
                 <!-- {%load staticfiles%} -->
                 <a href="/projectmanagement/{{project.projectName}}/addfiles/">
@@ -50,9 +50,9 @@
                     <button class="btn btn-warning">Project Progress</button>
                 </a>
 
-            </div>        
-        </div> 
-        
+            </div>
+        </div>
+
 
         <div class="filesMainDiv">
             <table class="table">
@@ -70,7 +70,7 @@
                         </td>
 
                         <td>
-                             {{file.fileSize}}
+                            {{file.fileSize}}
                         </td>
 
                         <td>
@@ -86,8 +86,8 @@
                 {%endfor%}
                 </tbody>
             </table>
-        </div>        
+        </div>
     </div>
-            
+
 
 {% endblock %}

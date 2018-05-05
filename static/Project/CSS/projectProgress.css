@@ -1,16 +1,9 @@
-.main {
-    margin-left: 249px;
-    margin-right: 249px;
-    font-size: 20px;
-    padding: 30px 10px;
-    margin-top: -100px;
 
 
-}
+
 .col-md-4{
     width: 32%;
     background-color: whitesmoke;
-
     padding: 30px 10px;
     margin:2px;
 
@@ -18,17 +11,39 @@
 }
 
 .cellContainer {
-  width: 33.33%;
-  float: left;
-  background-color: rgb(233,235,238);
+    width: 33.33%;
+    float: left;
+    /*background-color: rgb(233,235,238);*/
+    background-color: whitesmoke;
+
 
 }
 .columnss{
     text-align: center;
     margin:10px;
     border-radius: 5px;
+
     background-color: whitesmoke;
 
+
+}
+/*.columnInfo{*/
+/*!*position: relative;*!*/
+
+/*text-align: center;*/
+/*margin: 10px;*/
+/*border-radius: 10px;*/
+/*padding: 2px 2px 2px 2px;*/
+/*background-color: lightyellow;*/
+
+/*}*/
+/*.icon{*/
+/*text-align: center;*/
+/*}*/
+.topright{
+    position:absolute;
+    top:45%;
+    left:45%;
 
 }
 
@@ -36,7 +51,8 @@
     text-align: center;
     margin:10px;
     border-radius: 5px;
-    background-color: rgb(233,235,238);
+    /*background-color: rgb(233,235,238);*/
+    background-color: whitesmoke;
 
 }
 .textAreaa{
@@ -46,4 +62,168 @@
 .x{
 
     width: 100%;
+}
+
+/**************************profilemanagement*/
+
+
+
+
+.main {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 5%;
+    font-size: 20px;
+    padding: 30px 20px;
+    margin-top: -100px;
+    font-family: "Courier New";
+    font-weight: bold;
+    border-radius: 10px;
+    /*border-color: rgb(223,226,229);*/
+    border-color: rgb(223,226,229);
+    border-width: 2px;
+    border-style: solid;
+    background-color: whitesmoke;
+    /*z-index: -5;*/
+
+}
+.box{
+    width: 100%;
+    border-radius: 10px;
+    margin-right: -1%;
+    position: relative;
+}
+
+/*.multiselect {*/
+/*width: 200px;*/
+/*}*/
+
+.selectBox {
+    width: 100%;
+    position: relative;
+}
+
+
+.selectBox select {
+    width: 100%;
+    font-weight: bold;
+    position: relative;
+}
+
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+
+#checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+    position: relative;
+}
+
+
+#checkboxes label {
+    display: block;
+    position: relative;
+}
+
+#checkboxes label:hover {
+    background-color: #1e90ff;
+    position: relative;
+}
+
+
+
+
+#checkboxes2 {
+    display: none;
+    border: 1px #dadada solid;
+    position: relative;
+}
+
+
+#checkboxes2 label {
+    display: block;
+    position: relative;
+}
+
+#checkboxes2 label:hover {
+    background-color: #1e90ff;
+    position: relative;
+}
+
+.name{
+    margin-left: 20%;
+}
+
+.check{
+    text-align: left;
+}
+
+.col-sm-2{
+    text-align: right;
+}
+
+
+.card-note-octicon {
+    top: 8px;
+}
+.card-octicon {
+    top: 6px;
+    left: 10px;
+}
+.position-absolute {
+    position: absolute !important;
+}
+.text-gray-light {
+    color: #6a737d !important;
+}
+table{
+
+    table-layout: fixed;
+
+    margin: 2px 2px 2px 2px;
+
+    border-radius: 15px;
+    /*padding: 2px 2px 2px 2px;*/
+    background-color: lightyellow;
+    word-break: break-all;
+
+}
+table:hover{
+    background-color: rgb(255,255,220);
+    transition: 0.5s;
+
+
+}
+tr{
+    /*padding-left:10px;*/
+    border-radius: 35px;
+    border-color: rgb(223,226,229);
+    /*border-width: 2px;*/
+    border-style: solid;
+
+
+}
+tr:hover{
+    border-left-width: 5px;
+    border-left-color: rgb(64,55,88);
+    border-left-style: solid;
+    transition: 0.3s;
+}
+.left{
+    text-align: left;
+    width: 90%;
+}
+.right{
+    width: 10%;
+}
+.customBTN{
+    margin-left: -8px;
+    background-color: lightyellow;
 }

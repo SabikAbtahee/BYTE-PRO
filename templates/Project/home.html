@@ -25,30 +25,30 @@
                 <button class="btn btn-success btn-lg" align="center">
                     Add Project
                 </button>
-            </a>   
-        </div>    
-        
+            </a>
+        </div>
+
         <div class="allProjects">
-            
+
             {% for project in projects %}
-            
-                
+
+
                 <div class="projects">
                     <a href="/projectmanagement/{{project.projectName}}/">
-                        <h3>{{project.projectName}}</h3> 
+                        <h3>{{project.projectName}}</h3>
                     </a>
                     <p>{{project.projectDescription}}</p>
                     <p>Access type: {{project.accessType}}</p>
                     <p>Project Created At: {{project.projectCreatedAt}}</p>
                 </div>
-           
-            
+
+
             {%endfor%}
-            
-        </div>    
-            
-                
+
+        </div>
+
+
     </div>
-            
+
 
 {% endblock %}
