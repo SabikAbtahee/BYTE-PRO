@@ -25,10 +25,12 @@ function showCheckboxes() {
  
     if (!expanded2) {
         checkboxes.style.display = "block";
+        checkboxes.style.size=10;
         expanded2 = true;
     }
     else if(expanded2){
         checkboxes.style.display = "none";
+
         expanded2 = false;
     }
 
@@ -38,6 +40,7 @@ function showcheckboxes2() {
 
     if (!expanded) {
         checkboxes2.style.display = "block";
+        checkboxes2.style.size=10;
         expanded = true;
     }
     else if(expanded){

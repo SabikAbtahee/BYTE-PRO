@@ -18,8 +18,22 @@
     <div class="main">
 
         <div class="row">
+            <div class="cellContainer"><div class="columnss" >TO-DO</div></div>
+            <div class="cellContainer"><div class="columnss" >IN-PROGRESS</div></div>
+            <div class="cellContainer"><div class="columnss" >DONE</div></div>
+        </div>
+
+
+        <div class="row">
+            <div class="cellContainer"><hr style="height:2px;border:none;color:#333;background-color:#333;"></div>
+            <div class="cellContainer"><hr style="height:2px;border:none;color:#333;background-color:#333;"></div>
+            <div class="cellContainer"><hr style="height:2px;border:none;color:#333;background-color:#333;"></div>
+        </div>
+
+
+        <div class="row">
             <div class="cellContainer">
-                <div class="columnss" >TO-DO</div>
+
 
                 <table class="table">
                     <tbody>
@@ -30,7 +44,7 @@
                         <td class="right">
                             <form method="post" class="form-group">
                                 <textarea  name="todoDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.todo_description }}</textarea>
-                            <button name="DELETE-BUTTON-TODO" value="DELETE-BUTTON-TODO" id='DELETE-BUTTON-TODO' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
+                                <button name="DELETE-BUTTON-TODO" value="DELETE-BUTTON-TODO" id='DELETE-BUTTON-TODO' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
                             </form>
                         </td>
 
@@ -54,7 +68,7 @@
 
             <div class="cellContainer">
 
-                <div class="columnss" >IN-PROGRESS</div>
+
 
                 <table class="table">
                     <tbody>
@@ -63,13 +77,17 @@
                             <td class="left" >
                                 {{ i.inProgress_description }}
                                 <br>
+                                {% if i.fileNames %}
+                                    <p style="color: maroon;">ATTACHED FILES:</p>
+                                {% endif %}
                                 {{ i.fileNames }}
                             </td>
                             <td class="right">
                                 <form method="post" class="form-group">
-                                <textarea  name="inProgressDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.inProgress_description }}</textarea>
-                            <button name="DELETE-BUTTON-IN" value="DELETE-BUTTON-IN" id='DELETE-BUTTON-IN' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
-                            </form>
+                                    <textarea name="inProgressFilesDelete" class="textAreaa" hidden>{{ i.fileNames }}</textarea>
+                                    <textarea  name="inProgressDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.inProgress_description }}</textarea>
+                                    <button name="DELETE-BUTTON-IN" value="DELETE-BUTTON-IN" id='DELETE-BUTTON-IN' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                     {% endfor %}
@@ -97,10 +115,13 @@
                                     </select>
                                     <div class="overSelect"></div>
                                 </div>
-                                <div id="checkboxes2" class="check">
+                                <div id="checkboxes2" class="check scrollable">
+
                                     {% for f in file %}
                                         <label> <input type="checkbox" name="filenames1" id="{{ f.fileName }}" value="{{ f.fileName }}" />  {{ f.fileName }}  </label>
                                     {% endfor %}
+
+
                                 </div>
                             </div>
                         </div>
@@ -112,7 +133,7 @@
             </div>
 
             <div class="cellContainer">
-                <div class="columnss" >DONE</div>
+
                 <table class="table">
                     <tbody>
                     {% for i in done %}
@@ -120,13 +141,17 @@
                             <td class="left" >
                                 {{ i.done_description }}
                                 <br>
+                                {% if i.fileNames %}
+                                    <p style="color: maroon;">ATTACHED FILES:</p>
+                                {% endif %}
                                 {{ i.fileNames }}
                             </td>
                             <td class="right">
-                              <form method="post" class="form-group">
-                                <textarea  name="doneDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.done_description }}</textarea>
-                            <button name="DELETE-BUTTON-DONE" value="DELETE-BUTTON-DONE" id='DELETE-BUTTON-DONE' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
-                            </form>
+                                <form method="post" class="form-group">
+                                    <textarea  name="doneDescriptionDelete" class="textAreaa" hidden>{{ i.done_description }}</textarea>
+                                    <textarea name="doneFilesDelete" class="textAreaa" hidden>{{ i.fileNames }}</textarea>
+                                    <button name="DELETE-BUTTON-DONE" value="DELETE-BUTTON-DONE" id='DELETE-BUTTON-DONE' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                     {% endfor %}
@@ -149,7 +174,7 @@
                                     </select>
                                     <div class="overSelect"></div>
                                 </div>
-                                <div id="checkboxes" class="check">
+                                <div id="checkboxes" class="check scrollable">
                                     {% for f in file %}
                                         <label> <input type="checkbox" name="filenames2" id="{{ f.fileName }}" value="{{ f.fileName }}" />  {{ f.fileName }}  </label>
                                     {% endfor %}

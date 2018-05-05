@@ -114,3 +114,7 @@ html, body {
 .col-sm-2{
     text-align: right;
 }
+.scrollable {
+    height: 100px; /* or any value */
+    overflow-y: auto;
+}

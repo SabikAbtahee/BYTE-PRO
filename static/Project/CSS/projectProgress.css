@@ -92,6 +92,7 @@
     border-radius: 10px;
     margin-right: -1%;
     position: relative;
+
 }
 
 /*.multiselect {*/
@@ -144,6 +145,7 @@
     display: none;
     border: 1px #dadada solid;
     position: relative;
+    z-index: 0;
 }
 
 
@@ -226,4 +228,8 @@ tr:hover{
 .customBTN{
     margin-left: -8px;
     background-color: lightyellow;
+}
+.scrollable {
+    height: 200px; /* or any value */
+    overflow-y: auto;
 }

@@ -520,7 +520,7 @@ class Project(object):
                 fileNames = request.POST.getlist('filenames1')
                 files = ""
                 for i in fileNames:
-                    files += i
+                    files +=i+","
                 if (len(description) > 0):
                     inprogress = Database.models.InProgress(user=user, project=project,inProgress_description=description,fileNames=files)
                     inprogress.save()
@@ -530,7 +530,7 @@ class Project(object):
                 fileNames = request.POST.getlist('filenames2')
                 files=""
                 for i in fileNames:
-                    files+=i+"\n"
+                    files+=i+","
                 if (len(description) > 0):
                     done = Database.models.Done(user=user, project=project,done_description=description,fileNames=files)
                     done.save()
@@ -541,11 +541,13 @@ class Project(object):
 
             if request.POST.get("DELETE-BUTTON-IN"):
                 description=request.POST.get('inProgressDescriptionDelete')
-                Database.models.InProgress.objects.filter(inProgress_description = description).delete()
+                fileNames=request.POST.get('inProgressFilesDelete')
+                Database.models.InProgress.objects.filter(inProgress_description = description,fileNames=fileNames).delete()
 
             if request.POST.get("DELETE-BUTTON-DONE"):
                 description=request.POST.get('doneDescriptionDelete')
-                Database.models.Done.objects.filter(done_description = description).delete()
+                fileNames = request.POST.get('doneFilesDelete')
+                Database.models.Done.objects.filter(done_description = description,fileNames=fileNames).delete()
 
 
         todo = Database.models.Todo.objects.filter(user=user, project=project)

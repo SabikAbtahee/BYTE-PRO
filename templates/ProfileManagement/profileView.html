@@ -113,7 +113,7 @@
                             </select>
                             <div class="overSelect"></div>
                         </div>
-                        <div id="checkboxes" class="check">
+                        <div id="checkboxes" class="check scrollable">
                             {% for value,text in userInformation.skills %}
                                 <label> <input type="checkbox" name="skillTags" id={{ text }} value={{ value }} />  {{ text }}  </label>
                             {% endfor %}
