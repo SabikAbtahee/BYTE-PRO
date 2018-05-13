@@ -18,7 +18,7 @@
         <div class = "fileContentsAndCode">
             <div class="filesDetailsDiv">
                 <div class="filenameAndImage">
-                   {{file.fileName}}
+                    {{file.fileName}}
                 </div>
                 <div class="fileType">
                     {{file.fileType}} type
@@ -48,12 +48,13 @@
 
                 <pre>
             <code class={{ file.fileType }}>{% for line in lines %} {{line}}
-{%endfor%}
+            {%endfor%}
 </code>
         </pre>
             </div>
 
         </div>
+
 
 
     </div>

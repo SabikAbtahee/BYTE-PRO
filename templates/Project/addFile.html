@@ -12,7 +12,14 @@
     <div class="main">
         <div class="addFileMainContent">
             <div class="addFileForm">
-                <form action="/projectmanagement/{{project.projectName}}/addfiles/" method = 'post' enctype="multipart/form-data">
+
+                <form
+                        {% if isMaster %}
+                            action="/projectmanagement/{{project.projectName}}/addfiles/"
+                        {% else %}
+                            action = "/search/{{ user.username }}/{{project.projectName}}/addfiles/"
+                        {% endif %}
+                            method = 'post' enctype="multipart/form-data">
                     <!-- {% csrf_token %} -->
                     <div class="form-inline">
 

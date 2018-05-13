@@ -165,6 +165,7 @@
 
 .check{
     text-align: left;
+    transition: 0.5s;
 }
 
 .col-sm-2{
@@ -226,10 +227,11 @@ tr:hover{
     width: 10%;
 }
 .customBTN{
-    margin-left: -8px;
+    /*margin-left: -8px;*/
     background-color: lightyellow;
 }
 .scrollable {
     height: 200px; /* or any value */
     overflow-y: auto;
+
 }

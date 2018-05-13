@@ -26,7 +26,7 @@ header {
     margin-left: 250px;
     margin-right: 250px;
     background:gainsboro;
-    
+
     color: midnightblue;
     font-size: 20px;
     font-family: "century gothic";
@@ -75,7 +75,8 @@ nav {
 nav ul {
     /*line-height: 60px;*/
     list-style: none;
-    background: rgb(64,55,88);
+    /*background: rgb(64,55,88);*/
+    background: midnightblue;
     overflow: hidden;
     color: white;
     padding: 0;
@@ -87,6 +88,7 @@ nav ul {
 
 nav.black ul {
     background: rgb(64,55,88);
+    background: midnightblue;
 }
 
 nav ul li {
@@ -106,14 +108,15 @@ nav ul li a {
     padding: 6px 15px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 2px solid red;
+    /*border: 2px solid red;*/
     border-radius: 4px;
 }
 .menu-icon {
-    
+
     line-height: 60px;
     width: 100%;
-    background: rgb(64,55,88);
+    /*background: rgb(64,55,88);*/
+    background: midnightblue;
     text-align: right;
     box-sizing: border-box;
     padding: 15px 24px;
@@ -124,7 +127,7 @@ nav ul li a {
 
 
 /*side nav*/
-  
+
 .sidenav {
     margin-top: 6em;
     height: 100%;
@@ -133,7 +136,8 @@ nav ul li a {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: rgb(64,55,88);
+    /*background-color: rgb(64,55,88);*/
+    background: midnightblue;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -148,15 +152,16 @@ nav ul li a {
     transition: 0.3s;
     text-align: left;
     /*background-color:;*/
-    
+
 }
 
 .sidenav a:hover {
     color:#ff656c;
     /*border-style: dashed;*/
     background-color: rgb(64,55,80);
+
     border-bottom: 1px;
-    border-bottom-color: white; 
+    border-bottom-color: white;
     border-bottom-style: solid;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
@@ -177,13 +182,13 @@ nav ul li a {
     .sidenav a {font-size: 18px;}
 }
 /**-----------------**/
-  
+
 /*main content will be here*/
 /*.main {*/
-    /*margin-left: 250px;*/
-    /*margin-right: 250px; */
-    /*font-size: 20px;  */
-    /*padding: 0px 10px;*/
+/*margin-left: 250px;*/
+/*margin-right: 250px; */
+/*font-size: 20px;  */
+/*padding: 0px 10px;*/
 /*}*/
 /**-----------------**/
 
@@ -220,3 +225,63 @@ nav ul li a {
     }
 
 }
+
+
+/*******************************DROPDOWN BUTTON*******************************/
+.dropbtn {
+
+    /*background-color:*/
+    /*background-color: rgb(64,55,88);*/
+    background: midnightblue;
+    /*color: white;*/
+    /*padding: 16px;*/
+    /*font-size: 16px;*/
+    border: none;
+    /*cursor: pointer;*/
+
+
+}
+
+/* Dropdown button on hover & focus */
+/*.dropbtn:hover, .dropbtn:focus {*/
+/*background-color: #2980B9;*/
+/*}*/
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    /*display: inline-block;*/
+
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    text-align: center;
+    display: none;
+    position: fixed;
+    background-color: #f1f1f1;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 50;
+    padding: 12px 16px;
+    right: 50px;
+    top: 100px;
+    border-radius: 10px;
+
+
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+

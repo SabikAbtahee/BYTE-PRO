@@ -34,27 +34,12 @@ class UserInformation(models.Model):
         ('JAVASCRIPT', 'JAVASCRIPT'),
         ('HTML','HTML'),
         ('CSS','CSS'),
+        ('PHP', 'PHP'),
     )
     skilltag = MultiSelectField(default='NONE',max_length=200, choices=skills)
 
     def __str__(self):
         return self.name
-
-
-
-
-# class SkillTag(models.Model):
-#
-#
-#
-#     def __str__(self):
-#         return '{0}'.format(self.skilltag)
-
-
-
-
-
-
 
 class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -62,6 +47,20 @@ class Project(models.Model):
     projectDescription = models.TextField(blank=False)
     accessType = models.CharField(default="Public" , max_length=25)
     projectCreatedAt = models.DateTimeField(default=datetime.now, blank=True)
+    skills = (
+        ('C', 'C'),
+        ('C++', 'C++'),
+        ('JAVA', 'JAVA'),
+        ('PYTHON', 'PYTHON'),
+        ('RUBY', 'RUBY'),
+        ('C#', 'C#'),
+        ('FORTRAN', 'FORTRAN'),
+        ('JAVASCRIPT', 'JAVASCRIPT'),
+        ('HTML', 'HTML'),
+        ('CSS', 'CSS'),
+        ('PHP', 'PHP'),
+    )
+    skilltag = MultiSelectField(default='NONE', max_length=200, choices=skills,blank=True)
 
 
 
@@ -69,20 +68,11 @@ class Project(models.Model):
     def __str__(self):
         return self.projectName
 
-
-class ProjectTag(models.Model):
-    project=models.ForeignKey(Project, on_delete=models.CASCADE)
-    projecttag=models.CharField(default='NONE',max_length=20)
-
-    def __str__(self):
-        return self.projecttag
-
-
-
 class File(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
+    uploader = models.CharField(max_length=200)
     file = models.FileField(upload_to=file_upload_path, )
     fileName = models.CharField(max_length=200)
     fileDescription = models.TextField(blank=True)
@@ -101,11 +91,13 @@ class Todo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
     todo_description= models.TextField(blank=True)
+
 class InProgress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     fileNames = models.TextField(blank=True)
     inProgress_description = models.TextField(blank=True)
+
 class Done(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
@@ -124,3 +116,18 @@ class AssignDeveloper(models.Model):
     project= models.ForeignKey(Project)
     assignDeveloper=models.ForeignKey(User)
 
+class Comment(models.Model):
+    file = models.ForeignKey(File, on_delete=models.CASCADE)
+    commentator=models.CharField(max_length=200)
+    commentDescription=models.TextField(blank=True)
+
+    commentTime=models.DateTimeField(default=datetime.now, blank=True)
+
+class Issue(models.Model):
+    issueCreator = models.ForeignKey(User, on_delete=models.CASCADE)
+    project  = models.ForeignKey(Project, on_delete=models.CASCADE)
+    fileName = models.CharField(max_length=200)
+    label = models.CharField(max_length=100, default="Help Wanted")
+    issueDescription = models.TextField()
+    isClosed = models.BooleanField(default=False)
+    issueTime = models.DateTimeField(default=datetime.now)

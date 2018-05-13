@@ -9,17 +9,24 @@
 
 
 {% block content %}
-    <div class="main">
+    <div class="main">        
         <div class= "projectDetailsDiv">
+            {% if isMaster %}
+            <img src="{{userInformation.profilePicture.url}}" class = "porpic">
+            {% else %}
+            <img src="{{searchedUserInformation.profilePicture.url}}" class = "porpic">
+            {% endif %}
+
             <h3>{{project.projectName}}</h3>
             <h5>{{project.projectDescription}}</h5>
             <h6>Created At: {{project.projectCreatedAt}} </h6>
+            <h6>Project Tags:  {{ project.skilltag }}</h6>
             <hr>
         </div>
 
 
         <div class= "assignDevelopers">
-
+            {%if isMaster%}
             <form method="post" action="/comm/{{ project.projectName }}/assigndeveloper/" class="form-inline" style = "left: 50%;">
                 <label for="Enter Project Name">Assign Developer: </label>
                 <input type="text" name="assignDeveloper" id='assignDeveloper' class="form-control" list="searchUser" autocomplete="off">
@@ -31,15 +38,20 @@
 
                 <button id="search" class = "btn btn-info" class="form-control"><b>Assign Developer</b></button>
             </form>
+            {%endif%}
+            
             <p>Assigned Developrs: {{ assignDevelopers|length }}</p>
+            {%if isAssigned%}
+            <p>You assigned here</p>
+            {%endif%}
             <hr>
         </div>
 
 
         <div class="instruction">
-
+            
             <div>
-                <!-- {%load staticfiles%} -->
+                {% if isMaster%}
                 <a href="/projectmanagement/{{project.projectName}}/addfiles/">
                     <button class="btn btn-success">  Upload  </button>
                 </a>
@@ -49,20 +61,49 @@
                 <a href="/projectmanagement/{{project.projectName}}/projectProgress/">
                     <button class="btn btn-warning">Project Progress</button>
                 </a>
+                {%elif isAssigned%}
+                <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/addfiles/">
+                    <button class="btn btn-success">  Upload  </button>
+                </a>
+
+               <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/downloadfiles/">
+                    <button class="btn btn-primary">Download ZIP</button>
+                </a>
+                <a href="#">
+                    <button class="btn btn-warning">Project Progress</button>
+                </a>
+
+                {%else%}
+            
+                <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/downloadfiles/">
+                    <button class="btn btn-primary">Download ZIP</button>
+                </a>
+
+                {%endif%}
 
             </div>
-        </div>
 
+        </div> 
+        
 
         <div class="filesMainDiv">
             <table class="table">
                 <tbody>
                 {%for file in files%}
                     <tr align="center">
+                        <td>
+                            {{ file.uploader }}
+                        </td>
+
                         <td align="left">
                             {%load staticfiles%}
-                            <img src="../../static/Project/IMAGES/code-file.png" width="15" height="15" >
+                            <img src="{% static 'Project/IMAGES/code-file.png' %}" width="15" height="15" >
+                            {%if isMaster%}
                             <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/">{{file.fileName}}</a>
+                            {%else%}
+                            <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/">{{file.fileName}}</a>
+                            {%endif%}
+
                         </td>
 
                         <td>
@@ -70,7 +111,7 @@
                         </td>
 
                         <td>
-                            {{file.fileSize}}
+                             {{file.fileSize}}
                         </td>
 
                         <td>
@@ -79,15 +120,35 @@
 
                         <td align="right">
                             <a href={{ file.file.url }} download><button class="btn btn-info">DOWNLOAD</button></a>
-
+                            {%if isMaster%}
                             <a href="/projectmanagement/{{project.projectName}}/{{ file.id }}/deletefile/"><button class="btn btn-danger">DELETE</button></a>
+                            {%endif%}
                         </td>
                     </tr>
                 {%endfor%}
                 </tbody>
             </table>
-        </div>
+        </div>        
     </div>
+    {% load staticfiles %}
+    <script type ="text/javascript" src="{% static 'Project/SCRIPT/jquery.min.js' %}"></script>
+    <script src="{% static 'Project/CSS/codemirror/lib/codemirror.js'%}"></script>
+    <script src="{% static 'Project/CSS/codemirror/mode/clike/clike.js' %}"></script>
+    <script>
+        // toLowerCase()
+        $(document).ready(function(){
+            var code = $(".codemirror-textarea")[0];
+            var editor = CodeMirror.fromTextArea(code,{
+                lineNumbers: true,
+                theme: 'paraiso-light',
+                mode: 'clike'
 
+
+
+
+            });
+
+        });
+    </script>
 
 {% endblock %}

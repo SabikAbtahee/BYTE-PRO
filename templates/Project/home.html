@@ -11,44 +11,66 @@
 {% block content %}
     <div class="main">
         <div class= "userprofile">
-            <a href="/profilemanagement/"><img src="{{userInformation.profilePicture.url}}" class = "porpic"></a>
-            <div class="usernameAndEmail">
-                <a href="/profilemanagement/"><h3>{{user.username}}</h3></a>
-                <p>{{user.email}}</p>
-            </div>
+            {%if isMaster%}
+                <a href="/profilemanagement/"><img src="{{userInformation.profilePicture.url}}" class = "porpic"></a>
+                <div class="usernameAndEmail">
+                    <a href="/profilemanagement/"><h3>{{user.username}}</h3></a>
+                    <p>{{user.email}}</p>
+                </div>
+            {%else%}
+                <img src="{{searchedUserInformation.profilePicture.url}}" class = "porpic">
+                <div class="usernameAndEmail">
+                   <h3>{{searchedUser.username}}</h3>
+                    <p>{{searchedUser.email}}</p>
+                </div>
+            {%endif%}
         </div>
 
         <div class= "totalproject" >
-            <p align="center">You have total {{projects|length}} projects.</p>
-            {%load staticfiles%}
-            <a href="/projectmanagement/addproject/">
-                <button class="btn btn-success btn-lg" align="center">
-                    Add Project
-                </button>
-            </a>
-        </div>
+            {%if isMaster%}
+                <p align="center">You have total {{projects|length}} projects.</p>
+                {%load staticfiles%}
+                <a href="/projectmanagement/addproject/">
+                    <button class="btn btn-success btn-lg" align="center">
+                        Add Project
+                    </button>
+                </a>
+            {%else%}
+                <p align="center">{{ searchedUser.username }} has total {{projects|length}} projects.</p>
+            {%endif%}
 
+        </div>    
+        
         <div class="allProjects">
-
+            
             {% for project in projects %}
-
-
+            
+                
                 <div class="projects">
+                    {%if isMaster%}
                     <a href="/projectmanagement/{{project.projectName}}/">
-                        <h3>{{project.projectName}}</h3>
+                        <h3>{{project.projectName}}</h3> 
                     </a>
+                    {%else%}
+                        <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/">
+                            <h3>{{project.projectName}}</h3>
+                        </a>
+                    {%endif%}
                     <p>{{project.projectDescription}}</p>
                     <p>Access type: {{project.accessType}}</p>
                     <p>Project Created At: {{project.projectCreatedAt}}</p>
                 </div>
-
-
+           
+            
             {%endfor%}
+            
 
-        </div>
 
-
+            
+        </div>    
+            
+                
     </div>
-
+            
 
 {% endblock %}

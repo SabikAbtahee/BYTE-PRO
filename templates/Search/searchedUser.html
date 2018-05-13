@@ -8,7 +8,7 @@
 {% block content %}
    <div class="main">
         <div class= "userprofile">
-            <img src="{{userInformation.profilePicture.url}}" class = "porpic">
+            <img src="{{searchedUserInformation.profilePicture.url}}" class = "porpic">
             <div class="usernameAndEmail">
                <h3>{{searchedUser.username}}</h3>
                 <p>{{searchedUser.email}}</p>
@@ -17,7 +17,7 @@
 
         <div class= "totalproject" >
             <p align="center">{{ searchedUser.username }} has total {{searchedUserProjects|length}} projects.</p>
-            {%load staticfiles%}
+            
 
         </div>
 

@@ -3,7 +3,7 @@ html, body {
     padding: 0;
     width: 100%;
 
-    background: url(../IMAGE/codeback2.jpg) no-repeat center center fixed;
+    /*background: url(../IMAGE/codeback2.jpg) no-repeat center center fixed;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -90,20 +90,34 @@ html, body {
    z-index: -1;
 }
 
-.btn-primary{
-    border-radius: 0;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    font-family: 'Verdana';
+/*.btn-primary{*/
+    /*border-radius: 0;*/
+    /*-moz-border-radius: 4px;*/
+    /*-webkit-border-radius: 4px;*/
+    /*!*font-family: 'Courier New';*!*/
+     /*font-family: "Helvetica Neue",sans-serif;*/
+    /*font-weight: lighter;*/
 
-}
-.btn-success{
+/*}*/
+/*.btn-success{*/
+    /*border-radius: 0;*/
+    /*-moz-border-radius: 4px;*/
+    /*-webkit-border-radius: 4px;*/
+    /*!*font-family: 'Courier New';*!*/
+     /*font-family: "Helvetica Neue",sans-serif;*/
+    /*font-weight: lighter;*/
+    /*border-radius: 10px;*/
+/*}*/
+
+.btn-file{
     border-radius: 0;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
-    font-family: 'Verdana';
-    border-radius: 10px;
+    /*font-family: 'Courier New';*/
+     font-family: "Helvetica Neue",sans-serif;
+    font-weight: lighter;
 }
+
 
 .check{
     text-align: left;

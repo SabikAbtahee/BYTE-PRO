@@ -64,10 +64,10 @@
                 <form method = "post" action="{% url 'login' %}">
                     {%csrf_token%}
 
-                    <input type="{{form.username.type}}"  placeholder="Username or Email" id="username_email"  name="{{form.username.html_name}}"/>
+                    <input type="{{form.username.type}}"  placeholder="Username or Email" id="username_email"  name="{{form.username.html_name}}" autocomplete="off"/>
                     
 
-                    <input type="password"  placeholder="Password" id="password" name="{{form.password.html_name}}"/>
+                    <input type="password"  placeholder="Password" id="password" name="{{form.password.html_name}}" autocomplete="off"/>
                     
                     <!-- Signin Errors -->
                     {% if form.non_field_errors %}

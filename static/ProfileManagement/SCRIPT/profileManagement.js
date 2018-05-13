@@ -22,7 +22,7 @@ var expanded = false;
 var expanded2 = false;
 function showCheckboxes() {
 
- 
+
     if (!expanded2) {
         checkboxes.style.display = "block";
         checkboxes.style.size=10;

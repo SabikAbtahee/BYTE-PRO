@@ -1,0 +1,159 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/Issue.css' %}">
+
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+        <div class="IssueCreatorDiv">
+            <form
+                    {% if isMaster %}
+                        {% if isFile %}
+                            action="/projectmanagement/{{project.projectName}}/{{ file.id }}/issues/"
+                        {% else %}
+                            action="/projectmanagement/{{project.projectName}}/issues/"
+                        {% endif %}
+                    {% else %}
+                        {% if isFile %}
+                            action ="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/issues"
+                        {% else %}
+                            action="/projectmanagement/{{project.projectName}}/issues/"
+                        {% endif %}
+                    {% endif %}
+            method= 'post' id="issueFrom">
+                <h3>Create Issue</h3>
+
+                <div class="form-group">
+                    <textarea class="form-control" id="projDesc" placeholder="Create Issue Here" name="issueDescription"></textarea>
+                </div>
+
+                <div class ="labelDiv" align="center">
+                    <h4>Label</h4>
+                    <label class="radio-inline"><input type="radio" name="label" value="Help Wanted"> <button class="btn btn-primary" ><strong>Help Wanted</strong></button></label>
+                    <label class="radio-inline"><input type="radio" name="label" value="Bug"> <button class="btn btn-danger" ><strong>Bug</strong></button></label>
+                    <label class="radio-inline"><input type="radio" name="label" value='Duplicate'> <button class="btn btn-warning" ><strong>Duplicate</strong></button></label>
+                </div>
+                <hr>
+                <div align="Right">
+                    <button class="btn btn-success" type="submit">Create Issue</button>
+                </div>
+            </form>
+        </div>
+
+        <br>
+        <br>
+        <div class="IssueMainDiv">
+
+
+            <table class="table">
+                <tbody>
+                {%for issue  in Issues%}
+                    <tr align="center">
+                        <td style="vertical-align: middle;">
+                            <strong>{{ issue.issueCreator.username }}</strong>
+                        </td>
+
+                        <td align="left" style="vertical-align: middle;">
+                            <strong>{{ issue.fileName }}</strong>
+                        </td>
+
+                        <td style="vertical-align: middle; text-align: justify;">
+                            {{ issue.issueDescription }}
+                        </td>
+                        <td style="vertical-align: middle;">
+                            <strong>{{ issue.issueTime.date }}</strong>
+                        </td>
+                        <td style="vertical-align: middle;" id = "{{ issue.id }}">
+
+                        </td>
+
+                        <td style="vertical-align: middle;" id ="{{ issue.id }}cls">
+
+                        </td>
+                        <td align="right" style="vertical-align: middle;">
+                            {% if isMaster%}
+                                {% if issue.isClosed %}
+                                    <a><button class="btn btn-warning" id="solved" name = "{{ issue.id }}">Resolved</button></a>
+                                {% else %}
+                                    <a><button class="btn btn-info" id="solved" name = "{{ issue.id }}">Mark As Solved</button></a>
+                                {% endif %}
+                            {% elif isAssigned %}
+                                {% if issue.isClosed %}
+                                    <a><button class="btn btn-warning" id="solved" name = "{{ issue.id }}">Resolved</button></a>
+                                {% else %}
+                                    <a><button class="btn btn-info" id="solved" name = "{{ issue.id }}">Mark As Solved</button></a>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {%endfor%}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    {% load staticfiles %}
+    <script type="text/javascript" src="{% static 'Project/SCRIPT/js/jquery.min.js' %}"></script>
+    {#    <script type="text/javascript" src="{% static 'Project/SCRIPT/plugin/tinymce/tinymce.min.js' %}"></script>#}
+    {#    <script type="text/javascript" src="{% static 'Project/SCRIPT/plugin/tinymce/init-tinymce.js' %}"></script>#}
+
+    <script>
+        $(document).ready(function(){
+            {% for issue in Issues %}
+                var label= "{{ issue.label }}";
+                if(label==="Help Wanted"){
+                    document.getElementById("{{ issue.id }}").innerHTML = "<button class=\"btn btn-primary btn-sm\" ><strong>Help Wanted</strong></button>";
+                }
+                else if(label==="Bug"){
+                    document.getElementById("{{ issue.id }}").innerHTML = "<button class=\"btn btn-danger btn-sm\" ><strong>Bug</strong></button>";
+                }
+                else if(label==="Duplicate"){
+                    document.getElementById("{{ issue.id }}").innerHTML = "<button class=\"btn btn-warning btn-sm\" ><strong>Duplicate</strong></button>";
+                }
+
+                var isCls = "{{ issue.id }}"+"cls";
+                var isClsVal ="{{ issue.isClosed }}";
+                console.log(isClsVal);
+                console.log(isCls);
+
+
+                if(isClsVal==="False"){
+                    document.getElementById(isCls).innerHTML = "<button class=\"btn btn-dark btn-sm\" ><strong>Open</strong></button>";
+                }
+                else if(isClsVal==="True"){
+                    document.getElementById(isCls).innerHTML = "<button class=\"btn btn-success btn-sm\" ><strong>Close</strong></button>";
+                }
+
+
+            {% endfor %}
+        });
+        $("button").click(function () {
+            var issueId = this.name;
+            var isCls =  this.name + "cls";
+            var btnId  = this.id;
+
+            $.ajax({
+                type:"POST",
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                url: '/pro/ajx/close/',
+                data: {
+                    'issueId': issueId
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if(data.success===true){
+                        document.getElementById(btnId).innerHTML  = "Resolved";
+                        document.getElementById(btnId).className = "btn btn-warning";
+
+                        document.getElementById(isCls).innerHTML = "<button class=\"btn btn-success btn-sm\" ><strong>Close</strong></button>";
+
+                    }
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

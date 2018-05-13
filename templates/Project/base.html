@@ -17,6 +17,14 @@
 
     {%load staticfiles%}
     <link rel="stylesheet" href="{% static 'Project/CSS/project.css'%}">
+    <link rel="stylesheet" href="{% static 'Project/CSS/CSSLINKS/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{% static 'Project/CSS/CSSLINKS/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'Project/CSS/CSSLINKS/montserrat.css'%}">
+
+    <script src="{% static 'Project/SCRIPT/jquery-3.3.1.js' %}"></script>
+    <script src="{% static 'Project/SCRIPT/jquery.min2.js' %}"></script>
+    <script src="{% static 'Project/SCRIPT/bootstrap.min.js' %}"></script>
+
 
     {% block css_link %}
 
@@ -43,10 +51,11 @@
             </div>
 
             <div class="logo">
-
-                <img src={% static "Authentication/IMAGES/WoolBug2.png" %} style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.8em;" >
+                <a href="{% url 'homepage' %}">
+                    <img  style="width: 4em; height: 4em; margin-left:-2em; margin-top: -0.8em;" src={% static "Authentication/IMAGES/WoolBug2.png" %}>
+                </a>
                 <div class="logoContent">
-                    BYTE PRO
+                    <a href="{% url 'homepage' %}" style="color: white;">BYTE PRO</a>
                 </div>
 
             </div>
@@ -66,16 +75,30 @@
                                 {% endfor %}
                             </datalist>
 
-                            <button id="search" class = "btn btn-success" >Search..</button>
+                            <button id="search" class = "btn btn-success" >Search</button>
                         </form>
                     </li>
-                    <li ><a href="#contact" class="btn btn-primary btn-lg">CONTACT</a></li>
-
+                    {#                    <li ><a href="#contact" class="btn btn-primary btn-lg">CONTACT</a></li>#}
+                    {##}
+                    {#                    <li>#}
+                    {#                        <a href="{% url 'profileView' %}" class="btn btn-primary btn-lg" role="button">PROFILE</a>#}
+                    {#                    </li>#}
+                    {#                    <li><a href="{% url 'logout' %}" class="btn btn-primary btn-lg" role="button">LOGOUT</a></li>#}
                     <li>
-                        <a href="{% url 'profileView' %}" class="btn btn-primary btn-lg" role="button">PROFILE</a>
+
+                        <div class="dropdown">
+{#                            <button onclick="myFunction()" class="dropbtn"><img  onmouseover="myFunction()" onclick="myFunction()" src="{{userInformation.profilePicture.url}}" height = "50" width = "50" style="border-style: solid;border-radius: 50%; border-width: 3px;"></button>#}
+                            <img onclick="myFunction()" class="dropbtn" src="{{userInformation.profilePicture.url}}" height = "50" width = "50" style="border-style: solid;border-radius: 50%; border-width: 3px;" onclick="myFunction()">
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#contact" >Contact</a>
+                                <a href="{% url 'profileView' %}" >Profile</a>
+                                <a href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        </div>
                     </li>
-                    <li><a href="{% url 'logout' %}" class="btn btn-primary btn-lg" role="button">LOGOUT</a></li>
-                    <li><img src="{{userInformation.profilePicture.url}}" height = "50" width = "50" style="border-style: solid;border-radius: 50%; border-width: 3px;"></li>
+
+
+
                 </ul>
             </div>
 
@@ -141,6 +164,30 @@
     });
 
 
+
+    {#    JAVASCRIPT FOR BUTTON DROPDOWN#}
+
+    /* When the user clicks on the button,
+     toggle between hiding and showing the dropdown content */
+
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
 
 
 </script>

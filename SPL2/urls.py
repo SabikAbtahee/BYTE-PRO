@@ -23,6 +23,7 @@ from django.conf.urls import include
 from django.conf import settings
 from django.views.static import serve
 import ProfileManagement
+import Project
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,6 +32,7 @@ urlpatterns = [
     url(r'^projectmanagement/', include('Project.urls')),
 
     url(r'^ajax/passwordCheck/$', ProfileManagement.views.ProfileManagement().passwordCheck , name="passwordCheck"),
+    url(r'^pro/ajx/close/$', Project.views.Project().closeIssue, name="closeIssue"),
 
     url(r'^search/', include('Search.urls')),
     url(r'^comm/', include('Communication.urls')),

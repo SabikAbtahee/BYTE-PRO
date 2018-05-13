@@ -45,6 +45,7 @@
                             <form method="post" class="form-group">
                                 <textarea  name="todoDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.todo_description }}</textarea>
                                 <button name="DELETE-BUTTON-TODO" value="DELETE-BUTTON-TODO" id='DELETE-BUTTON-TODO' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
+                                <button name="CHECK-BUTTON-TODO" value="CHECK-BUTTON-TODO" id='CHECK-BUTTON-TODO' type="submit" class="btn customBTN"> <i class="fa fa-check"></i></button>
                             </form>
                         </td>
 
@@ -83,11 +84,15 @@
                                 {{ i.fileNames }}
                             </td>
                             <td class="right">
+
                                 <form method="post" class="form-group">
                                     <textarea name="inProgressFilesDelete" class="textAreaa" hidden>{{ i.fileNames }}</textarea>
                                     <textarea  name="inProgressDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.inProgress_description }}</textarea>
                                     <button name="DELETE-BUTTON-IN" value="DELETE-BUTTON-IN" id='DELETE-BUTTON-IN' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
+                                    <button name="CHECK-BUTTON-IN" value="CHECK-BUTTON-IN" id='CHECK-BUTTON-IN' type="submit" class="btn customBTN"> <i class="fa fa-check"></i></button>
                                 </form>
+
+
                             </td>
                         </tr>
                     {% endfor %}
@@ -151,6 +156,7 @@
                                     <textarea  name="doneDescriptionDelete" class="textAreaa" hidden>{{ i.done_description }}</textarea>
                                     <textarea name="doneFilesDelete" class="textAreaa" hidden>{{ i.fileNames }}</textarea>
                                     <button name="DELETE-BUTTON-DONE" value="DELETE-BUTTON-DONE" id='DELETE-BUTTON-DONE' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
+{#                                    <button name="CHECK-BUTTON-DONE" value="CHECK-BUTTON-DONE" id='CHECK-BUTTON-DONE' type="submit" class="btn customBTN"> <i class="fa fa-check"></i></button>#}
                                 </form>
                             </td>
                         </tr>

@@ -1,0 +1,103 @@
+
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+
+
+    <link rel="stylesheet" href="{% static 'Project/CSS/styles/github.css' %}">
+    <script src="{% static 'Project/SCRIPT/highlight.pack.js' %}"></script>
+    <script src="{% static 'Project/SCRIPT/highlightjs-line-numbers.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'Project/CSS/codemirror/lib/codemirror.css'%}">
+    <!-- themes -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Project/CSS/codemirror/theme/xq-light.css'%}">
+    <link rel="stylesheet" href="{% static 'Project/CSS/merge.css' %}">
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>hljs.initLineNumbersOnLoad();</script>
+{% endblock %}
+{% block content %}
+
+    <div class="main">
+        {% for fileVersionUser in FileWithUsersAndContent%}
+            <div class="alert alert-success" id="success"></div>
+            {%if fileVersionUser.isConflict%}
+                    <div class = "fileContentsAndCode">
+                        <div class="mergeConflictEditor">
+                            <textarea class="codemirror-textarea" name="code" id = "{{ fileVersionUser.fileBeforeInDatabase.id }}">
+
+
+<<<<<<<<<< {{ fileVersionUser.tempVersion.version.uploader }}
+
+{{ fileVersionUser.previousFileContent }}
+>>>>>>>>>>
+====================================================
+<<<<<<<<<< {{ fileVersionUser.fileBeforeInDatabase.uploader }}
+
+{% for line in fileVersionUser.currentFileContent %}{{line}}
+{%endfor%}
+>>>>>>>>>>
+</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success" id = "{{ fileVersionUser.fileBeforeInDatabase.id }}" >
+                            Update <strong>{{ fileVersionUser.fileBeforeInDatabase.fileName }}</strong>
+                        </button>
+                    </div>
+            {% endif %}
+
+        {% endfor %}
+    </div>
+
+
+    {% load staticfiles %}
+    <script type ="text/javascript" src="{% static 'Project/SCRIPT/jquery.min.js' %}"></script>
+    <script src="{% static 'Project/CSS/codemirror/lib/codemirror.js'%}"></script>
+    <script src="{% static 'Project/CSS/codemirror/mode/clike/clike.js' %}"></script>
+    <script>
+        //this is for code-mirror code editor
+        var editor = [];
+
+        $(document).ready(function(){
+            $('#success').hide();
+            var code = $(".codemirror-textarea");
+            for (i = 0; i < code.length; i++) {
+                editor[i] = CodeMirror.fromTextArea(code[i],{
+                    lineNumbers: true,
+                    theme: 'xq-light',
+                    mode: 'clike'
+
+                });
+            }
+        });
+
+        //this is ajax call
+        $('button').click(function () {
+            for (i = 0; i < editor.length; i++) {
+                editor[i].save()
+            }
+
+            var code = $('textarea#'+this.id);
+            var codeContent = code.val();
+
+            console.log(codeContent);
+
+            $.ajax({
+		      	type:"POST",
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                url: '/search/ajx/merge/',
+		      	data: {
+		        	'code': codeContent,
+                    'fileId': this.id
+		     	},
+		      	dataType: 'json',
+		      	success: function (data) {
+                    if(data.success){
+                        console.log(data.success);
+                        document.getElementById("success").innerHTML = data.success;
+                        $('#success').show();
+                    }
+		     	}
+			});
+		});
+
+    </script>
+{% endblock %}

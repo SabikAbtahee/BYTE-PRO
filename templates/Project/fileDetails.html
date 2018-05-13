@@ -36,23 +36,90 @@
 
             </div>
             <hr>
-            <div class="previousButtonDiv">
-                <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/versions">
-                    <button class="btn btn-success">Show Previous Versions</button>
-                </a>
-            </div>
+            {% if isMaster %}
+                <div class="previousButtonDiv">
+                    <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/versions">
+                        <button class="btn btn-success">Show Previous Versions</button>
+                    </a>
+                </div>
 
-            <div class="previousButtonDiv">
-                <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/comparewithprevious">
-                    <button class="btn btn-primary">Compare With Previous</button>
-                </a>
-            </div>
-            <div class="previousButtonDiv">
-                <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/edit"><button class="btn btn-info">Edit</button></a>
-            </div>
+                <div class="previousButtonDiv">
+                    <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/comparewithprevious">
+                        <button class="btn btn-primary">Compare With Previous</button>
+                    </a>
+                </div>
+                <div class="previousButtonDiv">
+                    <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/edit"><button class="btn btn-info">Edit</button></a>
+                </div>
+
+            {% elif isAssigned %}
+                <div class="previousButtonDiv">
+                    <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/versions">
+                        <button class="btn btn-success">Show Previous Versions</button>
+                    </a>
+                </div>
+
+                <div class="previousButtonDiv">
+                    <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/comparewithprevious">
+                        <button class="btn btn-primary">Compare With Previous</button>
+                    </a>
+                </div>
+                <div class="previousButtonDiv">
+                    <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/edit"><button class="btn btn-info">Edit</button></a>
+
+                </div>
+
+                <div class="btn-group btn-group-sm" style="padding-left: 20px">
+
+                    <button type="button" class="btn btn-primary"><a href="/projectmanagement/{{project.projectName}}/{{file.id}}/issues" style="text-decoration: none; color: white">&nbsp;<strong>Issues</strong></a></button>
+                    <button type="button" class="btn btn-success" >[<strong>{{ IssueClosed }}</strong>]</button>
+                    <button type="button" class="btn btn-dark" >[<strong>{{ IssueOpen }}</strong>]</button>
+                </div>
+
+            {% elif isAssigned %}
+                <div class="previousButtonDiv">
+                    <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/versions">
+                        <button class="btn btn-success">Show Previous Versions</button>
+                    </a>
+                </div>
+
+                <div class="previousButtonDiv">
+                    <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/comparewithprevious">
+                        <button class="btn btn-primary">Compare With Previous</button>
+                    </a>
+                </div>
+
+                <div class="btn-group btn-group-sm" style="padding-left: 20px">
+                    <button type="button" class="btn btn-primary">
+                        <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/issues" style="text-decoration: none; color: white">
+                            &nbsp;
+                            <strong>
+                                Issues
+                            </strong>
+                        </a>
+                    </button>
+                    <button type="button" class="btn btn-success" >[<strong>{{ IssueClosed }}</strong>]</button>
+                    <button type="button" class="btn btn-dark" >[<strong>{{ IssueOpen }}</strong>]</button>
+                </div>
+            {% else %}
+                <div class="btn-group btn-group-sm" style="padding-left: 20px">
+                    <button type="button" class="btn btn-primary">
+                        <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/issues" style="text-decoration: none; color: white">
+                            &nbsp;
+                            <strong>
+                                Issues
+                            </strong>
+                        </a>
+                    </button>
+                    <button type="button" class="btn btn-success" >[<strong>{{ IssueClosed }}</strong>]</button>
+                    <button type="button" class="btn btn-dark" >[<strong>{{ IssueOpen }}</strong>]</button>
+                </div>
+            {% endif %}
+
             <div class="previousButtonDiv">
                 <a href={{ file.file.url }} download><button class="btn btn-warning">Download</button></a>
             </div>
+
 
 
             <div class = "clearboth"></div>
@@ -68,6 +135,34 @@
 
         </div>
 
+
+
+        {% if isMaster %}
+            <form  method="post" action="/projectmanagement/{{ project.projectName }}/{{ file.id }}/comment/" class="form-group">
+                {% csrf_token %}
+                <textarea name="COMMENT-DESCRIPTION" class = "fileContentsAndCode" aria-label="With textarea" id="COMMENT-DESCRIPTION" style="box-sizing: border-box;width: 100%;border-radius: 10px;" placeholder="Comment About file"></textarea>
+                <div align="center">
+                    <button name="COMMENT-BUTTON" value="COMMENT-BUTTON" type="submit" id='COMMENT-BUTTON' class="btn btn-danger">Comment</button>
+                </div>
+            </form>
+        {% else %}
+            <form  method="post" action="/search/{{ searchedUser.username }}/{{ project.projectName }}/{{ file.id }}/comment/" class="form-group">
+                {% csrf_token %}
+                <textarea name="COMMENT-DESCRIPTION" class = "fileContentsAndCode" aria-label="With textarea" id="COMMENT-DESCRIPTION" style="box-sizing: border-box;width: 100%;border-radius: 10px;" placeholder="Comment About file"></textarea>
+                <div align="center">
+                    <button name="COMMENT-BUTTON" value="COMMENT-BUTTON" type="submit" id='COMMENT-BUTTON' class="btn btn-danger">Comment</button>
+                </div>
+            </form>
+            <div class = "fileContentsAndCode" >
+                {% for i in comment %}
+                    <div  class = "fileContentsAndCode" style="padding: 10px; margin: 10px;">
+                        <p>{{i.commentDescription}}</p>
+                        <p style="font-size: small;"> Commented BY: {{i.commentator}}</p>
+                        <p style="font-size: small;">Time: {{ i.commentTime }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
 
     </div>
 

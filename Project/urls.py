@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^(?P<projectname>[\w\-]+)/(?P<id>[0-9]+)/edit/$', views.Project().editFile, name='editFile'),
     url(r'^(?P<projectname>[\w\-]+)/(?P<id>[0-9]+)/versions/$', views.Project().showVersions, name='showVersions'),
 
+    url(r'^(?P<projectname>[\w\-]+)/(?P<id>[0-9]+)/issues/$', views.Project().fileIssues, name='fileIssues'),
     url(r'^(?P<projectname>[\w\-]+)/(?P<id>[0-9]+)/$',views.Project().fileDetails, name = 'fileDetails'),
 
     url(r'^(?P<projectname>[\w\-]+)/projectsettings/$',views.Project().projectSettings, name = 'projectSettings'),
@@ -34,8 +35,9 @@ urlpatterns = [
 
     url(r'^(?P<projectname>[\w\-]+)/(?P<id>[0-9]+)/deletefile/$',views.Project().deleteFile, name = 'deleteFile'),
     url(r'^(?P<projectname>[\w\-]+)/projectProgress/$',views.Project().projectProgress, name = 'projectProgress'),
+    url(r'^(?P<projectname>[\w\-]+)/(?P<id>[0-9]+)/comment/$',views.Project().commentOnFile, name = 'commentOnFile'),
 
-
+    url(r'^(?P<projectname>[\w\-]+)/issues/$', views.Project().projectIssue, name='projectIssue'),
 
 
 

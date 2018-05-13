@@ -85,10 +85,10 @@
             {% endif %}
             
 
-            <input type="password" value="" placeholder="Password" id="password" name="{{form.password1.name}}"  required id = "{{form.password1.id}}"/>
+            <input type="password" value="" placeholder="Password" id="password" name="{{form.password1.name}}"  required id = "{{form.password1.id}}" autocomplete="off"/>
             {% if form.password1.errors %}<li>{{ form.password1.label }}: {{ form.password1.errors|striptags }}</li>
             {% endif %}
-            <input type="password" value="" placeholder="Confirm Password" id="confirmPassword" name="{{form.password2.name}}"  required id = "{{form.password2.id}}"/>
+            <input type="password" value="" placeholder="Confirm Password" id="confirmPassword" name="{{form.password2.name}}"  required id = "{{form.password2.id}}" autocomplete="off"/>
             {% if form.password2.errors %}<li>{{ form.password2.label }}: {{ form.password2.errors|striptags }}</li>
             {% endif %}
             <button type="submit">Sign Up</button>

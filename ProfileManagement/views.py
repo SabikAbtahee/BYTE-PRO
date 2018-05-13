@@ -22,7 +22,7 @@ class ProfileManagement(object):
         user = request.user
 
         if (not self.userIsAuthenticated(user)):
-            return HttpResponse('You need to login')
+            return render(request,'Authentication/loggedOut.html')
 
         userInformation = Database.models.UserInformation.objects.get(user=user)
         context = {'userInformation': userInformation, 'user': user}
@@ -58,7 +58,7 @@ class ProfileManagement(object):
         user = request.user
 
         if (not self.userIsAuthenticated(user)):
-            return HttpResponse('You need to login')
+            return render(request,'Authentication/loggedOut.html')
 
         password = request.POST.get('oldPass', None)
 
