@@ -808,3 +808,33 @@ class Project(object):
                    }
 
         return render(request, 'Project/Issue.html', context)
+
+
+    def projectCheck(self, request):
+        user = request.user
+
+        if (not self.userIsAuthenticated(user)):
+            return render(request,'Authentication/loggedOut.html')
+
+        projectName = request.POST.get('projectName', None)
+        allprojects = Database.models.Project.objects.all()
+        match=False
+        for i in allprojects:
+
+            if(str(i)==str(projectName)):
+                match=True
+
+        # print(allprojects.projectsName)
+        # if (y is None):
+        #     error = "Old password does not match"
+        #     bools = False
+        # else:
+        #     error = "Old password Matches"
+        #     bools = True
+
+        data = {
+
+            'check': match,
+        }
+
+        return JsonResponse(data)

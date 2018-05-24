@@ -60,13 +60,16 @@
     border-radius: 5px;
 }
 .x{
-
+    border-color: transparent;
     width: 100%;
 }
 
 /**************************profilemanagement*/
 
-
+.container2{
+    position: relative;
+    z-index: -1;
+}
 
 
 .main {
@@ -227,8 +230,9 @@ tr:hover{
     width: 10%;
 }
 .customBTN{
-    /*margin-left: -8px;*/
+    margin-left: -10px;
     background-color: lightyellow;
+    /*margin-right: -5px;*/
 }
 .scrollable {
     height: 200px; /* or any value */

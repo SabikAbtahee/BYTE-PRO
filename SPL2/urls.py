@@ -32,6 +32,8 @@ urlpatterns = [
     url(r'^projectmanagement/', include('Project.urls')),
 
     url(r'^ajax/passwordCheck/$', ProfileManagement.views.ProfileManagement().passwordCheck , name="passwordCheck"),
+    url(r'^ajax/projectExists/$', Project.views.Project().projectCheck , name="projectCheck"),
+
     url(r'^pro/ajx/close/$', Project.views.Project().closeIssue, name="closeIssue"),
     url(r'^ajax/getnotifications$', Communication.views.Communication().getNotifications, name="getNotifications"),
     url(r'^comm/ajx/fetchimg/$', Communication.views.Communication().fetchImage, name="fetchImage"),

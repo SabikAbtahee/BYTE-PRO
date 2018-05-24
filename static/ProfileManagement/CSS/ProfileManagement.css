@@ -1,4 +1,5 @@
 html, body {
+
     margin: 0;
     padding: 0;
     width: 100%;
@@ -11,8 +12,14 @@ html, body {
 
 
 }
+.container2{
+    position: relative;
+    z-index: -1;
+}
 
 .main {
+
+
     margin-left: -15%;
     margin-right: -15%;
     font-size: 20px;
@@ -28,6 +35,7 @@ html, body {
     background-color: whitesmoke;
 
 }
+
 .box{
      border-radius: 10px;
      margin-right: -1%;
@@ -73,7 +81,7 @@ html, body {
 
 .column {
     float: left;
-    width: 49%;
+    width: 100%;
     text-align: center;
     margin: auto;
 }
@@ -131,4 +139,10 @@ html, body {
 .scrollable {
     height: 100px; /* or any value */
     overflow-y: auto;
+}
+.btn-file{
+    background-color: darkgreen;
+}
+.btn-save{
+    background-color: darkorange;
 }

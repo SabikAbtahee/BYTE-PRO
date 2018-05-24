@@ -37,21 +37,28 @@
                 <i class="fa fa-bars fa-2x"></i>
             </div>
 
+            {#                    <div class="logo">#}
+            {##}
+            {#                        <img src="../../static/Authentication/IMAGES/WoolBug2.png" style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.5em;" >#}
+            {#                       <div class="logoContent">#}
+            {#                        BYTE PRO#}
+            {#                       </div>#}
+            {##}
+            {#                    </div>#}
             <div class="logo">
-
-                <img src="../../static/Authentication/IMAGES/WoolBug2.png" style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.5em;" >
+                <img class="logoimg" style="width: 3em; height: 3em; margin-left:2em; margin-top: -0.5em;" src={% static "Authentication/IMAGES/3.png" %}>
                 <div class="logoContent">
-                    BYTE PRO
+                    <a href="" style="color: white; text-decoration: none;">BYTE <span style="background-color: #ff656c; border: solid #ff656c; border-width:5px; border-radius: 6px; ">PRO</span></a>
                 </div>
-
             </div>
+
 
             <div class="menu">
                 <ul>
 
                     <li><a href="#contact" class="btn">Contact</a></li>
-                                                                                                                            
-                    <li><a href="{% url 'login' %}" class="btn btn-primary btn-lg" role="button">Sign In</a></li>
+{#                    <li><a href="{% url 'signUp2' %}" class="btn btn" role="button" style="background: rgb(68,55,88); border-radius: 20px;">Sign up</a></li>#}
+                    <li><a href="{% url 'login' %}" class="btn btn" role="button" style="background: rgb(68,55,88); border-radius: 20px;">Sign In</a></li>
 
                 </ul>
             </div>
@@ -59,6 +66,34 @@
         </nav>
 
     </header>
+{#    <header>#}
+{#        <nav>#}
+{#            <div class="menu-icon">#}
+{#                <i class="fa fa-bars fa-2x"></i>#}
+{#            </div>#}
+{##}
+{#            <div class="logo">#}
+{##}
+{#                <img src="../../static/Authentication/IMAGES/WoolBug2.png" style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.5em;" >#}
+{#                <div class="logoContent">#}
+{#                    BYTE PRO#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{##}
+{#            <div class="menu">#}
+{#                <ul>#}
+{##}
+{#                    <li><a href="#contact" class="btn">Contact</a></li>#}
+{#                                                                                                                            #}
+{#                    <li><a href="{% url 'login' %}" class="btn btn-primary btn-lg" role="button">Sign In</a></li>#}
+{##}
+{#                </ul>#}
+{#            </div>#}
+{##}
+{#        </nav>#}
+{##}
+{#    </header>#}
 </div>
 
 

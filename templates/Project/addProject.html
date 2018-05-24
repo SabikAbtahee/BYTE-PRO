@@ -63,7 +63,7 @@
                         <input type="radio" name="accessType" value="Private"> Private <label>[Only you  can see your project]</label>
                     </div>
 
-                    <button type="submit" class="btn btn-success">Add Project</button>
+                    <button type="submit" class="btn btn-success" id="addProjectButton">Add Project</button>
                 </form>
             </div>
 
@@ -73,6 +73,29 @@
 
 
     </div>
+<script type="text/javascript">
+$("#projectName").change(function () {
+    var text = $(this).val();
+    $.ajax({
+        type:"POST",
+        url: "/ajax/projectExists/",
 
+        data: {
+            'projectName': text
+        },
+        dataType: 'json',
+        success: function (data) {
+            if (data.check) {
+                validName();
+            }
+            else{
+                validName2();
+            }
+
+        }
+    });
+
+});
+        </script>
 
 {% endblock %}

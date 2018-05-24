@@ -1,7 +1,26 @@
 /**
  * Created by sabik on 5/24/2018.
  */
+nameExists=true;
+$("#projectName").change(function () {
+    var text = $(this).val();
+    $.ajax({
+        type:"POST",
+        url: "/ajax/projectExists/",
 
+        data: {
+            'newName': text
+        },
+        dataType: 'json',
+        success: function (data) {
+            if (data.check) {
+                nameExists=true;
+            }
+
+        }
+    });
+
+});
 
 
 function validate() {
@@ -55,6 +74,25 @@ function validate() {
 
 
     return valid;
+}
+
+function validName() {
+    CorrectName=document.getElementById("correctProjectName");
+    WrongName=document.getElementById("wrongProjectName");
+    helpName=document.getElementById("helpBlock1");
+    WrongName.className = "unhidden";
+    CorrectName.className = "hidden";
+    helpName.textContent = "Same name exists try different one";
+    document.getElementById("addProjectButton").disabled = true;
+}
+function validName2(){
+    CorrectName=document.getElementById("correctProjectName");
+    WrongName=document.getElementById("wrongProjectName");
+
+    WrongName.className = "hidden";
+    CorrectName.className = "hidden";
+    helpName.textContent = "";
+    document.getElementById("addProjectButton").disabled = false;
 }
 
 

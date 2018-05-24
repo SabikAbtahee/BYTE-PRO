@@ -3,7 +3,7 @@
 {% block css_link %}
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'Project/CSS/addFile.css' %}">
-
+    <script src="{% static 'Project/SCRIPT/addFile.js' %}"></script>
 {% endblock %}
 
 
@@ -19,7 +19,7 @@
                         {% else %}
                             action = "/search/{{ user.username }}/{{project.projectName}}/addfiles/"
                         {% endif %}
-                            method = 'post' enctype="multipart/form-data">
+                            method = 'post' enctype="multipart/form-data" onsubmit="return validate()">
                     <!-- {% csrf_token %} -->
                     <div class="form-inline">
 
@@ -33,7 +33,8 @@
                             </a>
                         </label>
 
-                        <input type="file" class="" id="file" name="file" multiple>
+                        <input type="file" class="" id="file" name="file" multiple aria-describedby="helpBlock1">
+                        <span id="helpBlock1" class="help-block" style="color: red;"></span>
                         <label for="afteradded" hidden></label>
                     </div>
 
@@ -41,7 +42,8 @@
 
                     <div class="form-group">
                         <label for="File Description">File Description:</label>
-                        <textarea class="form-control" id="projDesc" placeholder="About your uploading file" name="fileDescription"></textarea>
+                        <textarea class="form-control" id="projDesc" placeholder="About your uploading file" name="fileDescription" aria-describedby="helpBlock2"></textarea>
+                        <span id="helpBlock2" class="help-block" style="color: red;"></span>
                     </div>
                     <button type="submit" class="btn btn-success">Add File</button>
                 </form>

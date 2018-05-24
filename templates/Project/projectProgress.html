@@ -15,7 +15,7 @@
 
 {% block content %}
 
-    <div class="main">
+    <div class="main container2">
 
         <div class="row">
             <div class="cellContainer"><div class="columnss" >TO-DO</div></div>
@@ -44,8 +44,8 @@
                         <td class="right">
                             <form method="post" class="form-group">
                                 <textarea  name="todoDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.todo_description }}</textarea>
-                                <button name="DELETE-BUTTON-TODO" value="DELETE-BUTTON-TODO" id='DELETE-BUTTON-TODO' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
-                                <button name="CHECK-BUTTON-TODO" value="CHECK-BUTTON-TODO" id='CHECK-BUTTON-TODO' type="submit" class="btn customBTN"> <i class="fa fa-check"></i></button>
+                                <button name="DELETE-BUTTON-TODO" value="DELETE-BUTTON-TODO" id='DELETE-BUTTON-TODO' type="submit" class="btn customBTN" title="Delete the content"> <i class="fa fa-trash"></i></button>
+                                <button name="CHECK-BUTTON-TODO" value="CHECK-BUTTON-TODO" id='CHECK-BUTTON-TODO' type="submit" class="btn customBTN" title="Mark as Done"> <i class="fa fa-check"></i></button>
                             </form>
                         </td>
 
@@ -61,7 +61,7 @@
 
 
 
-                        <div class="columnButton" ><button name="TO-DO-BUTTON" value="TO-DO-BUTTON" id='TO-DO-BUTTON' type="submit" class="btn btn-danger x">+</button></div>
+                        <div class="columnButton" ><button name="TO-DO-BUTTON" value="TO-DO-BUTTON" id='TO-DO-BUTTON' type="submit" class="btn btn-danger x" style="background-color: maroon;">+</button></div>
                     </form>
                 </div>
 
@@ -88,8 +88,8 @@
                                 <form method="post" class="form-group">
                                     <textarea name="inProgressFilesDelete" class="textAreaa" hidden>{{ i.fileNames }}</textarea>
                                     <textarea  name="inProgressDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.inProgress_description }}</textarea>
-                                    <button name="DELETE-BUTTON-IN" value="DELETE-BUTTON-IN" id='DELETE-BUTTON-IN' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
-                                    <button name="CHECK-BUTTON-IN" value="CHECK-BUTTON-IN" id='CHECK-BUTTON-IN' type="submit" class="btn customBTN"> <i class="fa fa-check"></i></button>
+                                    <button name="DELETE-BUTTON-IN" value="DELETE-BUTTON-IN" id='DELETE-BUTTON-IN' type="submit" class="btn customBTN" title="Delete the content"> <i class="fa fa-trash"></i></button>
+                                    <button name="CHECK-BUTTON-IN" value="CHECK-BUTTON-IN" id='CHECK-BUTTON-IN' type="submit" class="btn customBTN" title="Mark as Done"> <i class="fa fa-check"></i></button>
                                 </form>
 
 
@@ -131,7 +131,7 @@
                             </div>
                         </div>
 
-                        <div class="columnButton" ><button name="IN-PROGRESS-BUTTON" value="IN-PROGRESS-BUTTON" type="submit" id='IN-PROGRESS-BUTTON'  class="btn btn-danger x">+</button></div>
+                        <div class="columnButton" ><button name="IN-PROGRESS-BUTTON" value="IN-PROGRESS-BUTTON" type="submit" id='IN-PROGRESS-BUTTON'  class="btn btn-danger x" style="background-color: darkblue;">+</button></div>
                     </form>
                 </div>
 
@@ -155,7 +155,7 @@
                                 <form method="post" class="form-group">
                                     <textarea  name="doneDescriptionDelete" class="textAreaa" hidden>{{ i.done_description }}</textarea>
                                     <textarea name="doneFilesDelete" class="textAreaa" hidden>{{ i.fileNames }}</textarea>
-                                    <button name="DELETE-BUTTON-DONE" value="DELETE-BUTTON-DONE" id='DELETE-BUTTON-DONE' type="submit" class="btn customBTN"> <i class="fa fa-trash"></i></button>
+                                    <button name="DELETE-BUTTON-DONE" value="DELETE-BUTTON-DONE" id='DELETE-BUTTON-DONE' type="submit" class="btn customBTN" title="Delete the content"> <i class="fa fa-trash"></i></button>
 {#                                    <button name="CHECK-BUTTON-DONE" value="CHECK-BUTTON-DONE" id='CHECK-BUTTON-DONE' type="submit" class="btn customBTN"> <i class="fa fa-check"></i></button>#}
                                 </form>
                             </td>
@@ -191,7 +191,7 @@
 
 
 
-                        <div  class="columnButton" ><button name="DONE-BUTTON" value="DONE-BUTTON" id='DONE-BUTTON'  type="submit" class="btn btn-danger x">+</button></div>
+                        <div  class="columnButton" ><button name="DONE-BUTTON" value="DONE-BUTTON" id='DONE-BUTTON'  type="submit" class="btn btn-danger x" style="background-color: darkgreen;">+</button></div>
                     </form>
                 </div>
             </div>
