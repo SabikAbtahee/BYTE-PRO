@@ -53,9 +53,9 @@
 
                     <div class="liveDiff" id = "diffoutput"></div>
 
-                    <input type="radio" name="_viewtype" id="sidebyside" onclick="diffUsingJS(0);" /> <label for="sidebyside">Side by Side Diff</label>
-		&nbsp; &nbsp;
-		<input type="radio" name="_viewtype" id="inline" onclick="diffUsingJS(1);" /> <label for="inline">Inline Diff</label>
+{#                    <input type="radio" name="_viewtype" id="sidebyside" onclick="diffUsingJS(0);" /> <label for="sidebyside">Side by Side Diff</label>#}
+{#		&nbsp; &nbsp;#}
+{#		<input type="radio" name="_viewtype" id="inline" onclick="diffUsingJS(1);" /> <label for="inline">Inline Diff</label>#}
                 <hr>
                     <button type="submit" class="btn btn-info" ><strong>Edit File</strong></button>
               </form>
@@ -88,7 +88,6 @@
         });
 
         $('button').click(function () {
-            alert('called');
             editor.save();
 		});
         /*$('#newText').change(function(){

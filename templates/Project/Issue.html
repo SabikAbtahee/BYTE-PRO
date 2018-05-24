@@ -18,12 +18,12 @@
                         {% endif %}
                     {% else %}
                         {% if isFile %}
-                            action ="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/issues"
+                            action ="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/issues/"
                         {% else %}
-                            action="/projectmanagement/{{project.projectName}}/issues/"
+                            action="/search/{{ searchedUser.username }}/{{project.projectName}}/issues/"
                         {% endif %}
                     {% endif %}
-            method= 'post' id="issueFrom">
+                            method= 'post' id="issueFrom">
                 <h3>Create Issue</h3>
 
                 <div class="form-group">
@@ -32,13 +32,13 @@
 
                 <div class ="labelDiv" align="center">
                     <h4>Label</h4>
-                    <label class="radio-inline"><input type="radio" name="label" value="Help Wanted"> <button class="btn btn-primary" ><strong>Help Wanted</strong></button></label>
-                    <label class="radio-inline"><input type="radio" name="label" value="Bug"> <button class="btn btn-danger" ><strong>Bug</strong></button></label>
-                    <label class="radio-inline"><input type="radio" name="label" value='Duplicate'> <button class="btn btn-warning" ><strong>Duplicate</strong></button></label>
+                    <label class="radio-inline"><input type="radio" name="label" value="Help Wanted" checked> <button class="btn btn-primary" onclick="return false;"><strong>Help Wanted</strong></button></label>
+                    <label class="radio-inline"><input type="radio" name="label" value="Bug"> <button class="btn btn-danger"  onclick="return false;"><strong>Bug</strong></button></label>
+                    <label class="radio-inline"><input type="radio" name="label" value='Duplicate'> <button class="btn btn-warning" onclick="return false;"><strong>Duplicate</strong></button></label>
                 </div>
                 <hr>
                 <div align="Right">
-                    <button class="btn btn-success" type="submit">Create Issue</button>
+                    <button class="btn btn-success" type="submit" id="createIssueBtn">Create Issue</button>
                 </div>
             </form>
         </div>
@@ -102,16 +102,17 @@
 
     <script>
         $(document).ready(function(){
+            document.getElementById("createIssueBtn").disabled = true;
             {% for issue in Issues %}
                 var label= "{{ issue.label }}";
                 if(label==="Help Wanted"){
-                    document.getElementById("{{ issue.id }}").innerHTML = "<button class=\"btn btn-primary btn-sm\" ><strong>Help Wanted</strong></button>";
+                    document.getElementById("{{ issue.id }}").innerHTML = "<button class=\"btn btn-primary btn-sm\" onclick=\"return false;\" ><strong>Help Wanted</strong></button>";
                 }
                 else if(label==="Bug"){
-                    document.getElementById("{{ issue.id }}").innerHTML = "<button class=\"btn btn-danger btn-sm\" ><strong>Bug</strong></button>";
+                    document.getElementById("{{ issue.id }}").innerHTML = "<button class=\"btn btn-danger btn-sm\" onclick=\"return false;\"><strong>Bug</strong></button>";
                 }
                 else if(label==="Duplicate"){
-                    document.getElementById("{{ issue.id }}").innerHTML = "<button class=\"btn btn-warning btn-sm\" ><strong>Duplicate</strong></button>";
+                    document.getElementById("{{ issue.id }}").innerHTML = "<button class=\"btn btn-warning btn-sm\" onclick=\"return false;\"><strong>Duplicate</strong></button>";
                 }
 
                 var isCls = "{{ issue.id }}"+"cls";
@@ -130,6 +131,10 @@
 
             {% endfor %}
         });
+        $("#projDesc").change(function () {
+            document.getElementById("createIssueBtn").disabled = false;
+        });
+
         $("button").click(function () {
             var issueId = this.name;
             var isCls =  this.name + "cls";

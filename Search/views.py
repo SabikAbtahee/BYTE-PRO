@@ -4,6 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 import Database
 from _datetime import datetime
+from Communication.views import Communication
 
 
 from Project.views import Project
@@ -47,14 +48,14 @@ class Search(object):
             if(isMaster == False):
 
                 context = {'userInformation': userInformation,
-                        'user': user, 
-                        'projects': searchedUserProjects,
-                        'allprojects':allprojects,
-                        'alluser':alluser,
-                        'searchedUser': searchedUser, 
-                        'searchedUserInformation': searchedUserInformation,
-                        'isMaster': isMaster}
-                
+                           'user': user,
+                           'projects': searchedUserProjects,
+                           'allprojects':allprojects,
+                           'alluser':alluser,
+                           'searchedUser': searchedUser,
+                           'searchedUserInformation': searchedUserInformation,
+                           'isMaster': isMaster}
+
                 return render(request, 'Project/home.html', context)
             else:
                 return redirect('/projectmanagement/')
@@ -89,27 +90,29 @@ class Search(object):
         searchedUserInformation = Database.models.UserInformation.objects.get(user=searchedUser)
         searchedProject = Database.models.Project.objects.get(user=searchedUser, projectName=projectname)
 
-        files = Database.models.File.objects.filter(user=searchedUser, project=searchedProject)
+        files = Database.models.File.objects.filter(user=searchedUser, project=searchedProject).order_by('-id')
         isMaster = False
-
+        isDownloadable = True
+        if (files.count() == 0): isDownloadable = False
         if (user == searchedUser):
             isMaster = True
 
         if (isMaster == False):
             totalAssigned, isAssigned = self.isAssingedDeveloper(user, searchedProject)
 
-            context = {'userInformation': userInformation, 
-                        'user': user, 
-                        'searchedUser': searchedUser,
-                        'searchedUserInformation': searchedUserInformation,
-                        'project': searchedProject, 
-                        'files': files,
-                        'isMaster': isMaster,
-                        'isAssigned': isAssigned,
-                        'assignDevelopers': totalAssigned,
-                        'alluser': alluser,
-                        'allprojects': allprojects
-                        }
+            context = {'userInformation': userInformation,
+                       'user': user,
+                       'searchedUser': searchedUser,
+                       'searchedUserInformation': searchedUserInformation,
+                       'project': searchedProject,
+                       'files': files,
+                       'isMaster': isMaster,
+                       'isAssigned': isAssigned,
+                       'assignDevelopers': totalAssigned,
+                       'alluser': alluser,
+                       'allprojects': allprojects,
+                       'isDownloadable': isDownloadable
+                       }
 
             return render(request, 'Project/projectDetails.html', context)
         else:
@@ -164,7 +167,7 @@ class Search(object):
         tempFileVersions = []
         if (request.method == 'POST'):
             if (len(request.FILES) > 0):
-
+                fileCount = 0
                 for file in request.FILES.getlist("file"):
 
                     fileDescription = request.POST['fileDescription']
@@ -197,11 +200,11 @@ class Search(object):
 
                             tempFileVersions.append(
                                 mainProject.temporaryFileAndVersion(user.username,
-                                                            fileBeforeInDatabase,
-                                                            tempVersion,
-                                                            previousFileContent,
-                                                            currentFileContent,
-                                                            isConflict))
+                                                                    fileBeforeInDatabase,
+                                                                    tempVersion,
+                                                                    previousFileContent,
+                                                                    currentFileContent,
+                                                                    isConflict))
                             fileBeforeInDatabase.uploader = user.username
                             tempVersion.save()
 
@@ -217,7 +220,7 @@ class Search(object):
                         File.fileSize = fileSize
                         File.fileType = fileType
                         File.save()
-
+                    fileCount+=1
                 if(mainProject.doRenderMergePage(tempFileVersions)):
                     context = {
                         'user': user,
@@ -225,9 +228,14 @@ class Search(object):
                         'FileWithUsersAndContent': tempFileVersions,
                         'alluser': alluser,
                         'allprojects': allprojects,
+                        'searchedUser': searchedUser,
+                        'project': searchedProject,
+                        'isMaster': False
                     }
                     return render(request, 'Project/merge.html', context)
                 else:
+                    Communication().notifiedAllAssignedDevelopers(searchedProject, user.username, fileNumbers=fileCount, isMaster=False,
+                                                                  type="upload")
                     return redirect('/search/' + searchedUser.username + '/' + searchedProject.projectName)
 
         else:
@@ -238,7 +246,7 @@ class Search(object):
                            'user': searchedUser,
                            'project': searchedProject,
                            'alluser': alluser,
-                            'allprojects': allprojects,
+                           'allprojects': allprojects,
                            'isMaster': False}
                 return render(request, 'Project/addFile.html', context)
             else:  # else
@@ -386,6 +394,8 @@ class Search(object):
             issue.label = label
             issue.isClosed = False
             issue.save()
+            Communication().notifiedAllAssignedDevelopers(project, user.username, fileNumbers=0, isMaster=False,
+                                                          type="issue")
 
         context = {'userInformation': userInformation,
                    'user': user,
@@ -397,7 +407,9 @@ class Search(object):
                    'isMaster': isMaster,
                    'isAssigned': isAssigned,
                    'isAnonymous': isAnonymous,
+                   'searchedUser': searchedUser
                    }
+
         return render(request, 'Project/Issue.html', context)
 
     def fileIssue(self, request, username, projectname, id):
@@ -435,6 +447,8 @@ class Search(object):
             issue.fileName = file.fileName
             issue.save()
             print(issue.issueDescription, issue.fileName)
+            Communication().notifiedAllAssignedDevelopers(project, user.username, fileNumbers=0, isMaster=False,
+                                                          type="issue")
         context = {'userInformation': userInformation,
                    'user': user,
                    'project': project,
@@ -448,6 +462,7 @@ class Search(object):
                    'isAnonymous': isAnonymous,
                    'searchedUser': searchedUser
                    }
+
 
         return render(request, 'Project/Issue.html', context)
     #download zip file
@@ -486,5 +501,6 @@ class Search(object):
                 comment = Database.models.Comment(file=file, commentDescription=description, commentTime=datetime.now(),
                                                   commentator=user.username)
                 comment.save()
-
+                Communication().notifiedAllAssignedDevelopers(project, user.username, fileNumbers=0, isMaster=False,
+                                                              type="comment")
         return redirect('/search/' + userProject.username+'/'+project.projectName + '/' + id + '/')

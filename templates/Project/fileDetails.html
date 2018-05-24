@@ -51,6 +51,36 @@
                 <div class="previousButtonDiv">
                     <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/edit"><button class="btn btn-info">Edit</button></a>
                 </div>
+                <div class="btn-group btn-group-sm" style="padding-left: 20px">
+
+                    <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/issues" style="text-decoration: none; color: white"><button type="button" class="btn btn-primary">&nbsp;<strong>Issues</strong></button></a>
+
+
+                </div>
+
+                {#            {% elif isAssigned %}#}
+                {#                <div class="previousButtonDiv">#}
+                {#                    <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/versions">#}
+                {#                        <button class="btn btn-success">Show Previous Versions</button>#}
+                {#                    </a>#}
+                {#                </div>#}
+                {##}
+                {#                <div class="previousButtonDiv">#}
+                {#                    <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/comparewithprevious">#}
+                {#                        <button class="btn btn-primary">Compare With Previous</button>#}
+                {#                    </a>#}
+                {#                </div>#}
+                {#                <div class="previousButtonDiv">#}
+                {#                    <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/edit"><button class="btn btn-info">Edit</button></a>#}
+                {##}
+                {#                </div>#}
+                {##}
+                {#                <div class="btn-group btn-group-sm" style="padding-left: 20px">#}
+                {##}
+                {#                    <button type="button" class="btn btn-primary"><a href="/projectmanagement/{{project.projectName}}/{{file.id}}/issues" style="text-decoration: none; color: white">&nbsp;<strong>Issues</strong></a></button>#}
+                {#                    <button type="button" class="btn btn-success" >[<strong>{{ IssueClosed }}</strong>]</button>#}
+                {#                    <button type="button" class="btn btn-dark" >[<strong>{{ IssueOpen }}</strong>]</button>#}
+                {#                </div>#}
 
             {% elif isAssigned %}
                 <div class="previousButtonDiv">
@@ -64,55 +94,25 @@
                         <button class="btn btn-primary">Compare With Previous</button>
                     </a>
                 </div>
-                <div class="previousButtonDiv">
-                    <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/edit"><button class="btn btn-info">Edit</button></a>
-
-                </div>
 
                 <div class="btn-group btn-group-sm" style="padding-left: 20px">
-
-                    <button type="button" class="btn btn-primary"><a href="/projectmanagement/{{project.projectName}}/{{file.id}}/issues" style="text-decoration: none; color: white">&nbsp;<strong>Issues</strong></a></button>
-                    <button type="button" class="btn btn-success" >[<strong>{{ IssueClosed }}</strong>]</button>
-                    <button type="button" class="btn btn-dark" >[<strong>{{ IssueOpen }}</strong>]</button>
-                </div>
-
-            {% elif isAssigned %}
-                <div class="previousButtonDiv">
-                    <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/versions">
-                        <button class="btn btn-success">Show Previous Versions</button>
-                    </a>
-                </div>
-
-                <div class="previousButtonDiv">
-                    <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/comparewithprevious">
-                        <button class="btn btn-primary">Compare With Previous</button>
-                    </a>
-                </div>
-
-                <div class="btn-group btn-group-sm" style="padding-left: 20px">
-                    <button type="button" class="btn btn-primary">
-                        <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/issues" style="text-decoration: none; color: white">
-                            &nbsp;
+                    <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/issues" style="text-decoration: none; color: white">
+                        <button type="button" class="btn btn-primary">
                             <strong>
                                 Issues
                             </strong>
-                        </a>
-                    </button>
-                    <button type="button" class="btn btn-success" >[<strong>{{ IssueClosed }}</strong>]</button>
-                    <button type="button" class="btn btn-dark" >[<strong>{{ IssueOpen }}</strong>]</button>
+                        </button>
+                    </a>
                 </div>
             {% else %}
                 <div class="btn-group btn-group-sm" style="padding-left: 20px">
-                    <button type="button" class="btn btn-primary">
-                        <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/issues" style="text-decoration: none; color: white">
-                            &nbsp;
+                    <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/issues" style="text-decoration: none; color: white">
+                        <button type="button" class="btn btn-primary">
                             <strong>
                                 Issues
                             </strong>
-                        </a>
-                    </button>
-                    <button type="button" class="btn btn-success" >[<strong>{{ IssueClosed }}</strong>]</button>
-                    <button type="button" class="btn btn-dark" >[<strong>{{ IssueOpen }}</strong>]</button>
+                        </button>
+                    </a>
                 </div>
             {% endif %}
 
@@ -124,12 +124,12 @@
 
             <div class = "clearboth"></div>
             <hr>
-            <div class = "codeDiv">
+            <div class = "codeDiv" style="overflow-x: scroll;">
                 
-                <pre>
-            <code class={{ file.fileType }}>{% for line in lines %} {{line}}
-            {%endfor%}
-</code>
+
+
+<pre><code class={{ file.fileType }}>{% for line in lines %} {{line}}
+{%endfor%}</code>
         </pre>
             </div>
 

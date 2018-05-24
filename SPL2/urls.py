@@ -22,8 +22,8 @@ from django.views.generic.base import TemplateView
 from django.conf.urls import include
 from django.conf import settings
 from django.views.static import serve
-import ProfileManagement
-import Project
+import ProfileManagement, Project, Communication, Authentication
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -33,9 +33,12 @@ urlpatterns = [
 
     url(r'^ajax/passwordCheck/$', ProfileManagement.views.ProfileManagement().passwordCheck , name="passwordCheck"),
     url(r'^pro/ajx/close/$', Project.views.Project().closeIssue, name="closeIssue"),
-
+    url(r'^ajax/getnotifications$', Communication.views.Communication().getNotifications, name="getNotifications"),
+    url(r'^comm/ajx/fetchimg/$', Communication.views.Communication().fetchImage, name="fetchImage"),
     url(r'^search/', include('Search.urls')),
     url(r'^comm/', include('Communication.urls')),
+    url(r'^ajax/checkemail/$', Authentication.views.Authentication().checkEmail, name="checkEmail"),
+    url(r'^project/fetchlanguagedata/$', Project.views.Project().fetchLanguage, name="fetchLanguage"),
 
 
 ]

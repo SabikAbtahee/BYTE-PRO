@@ -4,7 +4,7 @@
     font-size: 20px;
     padding: 30px 10px;
     margin-top: -100px;
-     
+
 }
 .fileContentsAndCode{
 	margin-top: 20px;
@@ -25,7 +25,7 @@
 
 .deletationSection .deletation {
     background-color: rgb(253,184,192);
-    
+
 }
 .additionSection .addition{
     background-color: rgb(205,255,216);
@@ -84,6 +84,6 @@
     	font-size: 20px;
     	padding: 10px 10px;
     }
-    
+
 }
 

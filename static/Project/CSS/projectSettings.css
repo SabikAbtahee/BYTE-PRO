@@ -1,9 +1,9 @@
 .main {
-    margin-left: 249px;
-    margin-right: 249px;
-    font-size: 20px;
-    padding: 30px 10px;
-    margin-top: -100px;
+	margin-left: 249px;
+	margin-right: 249px;
+	font-size: 20px;
+	padding: 30px 10px;
+	margin-top: -100px;
 
 }
 
@@ -29,7 +29,7 @@
 }
 
 .assignDevelopersDiv{
-    margin-top: 20px;
+	margin-top: 20px;
 	background-color: white;
 	font-family: Arial;
 	color: black;
@@ -59,7 +59,7 @@
 	border-top-left-radius: 5px;
 }
 .developerMainDiv h3{
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 table{
@@ -84,17 +84,34 @@ tr:hover{
 	transition: 0.3s;
 
 }
+.languageRatio{
+	width: 100%;
+
+	margin-top: 10px;
+	background-color: white;
+	font-family: Arial;
+	color: black;
+	border-radius: 5px;
+	border-color: rgb(223,226,229);
+	border-width: 2px;
+	border-style: solid;
+    padding: 30px;
+
+
+}
+.languageRatio canvas{
+    margin-left: 20%;
+    height: 500px !important;
+    width: 500px !important;
+}
 
 
 @media(max-width: 1500px) {
 
-    .main {
-    	margin-right: 5px;
-    	margin-left: 5px;
-    	font-size: 20px;
-    	padding: 10px 10px;
-    }
-
+	.main{
+		margin-left: 1px;
+		margin-right: -1200px;
+	}
 }
 
 

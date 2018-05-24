@@ -3,6 +3,9 @@
 {% block css_link %}
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'Project/CSS/projectSettings.css' %}">
+    <link rel="stylesheet" href="{% static 'Project/CSS/CSSLINKS/bootstrap.min.css' %}">
+
+    <script src="{% static 'Project/SCRIPT/chart.js' %}"></script>
 
 {% endblock %}
 
@@ -54,10 +57,124 @@
                 </tbody>
             </table>
         </div>
-
+        <div class="languageRatio" >
+            <canvas id="myChart"></canvas>
+        </div>
 
 
     </div>
+
+
+    <script>
+
+        $(document).ready(function(){
+
+            var pid = "{{ project.id }}";
+
+
+            $.ajax({
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                url: '/project/fetchlanguagedata/',
+                data: {
+                    'pid': pid
+
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if(data.success){
+                        addLanguageChart(data);
+                    }
+                }
+            });
+
+        });
+        function addLanguageChart(data){
+            labels = [];
+            languageData = [];
+{#            {% for file in files %}#}
+{#                if(!labels.includes("{{ file.fileType }}")){#}
+{#                    labels.push("{{ file.fileType }}");#}
+{#                    languageData.push(data["{{ file.fileType }}"]);#}
+{#                }#}
+
+{#            {% endfor %}#}
+            for(var key in data){
+                labels.push(key);
+                languageData.push(data[key]);
+            }
+            makeLanguageChart(labels, languageData)
+        }
+
+        function makeLanguageChart(labels, data) {
+            let myChart = document.getElementById('myChart').getContext('2d');
+
+            // Global Options
+            Chart.defaults.global.defaultFontFamily = 'Lato';
+            Chart.defaults.global.defaultFontSize = 18;
+            Chart.defaults.global.defaultFontColor = '#777';
+            let massPopChart = new Chart(myChart, {
+                type:'polarArea', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:labels,
+                    datasets:[{
+                        label:'Population',
+                        data:data,
+                        //backgroundColor:'green',
+                        backgroundColor: [
+                            'rgba(64,55,88,0.8)',
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)',
+                            'rgba(255, 159, 64, 0.8)',
+                            'rgba(255, 99, 132, 0.8)'],
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:1,
+                        hoverBorderColor:'#fff'
+                    }]
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:'Languages used',
+                        fontSize:25
+                    },
+                    legend:{
+                        display:true,
+                        position:'right',
+                        labels:{
+                            fontColor:'#000'
+                        }
+                    },
+                    layout:{
+                        padding:{
+                            left:50,
+                            right:0,
+                            bottom:0,
+                            top:0
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>
 
 
 {% endblock %}

@@ -6,21 +6,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>Byte Pro</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">#}
+{#    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>#}
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">#}
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>#}
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+{#    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>#}
 
     {%load staticfiles%}
-    <link rel="stylesheet" href="{% static 'Project/CSS/project.css'%}">
+    <link rel="icon" href="{% static 'Authentication/IMAGES/3.png' %}">
+
     <link rel="stylesheet" href="{% static 'Project/CSS/CSSLINKS/font-awesome.min.css'%}">
     <link rel="stylesheet" href="{% static 'Project/CSS/CSSLINKS/bootstrap.min.css'%}">
     <link rel="stylesheet" href="{% static 'Project/CSS/CSSLINKS/montserrat.css'%}">
 
+    {%load staticfiles%}
+    <link rel="stylesheet" href="{% static 'Project/CSS/project.css'%}">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <script src="{% static 'Project/SCRIPT/jquery-3.3.1.js' %}"></script>
     <script src="{% static 'Project/SCRIPT/jquery.min2.js' %}"></script>
     <script src="{% static 'Project/SCRIPT/bootstrap.min.js' %}"></script>
@@ -30,17 +35,10 @@
 
     {% endblock %}
 
-
-
-
-
     <!--  -->
 </head>
 
-
 <body style="background-color: rgb(233,235,238);">
-
-
 
 <!--/* NAVIGATION BAR */-->
 <div class="wrapper">
@@ -52,10 +50,10 @@
 
             <div class="logo">
                 <a href="{% url 'homepage' %}">
-                    <img  style="width: 4em; height: 4em; margin-left:-2em; margin-top: -0.8em;" src={% static "Authentication/IMAGES/WoolBug2.png" %}>
+                    <img class="logoimg" style="width: 3em; height: 3em; margin-left:2em; margin-top: -0.5em;" src={% static "Authentication/IMAGES/3.png" %}>
                 </a>
                 <div class="logoContent">
-                    <a href="{% url 'homepage' %}" style="color: white;">BYTE PRO</a>
+                    <a href="{% url 'homepage' %}" style="color: white; text-decoration: none;">BYTE <span style="background-color: #ff656c; border: solid #ff656c; border-width:5px; border-radius: 6px; ">PRO</span></a>
                 </div>
 
             </div>
@@ -64,7 +62,7 @@
                 <ul>
                     <li>
                         <form method="post" action="/search/">
-                            <input type="text" name="searchinput" id='searchinput' class="searchinput" list="searchvalues" autocomplete="off">
+                            <input type="text" name="searchinput" id='searchinput' class="searchinput" list="searchvalues" autocomplete="off" >
                             <datalist id="searchvalues">
                                 {% for user in alluser %}
                                     <option value={{ user.username }}>
@@ -75,29 +73,34 @@
                                 {% endfor %}
                             </datalist>
 
-                            <button id="search" class = "btn btn-success" >Search</button>
+                            <button id="search" class = "btn btn-info btn-sm" >Search</button>
                         </form>
                     </li>
-                    {#                    <li ><a href="#contact" class="btn btn-primary btn-lg">CONTACT</a></li>#}
-                    {##}
-                    {#                    <li>#}
-                    {#                        <a href="{% url 'profileView' %}" class="btn btn-primary btn-lg" role="button">PROFILE</a>#}
-                    {#                    </li>#}
-                    {#                    <li><a href="{% url 'logout' %}" class="btn btn-primary btn-lg" role="button">LOGOUT</a></li>#}
-                    <li>
+                    <li ><a href="#contact" style="color: white; text-decoration: none;">contact</a></li>
 
-                        <div class="dropdown">
-{#                            <button onclick="myFunction()" class="dropbtn"><img  onmouseover="myFunction()" onclick="myFunction()" src="{{userInformation.profilePicture.url}}" height = "50" width = "50" style="border-style: solid;border-radius: 50%; border-width: 3px;"></button>#}
-                            <img onclick="myFunction()" class="dropbtn" src="{{userInformation.profilePicture.url}}" height = "50" width = "50" style="border-style: solid;border-radius: 50%; border-width: 3px;" onclick="myFunction()">
-                            <div id="myDropdown" class="dropdown-content">
-                                <a href="#contact" >Contact</a>
-                                <a href="{% url 'profileView' %}" >Profile</a>
-                                <a href="{% url 'logout' %}">Logout</a>
+
+                    <li>
+                        <div class="notification">
+
+                            <button onclick="showNotifications()" id = "nBtn" class="btn notificationBtn" style="background: transparent;"><img  class="notificationBtn" src="{% static 'Project/IMAGES/bell.png' %}" height = "20" width = "20"><span style="background:#ff656c; color: white; padding-left: 2px;  padding-right: 2px; border-radius: 2px; ">!</span></button>
+
+                            <div id="notiDiv" class="notificationDiv" style="background: white">
                             </div>
                         </div>
                     </li>
 
 
+
+                    <li>
+                        <div class="dropdown">
+                            <img onclick="myFunction()" class="dropbtn" src="{{userInformation.profilePicture.url}}" height = "40" width = "40" style="border-style: solid;border-radius: 50%; border-width: 2px;">
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="{% url 'profileView' %}" >Profile</a>
+                                <br>
+                                <a href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        </div>
+                    </li>
 
                 </ul>
             </div>
@@ -105,46 +108,57 @@
         </nav>
 
     </header>
+    <!-- side Nav -->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Projects</a>
+
+        <a href="#">Code</a>
+        <a href="#">Issues</a>
+        <a href="#">Comments</a>
+        <a href="#">Assigned Developers</a>
+    </div>
+
+    <span style="font-size:30px;cursor:pointer; color: rgb(64,55,88);" onclick="openNav()">&#9776;</span>
+
+
+    {% block content %}
+
+    {% endblock %}
+
+
+    <!-- *** -->
+
+    <!--/* LOWER CONTACT SPACE*/-->
 </div>
 
 
-<!-- side Nav -->
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">Projects</a>
-
-    <a href="#">Code</a>
-    <a href="#">Issues</a>
-    <a href="#">Comments</a>
-    <a href="#">Assigned Developers</a>
-</div>
-
-<span style="font-size:30px;cursor:pointer; color: rgb(64,55,88);" onclick="openNav()">&#9776;</span>
-
-
-{% block content %}
-
-{% endblock %}
-
-
-<!-- *** -->
-
-<!--/* LOWER CONTACT SPACE*/-->
-</div>
 <div class="content">
-    <a name="contact">
-        <div class="contact">
-            <ul>
-                <li>Chinmoy Acharjee</li>
-                <li>Sabik Abtahee</li>
-            </ul>
-        </div>
-    </a>
+    <div class="contact" id="contact">
+        <ul>
+            <li>
+
+            <li>
+                <img  style="width: 5em; height: 5em;" src={% static "Authentication/IMAGES/3.png" %}>
+                <a href="{% url 'homepage' %}" style="color: white; text-decoration: none; font-size: 20px">BYTE <span style="background-color: #ff656c; border: solid #ff656c; border-width:5px; border-radius: 6px; ">PRO</span></a>
+                <hr style="width: 400px; font-size: 50px;">
+            </li>
+
+            <li>Chinmoy Acharjee: (chinmoyacharjee15@gmail.com)</li>
+            <li>Sabik Abtahee: (sabikchamp@gmail.com)</li>
+            <li>©Chinmoy Sabik</li>
+
+            </li>
+
+        </ul>
+
+
+    </div>
+
 </div>
 
 <!--/* SCRIPT PART*/-->
 <script type="text/javascript">
-
 
 
     // For opening and closing side nav bar
@@ -153,7 +167,7 @@
     }
 
     function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("notiContent").style.width = "0";
     }
 
 
@@ -161,14 +175,20 @@
         $(".menu-icon").on("click", function() {
             $("nav ul").toggleClass("showing");
         });
+        $.ajax({
+            url: '/ajax/getnotifications',
+            data: {
+                'uid': {{ user.id }}
+            },
+            dataType: 'json',
+            success: function(data) {
+                appendDiv(data.content, data.num)
+
+            }
+        });
+
     });
 
-
-
-    {#    JAVASCRIPT FOR BUTTON DROPDOWN#}
-
-    /* When the user clicks on the button,
-     toggle between hiding and showing the dropdown content */
 
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
@@ -187,7 +207,71 @@
                 }
             }
         }
+        if (!event.target.matches('.notificationBtn')) {
+            var notificationContent = document.getElementsByClassName("notificationDiv");
+            var j;
+            for (j = 0; j < notificationContent.length; j++) {
+                var notiContentAsList = notificationContent[j];
+                if (notiContentAsList.classList.contains('show')) {
+                    notiContentAsList.classList.remove('show');
+                }
+            }
+        }
+    };
+
+    function showNotifications() {
+        document.getElementById("notiDiv").classList.toggle("show");
     }
+
+
+    function refresh() {
+        $.ajax({
+            url: '/ajax/getnotifications',
+            data: {
+                'uid': {{ user.id }}
+            },
+            dataType: 'json',
+            success: function(data) {
+                appendDiv(data.content, data.num)
+
+            }
+        });
+
+    }
+
+    function appendDiv(data,x) {
+
+
+        document.getElementById("nBtn").innerHTML = '<img  class="notificationBtn" src="{% static  'Project/IMAGES/bell.png'  %}" height = "20" width = "20"><span style="background:#ff656c; color: white; padding-left: 2px;  padding-right: 2px; border-radius: 2px; ">!</span>';
+        document.getElementById("notiDiv").innerHTML = '<h4 style="color:rgb(64,55,88);"><strong>Notifications</strong></h4><hr>';
+        if(x===0){
+            document.getElementById("notiDiv").innerHTML +='<hr><h5 style="color:#ff656c;">No Notifications Yet</h5><hr>';
+        }
+        else{
+            for(var i=0;i<x*6;i+=6){
+
+                var a = document.createElement("a");
+                a.href = data[i+3];
+                var txt = document.createTextNode(data[i+2]);
+
+                img = document.createElement("img");
+                img.src = data[i+5];
+                img.height="30";
+                img.weight="30";
+                img.id ="notiImage";
+                a.appendChild(img);
+                a.innerHTML+=" ";
+                a.appendChild(txt);
+
+                document.getElementById("notiDiv").appendChild(a);
+                document.getElementById("notiDiv").innerHTML +="<br><br><br><br><br><br>";
+            }
+        }
+
+    }
+    $(function(){
+        setInterval(refresh, 5000);
+    });
 
 
 </script>

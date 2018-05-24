@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import Database
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -7,6 +7,7 @@ import difflib
 import os
 import shutil
 from datetime import datetime
+from Communication.views import Communication
 
 
 class Project(object):
@@ -86,6 +87,9 @@ class Project(object):
         alluser, allprojects = self.returnAllUserANdProjects()
         assignDevelopers = Database.models.AssignDeveloper.objects.filter(project=project)
         # assignDevelopersUserInformation = Database.models.UserInformation.objects.all()
+        isDownloadable = True
+        if(files.count()==0): isDownloadable = False
+
         context = {'userInformation': userInformation,
                    'user': user,
                    'project': project,
@@ -95,6 +99,7 @@ class Project(object):
                    'assignDevelopers': assignDevelopers,
                    'isMaster': True,
                    'isAssigned': False,
+                   'isDownloadable': isDownloadable
                    }
         return render(request, 'Project/projectDetails.html', context)
 
@@ -219,7 +224,7 @@ class Project(object):
         tempFileVersions = []
         if (request.method == 'POST'):
             if (len(request.FILES) > 0):
-
+                fileCount = 0
                 for file in request.FILES.getlist("file"):
 
                     fileDescription = request.POST['fileDescription']
@@ -228,6 +233,7 @@ class Project(object):
                     fileType, fileNameWdOutExtention = self.getFileNameAndType(fileName)
 
                     isConflict = False
+
                     if (self.fileExistBefore(user, project, fileName)):
 
                         fileBeforeInDatabase = self.getFileRecord(user, project, fileName)
@@ -275,8 +281,12 @@ class Project(object):
                         File.fileType = fileType
                         File.save()
                         comment=Database.models.Comment.objects.filter(file=File)
-                        self.addProjectTag(user,projectname)
+                        fileCount+=1
 
+
+
+                        self.addProjectTag(user, project.projectName)
+                fileCount+=1
                 if (self.doRenderMergePage(tempFileVersions)):
 
                     context = {
@@ -285,11 +295,13 @@ class Project(object):
                         'FileWithUsersAndContent': tempFileVersions,
                         'alluser': alluser,
                         'allprojects': allprojects,
-                        'comment': comment
+                        'isMaster': True,
+                        'project': project
                     }
 
                     return render(request, 'Project/merge.html', context)
                 else:
+                    Communication().notifiedAllAssignedDevelopers(project, user.username, fileNumbers=fileCount, isMaster=True, type = "upload")
                     return redirect('/projectmanagement/' + project.projectName + '/')
         else:
 
@@ -297,8 +309,6 @@ class Project(object):
                        'user': user,
                        'project': project,
                        'isMaster': True,
-
-
                        }
             return render(request, 'Project/addFile.html', context)
 
@@ -365,7 +375,8 @@ class Project(object):
             'project': project,
             'versions': versions,
             'file': file,
-            'noVersions': noVersions
+            'noVersions': noVersions,
+            'isMaster': True
         }
         return render(request, 'Project/showVersions.html', context)
 
@@ -540,15 +551,34 @@ class Project(object):
         file.delete()
         return redirect('/projectmanagement/' + project.projectName + '/')
 
+
+    def fetchLanguage(self, request):
+        pid = request.GET.get('pid', None)
+        project = Database.models.Project.objects.get(pk=pid)
+        files = Database.models.File.objects.filter(project = project)
+        data = {}
+        for file in files:
+            type = file.fileType
+            if(type not in data):
+                data[type] = 0
+                data[type]+=1
+
+        data['success'] = True
+        print(data)
+        return JsonResponse(data, safe=False)
+
+
     def projectSettings(self, request, projectname):
         user = request.user
         if (not self.userIsAuthenticated(user)):
             return render(request,'Authentication/loggedOut.html')
         userInformation = Database.models.UserInformation.objects.get(user=user)
         project = Database.models.Project.objects.get(user=user, projectName=projectname)
+        files = Database.models.File.objects.filter(project = project)
         alluser, allprojects = self.returnAllUserANdProjects()
         assignDevelopers = Database.models.AssignDeveloper.objects.filter(project=project)
         print(assignDevelopers)
+
 
         context = {'userInformation': userInformation,
                    'user': user,
@@ -556,6 +586,8 @@ class Project(object):
                    'allprojects': allprojects,
                    'alluser': alluser,
                    'assignDevelopers': assignDevelopers,
+                   'files': files
+
                    }
 
         return render(request, 'Project/projectSettings.html', context)
@@ -687,6 +719,8 @@ class Project(object):
                 description = request.POST.get('COMMENT-DESCRIPTION')
                 comment=Database.models.Comment(file=file,commentDescription=description,commentTime=datetime.now(),commentator=user.username)
                 comment.save()
+                Communication().notifiedAllAssignedDevelopers(project, user.username, fileNumbers=0, isMaster=True,
+                                                              type="comment")
 
         return redirect('/projectmanagement/' + project.projectName + '/'+id+'/')
 
@@ -710,6 +744,8 @@ class Project(object):
             issue.label = label
             issue.isClosed = False
             issue.save()
+            Communication().notifiedAllAssignedDevelopers(project, user.username, fileNumbers=0, isMaster=True,
+                                                          type="issue")
 
         context = {'userInformation': userInformation,
                    'user': user,
@@ -718,7 +754,9 @@ class Project(object):
                    'alluser': alluser,
                    'Issues': ISSUE,
                    'isFile': False,
+                   'isMaster': True
                    }
+
         return render(request, 'Project/Issue.html', context)
 
     def closeIssue(self, request):
@@ -754,7 +792,8 @@ class Project(object):
             issue.isClosed = False
             issue.fileName = file.fileName
             issue.save()
-            print(issue.issueDescription, issue.fileName)
+            Communication().notifiedAllAssignedDevelopers(project, user.username, fileNumbers=0, isMaster=True,
+                                                          type="issue")
         context = {'userInformation': userInformation,
                    'user': user,
                    'project': project,

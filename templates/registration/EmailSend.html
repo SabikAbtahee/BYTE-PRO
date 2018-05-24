@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:width="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Recovery</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+
+    {%load staticfiles%}
+    <link rel="stylesheet" href="{% static 'Authentication/CSS/recovery.css'%}">
+
+</head>
+
+
+<body>
+
+<!--/* NAVIGATION BAR */-->
+<div class="wrapper">
+    <header>
+        <nav>
+            <div class="menu-icon">
+                <i class="fa fa-bars fa-2x"></i>
+            </div>
+
+            <div class="logo">
+
+                <a href="{% url 'homepage' %}">
+                    <img class="logoimg" style="width: 3em; height: 3em; margin-left:2em; margin-top: -0.5em;" src={% static "Authentication/IMAGES/3.png" %}>
+                </a>
+                <div class="logoContent">
+                    <a href="{% url 'homepage' %}" style="color: white; text-decoration: none;">BYTE <span style="background-color: #ff656c; border: solid #ff656c; border-width:5px; border-radius: 6px; ">PRO</span></a>
+                </div>
+
+
+            </div>
+
+            <div class="menu">
+                <ul>
+
+                    <li><a href="#contact" class="btn">Contact</a></li>
+                    <li><a href="/authentication/signup/" class="btn btn-primary btn-lg" role="button">Sign up</a></li>
+                    <li><a href="/authentication/signin/" class="btn btn-primary btn-lg" role="button" style="background-color:#007299; color: white;">Sign In</a></li>
+
+                </ul>
+            </div>
+
+        </nav>
+
+    </header>
+</div>
+
+
+<!--/* MAIN CONTENTS WHICH WILL LATER BE USED AS BLOCK CONTENT*/-->
+<div class="container">
+    <div class="recovery-block">
+        <form action="/authentication/resendrecovery/" method="post">
+            <h1 >Email has been sent.</h1>
+            <hr>
+            <br>
+            <p>If you did not receive your email yet. Press the <strong>Re-Send Email</strong> button</p>
+            <input type="email" name = "email_or_username" value="{{ email }}" hidden/>
+            <button type="submit">Re-Send Email</button>
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!--/* LOWER CONTACT SPACE*/-->
+<div class="content">
+    <a name="contact">
+        <div class="contact">
+            <ul>
+                <li>Chinmoy Acharjee</li>
+                <li>Sabik Abtahee</li>
+            </ul>
+        </div>
+    </a>
+</div>
+
+
+
+
+<!--/* SCRIPT PART*/-->
+<script type="text/javascript">
+
+
+
+    $(document).ready(function() {
+        $(".menu-icon").on("click", function() {
+            $("nav ul").toggleClass("showing");
+        });
+    });
+
+    // Scrolling Effect
+
+    $(window).on("scroll", function() {
+        if($(window).scrollTop()) {
+            $('nav').addClass('black');
+        }
+
+        else {
+            $('nav').removeClass('black');
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

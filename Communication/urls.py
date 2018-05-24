@@ -26,6 +26,8 @@ import ProfileManagement
 
 from . import views
 urlpatterns = [
+    url(r'^/ajx/fetchimg/$', views.Communication().fetchImage,
+        name="fetchImage"),
 
     url(r'^(?P<projectname>[\w\-]+)/assigndeveloper/$', views.Communication().assignDevelopers ,name="assignDevelopers"),
 

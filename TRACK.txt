@@ -36,4 +36,7 @@ $ git push
 5. Desingning baki
 6. Skilltags baki
 7.
-
+/////////////Needs to do//////////////
+1. checking while file upload
+2. only one profile picture. if a user uploaded photo multiple time then all the previous photo should be deleted
+3. issue button z-index problem[label]

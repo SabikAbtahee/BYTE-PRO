@@ -4,24 +4,24 @@
     font-size: 20px;
     padding: 30px 10px;
     margin-top: -100px;
-     
+
 }
 .fileContentsAndCode{
-	margin-top: 20px;
-	background-color: white;
-	font-family: Arial;
-	color: black;
-	border-radius: 5px;
-	border-color: rgb(223,226,229);
-	border-width: 2px;
-	border-style: solid;
+    margin-top: 20px;
+    background-color: white;
+    font-family: Arial;
+    color: black;
+    border-radius: 5px;
+    border-color: rgb(223,226,229);
+    border-width: 2px;
+    border-style: solid;
 }
 
 .filesDetailsDiv {
-   	border-radius: 2px;
-   	border-color: rgb(223,226,229);
-   	border-width: 1px;
-   	border-style: solid;
+    border-radius: 2px;
+    border-color: rgb(223,226,229);
+    border-width: 1px;
+    border-style: solid;
 
 
     text-align: justify;
@@ -31,6 +31,7 @@
     padding-right: 10px;
     font-size: 15px;
     background-color: white;
+
 }
 .filesDetailsDiv div {
     display: inline-block;
@@ -42,33 +43,36 @@
 }
 
 .filesDetailsDiv:hover, .codeDiv:hover{
-	border-left-width: 10px;
-	border-left-color: rgb(64,55,88);
-	border-left-style: solid;
-	transition: 0.3s;
+    border-left-width: 10px;
+    border-left-color: rgb(64,55,88);
+    border-left-style: solid;
+    transition: 0.3s;
 
 
 }
 .codeDiv{
-	text-align: justify;
+    text-align: justify;
     font-size: 50px;
-    background-color: white;
+    background-color: rgb(64,55,88);
+
+}
+.codeDiv{
+    overflow-x: auto;
 }
 .previousButtonDiv{
-	float: right;
-	padding-right: 10px;
-}.clearboth{
-	clear: both;
+    float: right;
+    padding-right: 10px;
+}
+.clearboth{
+    clear: both;
 }
 
 @media(max-width: 1500px) {
 
-    .main {
-    	margin-right: 5px;
-    	margin-left: 5px;
-    	font-size: 20px;
-    	padding: 10px 10px;
+    .main{
+        margin-left: 1px;
+        margin-right: -1200px;
     }
-    
+
 }
 

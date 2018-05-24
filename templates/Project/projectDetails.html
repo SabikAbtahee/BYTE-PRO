@@ -9,12 +9,12 @@
 
 
 {% block content %}
-    <div class="main">        
+    <div class="main">
         <div class= "projectDetailsDiv">
             {% if isMaster %}
-            <img src="{{userInformation.profilePicture.url}}" class = "porpic">
+                <img src="{{userInformation.profilePicture.url}}" class = "porpic">
             {% else %}
-            <img src="{{searchedUserInformation.profilePicture.url}}" class = "porpic">
+                <img src="{{searchedUserInformation.profilePicture.url}}" class = "porpic">
             {% endif %}
 
             <h3>{{project.projectName}}</h3>
@@ -27,71 +27,81 @@
 
         <div class= "assignDevelopers">
             {%if isMaster%}
-            <form method="post" action="/comm/{{ project.projectName }}/assigndeveloper/" class="form-inline" style = "left: 50%;">
-                <label for="Enter Project Name">Assign Developer: </label>
-                <input type="text" name="assignDeveloper" id='assignDeveloper' class="form-control" list="searchUser" autocomplete="off">
-                <datalist id="searchUser">
-                    {% for user in alluser %}
-                        <option value={{ user.username }}>
-                    {% endfor %}
-                </datalist>
+                <form method="post" action="/comm/{{ project.projectName }}/assigndeveloper/" class="form-inline" style = "left: 50%;">
+                    <label for="Enter Project Name">Assign Developer: </label>
+                    <input type="text" name="assignDeveloper" id='assignDeveloper' class="form-control" list="searchUser" autocomplete="off">
+                    <datalist id="searchUser">
+                        {% for user in alluser %}
+                            <option value={{ user.username }}>
+                        {% endfor %}
+                    </datalist>
 
-                <button id="search" class = "btn btn-info" class="form-control"><b>Assign Developer</b></button>
-            </form>
+                    <button id="search" class = "btn btn-info" class="form-control"><b>Assign Developer</b></button>
+                </form>
             {%endif%}
-            
+
             <p>Assigned Developrs: {{ assignDevelopers|length }}</p>
             {%if isAssigned%}
-            <p>You assigned here</p>
+                <p>You assigned here</p>
             {%endif%}
             <hr>
         </div>
 
 
         <div class="instruction">
-            
+
             <div>
                 {% if isMaster%}
-                <a href="/projectmanagement/{{project.projectName}}/addfiles/">
-                    <button class="btn btn-success">  Upload  </button>
-                </a>
-                <a href="/projectmanagement/{{project.projectName}}/downloadfiles/">
-                    <button class="btn btn-primary">Download ZIP</button>
-                </a>
-                <a href="/projectmanagement/{{project.projectName}}/projectProgress/">
-                    <button class="btn btn-warning">Project Progress</button>
-                </a>
-                {%elif isAssigned%}
-                <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/addfiles/">
-                    <button class="btn btn-success">  Upload  </button>
-                </a>
+                    <a href="/projectmanagement/{{project.projectName}}/addfiles/">
+                        <button class="btn btn-success">  Upload  </button>
+                    </a>
+                    {% if isDownloadable %}
+                        <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/downloadfiles/">
+                            <button class="btn btn-primary">Download ZIP</button>
+                        </a>
 
-               <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/downloadfiles/">
-                    <button class="btn btn-primary">Download ZIP</button>
-                </a>
-                <a href="#">
-                    <button class="btn btn-warning">Project Progress</button>
-                </a>
+                    {% endif %}
+                    <a href="/projectmanagement/{{project.projectName}}/projectProgress/">
+                        <button class="btn btn-warning">Project Progress</button>
+                    </a>
+                {%elif isAssigned%}
+                    <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/addfiles/">
+                        <button class="btn btn-success">  Upload  </button>
+                    </a>
+
+                    {% if isDownloadable %}
+                        <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/downloadfiles/">
+                            <button class="btn btn-primary">Download ZIP</button>
+                        </a>
+
+                    {% endif %}
+                    <a href="#">
+                        <button class="btn btn-warning">Project Progress</button>
+                    </a>
 
                 {%else%}
-            
-                <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/downloadfiles/">
-                    <button class="btn btn-primary">Download ZIP</button>
-                </a>
+                    {% if isDownloadable %}
+                        <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/downloadfiles/">
+                            <button class="btn btn-primary">Download ZIP</button>
+                        </a>
 
+                    {% endif %}
                 {%endif%}
 
             </div>
 
-        </div> 
-        
+        </div>
+
 
         <div class="filesMainDiv">
             <table class="table">
                 <tbody>
                 {%for file in files%}
                     <tr align="center">
-                        <td>
+                        <td align="right">
+                            <img src="#"  height="40" width="40" style="border-style: solid;border-radius: 50%; border-width: 2px;" id="{{ file.id }}" hidden>
+                        </td>
+                        <td align="left">
                             {{ file.uploader }}
                         </td>
 
@@ -99,9 +109,9 @@
                             {%load staticfiles%}
                             <img src="{% static 'Project/IMAGES/code-file.png' %}" width="15" height="15" >
                             {%if isMaster%}
-                            <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/">{{file.fileName}}</a>
+                                <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/">{{file.fileName}}</a>
                             {%else%}
-                            <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/">{{file.fileName}}</a>
+                                <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/">{{file.fileName}}</a>
                             {%endif%}
 
                         </td>
@@ -111,7 +121,7 @@
                         </td>
 
                         <td>
-                             {{file.fileSize}}
+                            {{file.fileSize}}
                         </td>
 
                         <td>
@@ -121,14 +131,14 @@
                         <td align="right">
                             <a href={{ file.file.url }} download><button class="btn btn-info">DOWNLOAD</button></a>
                             {%if isMaster%}
-                            <a href="/projectmanagement/{{project.projectName}}/{{ file.id }}/deletefile/"><button class="btn btn-danger">DELETE</button></a>
+                                <a href="/projectmanagement/{{project.projectName}}/{{ file.id }}/deletefile/"><button class="btn btn-danger">DELETE</button></a>
                             {%endif%}
                         </td>
                     </tr>
                 {%endfor%}
                 </tbody>
             </table>
-        </div>        
+        </div>
     </div>
     {% load staticfiles %}
     <script type ="text/javascript" src="{% static 'Project/SCRIPT/jquery.min.js' %}"></script>
@@ -137,18 +147,51 @@
     <script>
         // toLowerCase()
         $(document).ready(function(){
-            var code = $(".codemirror-textarea")[0];
+            /*var code = $(".codemirror-textarea")[0];
             var editor = CodeMirror.fromTextArea(code,{
                 lineNumbers: true,
                 theme: 'paraiso-light',
                 mode: 'clike'
 
+            });*/
+
+            var pid = "{{ project.id }}";
 
 
+            $.ajax({
 
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                url: '/comm/ajx/fetchimg/',
+                data: {
+                    'pid': pid
+
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if(data.success){
+
+                        addPropics(data);
+                        console.log(data);
+                    }
+                }
             });
 
         });
+        function addPropics(data) {
+            //var str = "12345.00";
+            {#str = str.substring(0, str.length - 1); #}
+            var i=0;
+            {% for file in files %}
+                var img = document.getElementById("{{ file.id }}");
+
+                img.src = data[{{ file.id }}];
+                console.log(data[{{ file.id }}]);
+                img.hidden = false;
+                i++;
+            {% endfor %}
+        }
+
+
     </script>
 
 {% endblock %}

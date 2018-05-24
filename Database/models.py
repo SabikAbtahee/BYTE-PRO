@@ -131,3 +131,10 @@ class Issue(models.Model):
     issueDescription = models.TextField()
     isClosed = models.BooleanField(default=False)
     issueTime = models.DateTimeField(default=datetime.now)
+
+class Notification(models.Model):
+    reciever = models.ForeignKey(User, on_delete=models.CASCADE)
+    isViewed = models.BooleanField(default=False)
+    content = models.TextField()
+    link = models.URLField(blank=False)
+    sender = models.CharField(max_length=200)

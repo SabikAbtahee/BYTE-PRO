@@ -53,7 +53,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-   #'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -101,7 +101,7 @@ WSGI_APPLICATION = 'SPL2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'git11',
+        'NAME': 'git13',
         'USER': 'Sabik',
         'PASSWORD' : 'iit123',
     }
@@ -152,14 +152,14 @@ STATICFILES_DIRS =[
 # ------------------------
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 25 #587
+EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = 'cs819829'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'bytepro123@gmail.com'
-# SERVER_EMAIL    = 'bytepro123@gmail.com'
-# EMAIL_BACKEND  = 'django.core.mail.backends.smtp.EmailBackend'
+SERVER_EMAIL    = 'bytepro123@gmail.com'
 # ------------------------
 
 LOGIN_REDIRECT_URL = '/projectmanagement/'
+
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')

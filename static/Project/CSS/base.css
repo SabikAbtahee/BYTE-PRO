@@ -105,7 +105,7 @@ nav ul li a {
     padding: 6px 15px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 2px solid red;
+    border: 2px solid;
     border-radius: 4px;
 }
 .menu-icon {

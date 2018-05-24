@@ -10,7 +10,7 @@
     <script src="{% static 'Project/SCRIPT/highlightjs-line-numbers.min.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'Project/CSS/codemirror/lib/codemirror.css'%}">
     <!-- themes -->
-    <link rel="stylesheet" type="text/css" href="{% static 'Project/CSS/codemirror/theme/xq-light.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'Project/CSS/codemirror/theme/neo.css'%}">
     <link rel="stylesheet" href="{% static 'Project/CSS/merge.css' %}">
     <script>hljs.initHighlightingOnLoad();</script>
     <script>hljs.initLineNumbersOnLoad();</script>
@@ -19,9 +19,10 @@
 
     <div class="main">
         {% for fileVersionUser in FileWithUsersAndContent%}
-            <div class="alert alert-success" id="success"></div>
+            <div id="successmsg" hidden></div>
+
             {%if fileVersionUser.isConflict%}
-                    <div class = "fileContentsAndCode">
+                    <div class = "fileContentsAndCode" id = "fileContentsAndCode{{ fileVersionUser.fileBeforeInDatabase.id }}">
                         <div class="mergeConflictEditor">
                             <textarea class="codemirror-textarea" name="code" id = "{{ fileVersionUser.fileBeforeInDatabase.id }}">
 
@@ -31,20 +32,32 @@
 {{ fileVersionUser.previousFileContent }}
 >>>>>>>>>>
 ====================================================
-<<<<<<<<<< {{ fileVersionUser.fileBeforeInDatabase.uploader }}
+<<<<<<<<<< You
 
 {% for line in fileVersionUser.currentFileContent %}{{line}}
 {%endfor%}
 >>>>>>>>>>
 </textarea>
                         </div>
-                        <button type="submit" class="btn btn-success" id = "{{ fileVersionUser.fileBeforeInDatabase.id }}" >
+                        <div style="background: white; padding-top:20px;  padding-bottom:20px; border-radius: 5px;border-color: rgb(223,226,229); border-width: 2px;	border-style: solid;">
+                            <button type="submit" class="btn btn-success" id = "{{ fileVersionUser.fileBeforeInDatabase.id }}" style="margin-left: 45%;">
                             Update <strong>{{ fileVersionUser.fileBeforeInDatabase.fileName }}</strong>
                         </button>
+                        </div>
+
                     </div>
             {% endif %}
 
         {% endfor %}
+    {% if isMaster %}
+        <div id="backbtn" hidden>
+            <a href="/projectmanagement/{{project.projectName}}/" style="text-decoration: none;">Back to Project</a>
+        </div>
+    {% else %}
+        <div id="backbtn" hidden>
+            <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/" style="text-decoration: none;">Back to Project</a>
+        </div>
+    {% endif %}
     </div>
 
 
@@ -55,14 +68,14 @@
     <script>
         //this is for code-mirror code editor
         var editor = [];
-
+        var totalFileContent;
         $(document).ready(function(){
-            $('#success').hide();
+            totalFileContent = document.getElementsByClassName('fileContentsAndCode').length;
             var code = $(".codemirror-textarea");
             for (i = 0; i < code.length; i++) {
                 editor[i] = CodeMirror.fromTextArea(code[i],{
                     lineNumbers: true,
-                    theme: 'xq-light',
+                    theme: 'neo',
                     mode: 'clike'
 
                 });
@@ -77,8 +90,9 @@
 
             var code = $('textarea#'+this.id);
             var codeContent = code.val();
+            var fileContentCode = document.getElementById('fileContentsAndCode'+this.id);
 
-            console.log(codeContent);
+            console.log(fileContentCode.innerHTML);
 
             $.ajax({
 		      	type:"POST",
@@ -91,13 +105,24 @@
 		      	dataType: 'json',
 		      	success: function (data) {
                     if(data.success){
-                        console.log(data.success);
-                        document.getElementById("success").innerHTML = data.success;
-                        $('#success').show();
+                        var MainSuccessMsgDiv = document.getElementById("successmsg");
+                        MainSuccessMsgDiv.hidden = false;
+                        var scssDiv = document.createElement("div");
+                        scssDiv.className="alert alert-success";
+                        scssDiv.id = "success";
+                        scssDiv.innerHTML = data.success;
+                        MainSuccessMsgDiv.appendChild(scssDiv);
+                        fileContentCode.hidden = true;
+                        totalFileContent-=1;
+                        console.log(totalFileContent);
+                        if(totalFileContent===0){
+                            document.getElementById("backbtn").hidden = false;
+                        }
+
                     }
 		     	}
 			});
 		});
-
+    {#<div class="alert alert-success" id="success"></div>#}
     </script>
 {% endblock %}
