@@ -33,6 +33,7 @@ urlpatterns = [
 
     url(r'^ajax/passwordCheck/$', ProfileManagement.views.ProfileManagement().passwordCheck , name="passwordCheck"),
     url(r'^ajax/projectExists/$', Project.views.Project().projectCheck , name="projectCheck"),
+    url(r'^ajax/projectAccessType/$', Project.views.Project().projectAccessType, name="projectAccessType"),
 
     url(r'^pro/ajx/close/$', Project.views.Project().closeIssue, name="closeIssue"),
     url(r'^ajax/getnotifications$', Communication.views.Communication().getNotifications, name="getNotifications"),

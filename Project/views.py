@@ -838,3 +838,38 @@ class Project(object):
         }
 
         return JsonResponse(data)
+    def projectAccessType(self, request):
+        user = request.user
+
+        if (not self.userIsAuthenticated(user)):
+            return render(request,'Authentication/loggedOut.html')
+
+        searchInput = request.POST.get('searchInput', None)
+        allprojects = Database.models.Project.objects.all()
+        match=True
+
+        for i in allprojects:
+
+            if(str(i)==str(searchInput)):
+                if(i.accessType=="Private"):
+                    match=False
+                    break
+                    # print ("public")
+                else:
+                    match=True
+                    # print ("private")
+
+        # print(allprojects.projectsName)
+        # if (y is None):
+        #     error = "Old password does not match"
+        #     bools = False
+        # else:
+        #     error = "Old password Matches"
+        #     bools = True
+
+        data = {
+
+            'check': match,
+        }
+
+        return JsonResponse(data)

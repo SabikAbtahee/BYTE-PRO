@@ -63,6 +63,10 @@
     float: right;
     padding-right: 10px;
 }
+.previousButtonDiv2{
+    float: left;
+    padding-right: 10px;
+}
 .clearboth{
     clear: both;
 }
