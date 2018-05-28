@@ -567,7 +567,7 @@ class Project(object):
         print(data)
         return JsonResponse(data, safe=False)
 
-	def fetchContributionData(self, request):
+    def fetchContributionData(self, request):
         pid = request.GET.get('pid', None)
         project = Database.models.Project.objects.get(pk=pid)
         files = Database.models.File.objects.filter(project = project)
@@ -823,7 +823,7 @@ class Project(object):
 
         return render(request, 'Project/Issue.html', context)
 
-	def projectCheck(self, request):	
+    def projectCheck(self, request):
         user = request.user
 
         if (not self.userIsAuthenticated(user)):
@@ -887,21 +887,21 @@ class Project(object):
 
         return JsonResponse(data)
 
-	def showAssignedProjects(self, request):
-        user = request.user
-        if (not self.userIsAuthenticated(user)):
-            return HttpResponse('You need to login')
-        userInformation = Database.models.UserInformation.objects.get(user=user)
-        assignedProject = Database.models.AssignDeveloper.objects.filter(assignDeveloper = user)
-        print('Clled')
-        print(assignedProject)
-        # project = Database.models.Project.objects.get(user=user)
-        alluser, allprojects = self.returnAllUserANdProjects()
-        context = {'userInformation': userInformation,
-                   'user': user,
-                   'ASSIGNPROJECT': assignedProject,
-                   'allprojects': allprojects,
-                   'alluser': alluser,
-                   }
+    def showAssignedProjects(self, request):
+            user = request.user
+            if (not self.userIsAuthenticated(user)):
+                return HttpResponse('You need to login')
+            userInformation = Database.models.UserInformation.objects.get(user=user)
+            assignedProject = Database.models.AssignDeveloper.objects.filter(assignDeveloper = user)
+            print('Clled')
+            print(assignedProject)
+            # project = Database.models.Project.objects.get(user=user)
+            alluser, allprojects = self.returnAllUserANdProjects()
+            context = {'userInformation': userInformation,
+                       'user': user,
+                       'ASSIGNPROJECT': assignedProject,
+                       'allprojects': allprojects,
+                       'alluser': alluser,
+                       }
 
-        return render(request, 'Project/assignedProjectShow.html', context)
+            return render(request, 'Project/assignedProjectShow.html', context)
