@@ -17,7 +17,6 @@
     <div class="main">
         <div class = "fileContentsAndCode">
             <div class = "deletationSection">
-			<h5 style="color: red; padding-left: 25px;">- - {{ totalDeletation }}</h5>
                 <!-- If the file has previous version -->
                 <pre>
             <code class={{ file.fileType }}>{% for ll in deletations %}{%if ll.isDeletation%}<div class = "deletation" width=100%>{{ll.line}}</div>{%else%}<div>{{ll.line}}</div>{%endif%}{%endfor%}</code>

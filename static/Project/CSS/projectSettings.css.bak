@@ -99,21 +99,10 @@ tr:hover{
 
 
 }
-.languageRatio canvas, .contributionRatio canvas{
-    margin-left: 28%;
+.languageRatio canvas{
+    margin-left: 20%;
     height: 500px !important;
     width: 500px !important;
-}
-.assignDevelopers{
-	margin-top: 20px;
-	background-color: white;
-	font-family: Arial;
-	color: black;
-	border-radius: 5px;
-	border-color: rgb(223,226,229);
-	border-width: 2px;
-	border-style: solid;
-	padding: 20px;
 }
 
 

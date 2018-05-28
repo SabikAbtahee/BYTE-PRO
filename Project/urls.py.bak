@@ -35,6 +35,11 @@ urlpatterns = [
     url(r'^(?P<projectname>[\w\-]+)/(?P<id>[0-9]+)/comment/$',views.Project().commentOnFile, name = 'commentOnFile'),
 
     url(r'^(?P<projectname>[\w\-]+)/issues/$', views.Project().projectIssue, name='projectIssue'),
+
+
+
+
+
     # here can be change[we can use project name or project id.]
 
 

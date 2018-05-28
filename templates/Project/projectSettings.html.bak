@@ -20,28 +20,8 @@
             <hr>
         </div>
 
-        <div class= "assignDevelopers">
 
-            <form method="post" action="/comm/{{ project.projectName }}/assigndeveloper/" class="form-inline" style = "left: 50%;">
-                <label for="Enter Project Name">Assign Developer: </label>
-                <input type="text" name="assignDeveloper" id='assignDeveloper' class="form-control" list="searchUser" autocomplete="off">
-                <datalist id="searchUser">
-                    {% for user in alluser %}
-                        <option value={{ user.username }}>
-                    {% endfor %}
-                </datalist>
-
-                <button id="search" class = "btn btn-info" class="form-control"><b>Assign Developer</b></button>
-            </form>
-
-
-            <p>Assigned Developrs: {{ assignDevelopers|length }}</p>
-
-
-
-            <hr>
-        </div>
-        <div class="developerMainDiv" name="assignedDeveloper">
+        <div class="developerMainDiv">
             <h3>Assigned Developers</h3>
             <table class="table">
                 <tbody>
@@ -49,10 +29,7 @@
                     <tr align="center">
                         <td align="left">
                             {%load staticfiles%}
-                            <form action="/search/" method="post">
-                                <input type="text" value="{{ developer.assignDeveloper.username }}" name="searchinput" hidden>
-                                <button style="background: transparent;" class="btn" type="submit">{{ developer.assignDeveloper.username }}</button>
-                            </form>
+                            <p>{{ developer.assignDeveloper.username }}</p>
                         </td>
 
                         <td>
@@ -80,18 +57,9 @@
                 </tbody>
             </table>
         </div>
-        <a name="languageGraph">
-            <div class="languageRatio" >
-
-                <canvas id="languageChart"></canvas>
-            </div>
-        </a>
-        <a name="Contributions">
-            <div class="contributionRatio" name="Contributions">
-
-                <canvas id="contributionChart"></canvas>
-            </div>
-        </a>
+        <div class="languageRatio" >
+            <canvas id="myChart"></canvas>
+        </div>
 
 
     </div>
@@ -118,91 +86,49 @@
                     }
                 }
             });
-            $.ajax({
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-                url: '/project/fetchcontributiondata/',
-                data: {
-                    'pid': pid
-                },
-                dataType: 'json',
-                success: function (data) {
-                    if(data.success){
-
-                        addContributionChart(data);
-                    }
-                }
-            });
 
         });
         function addLanguageChart(data){
-            var labels = [];
-            var languageData = [];
-            {% for file in files %}
-                if(!labels.includes("{{ file.fileType }}")){
-                    labels.push("{{ file.fileType }}");
-                    {#languageData.push(data["{{ file.fileType }}"]);#}
-                }
+            labels = [];
+            languageData = [];
+{#            {% for file in files %}#}
+{#                if(!labels.includes("{{ file.fileType }}")){#}
+{#                    labels.push("{{ file.fileType }}");#}
+{#                    languageData.push(data["{{ file.fileType }}"]);#}
+{#                }#}
 
-            {% endfor %}
-            for(var i=0;i<labels.length;i++){
-                languageData.push(data[labels[i]]);
+{#            {% endfor %}#}
+            for(var key in data){
+                labels.push(key);
+                languageData.push(data[key]);
             }
-            backgroundColor =  [
-                'rgba(64,55,88,0.8)',
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-                'rgba(255, 206, 86, 0.8)',
-                'rgba(75, 192, 192, 0.8)',
-                'rgba(153, 102, 255, 0.8)',
-                'rgba(255, 159, 64, 0.8)',
-                'rgba(255, 99, 132, 0.8)'];
-            text = "Languages Used";
-            makeLanguageChart(labels, languageData, 'languageChart', backgroundColor, text)
-        }
-        function addContributionChart(data) {
-            var labelsContribution = [];
-            var contributionData = [];
-
-            {% for file in files %}
-                if(!labelsContribution.includes("{{ file.uploader }}")){
-                    labelsContribution.push("{{ file.uploader }}");
-                    {#languageData.push(data["{{ file.fileType }}"]);#}
-                }
-
-            {% endfor %}
-            for(var i=0;i<labelsContribution.length;i++){
-                contributionData.push(data[labelsContribution[i]]);
-            }
-            backgroundColor =  [
-                'rgba(64,55,88,0.8)',
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-                'rgba(255, 206, 86, 0.8)',
-                'rgba(75, 192, 192, 0.8)',
-                'rgba(153, 102, 255, 0.8)',
-                'rgba(255, 159, 64, 0.8)',
-                'rgba(255, 99, 132, 0.8)'].reverse();
-            text = "Contribution";
-
-            makeLanguageChart(labelsContribution, contributionData, 'contributionChart', backgroundColor, text)
+            makeLanguageChart(labels, languageData)
         }
 
-        function makeLanguageChart(labels, data, chart, backgroundColor) {
-            let myChart = document.getElementById(chart).getContext('2d');
+        function makeLanguageChart(labels, data) {
+            let myChart = document.getElementById('myChart').getContext('2d');
 
             // Global Options
             Chart.defaults.global.defaultFontFamily = 'Lato';
             Chart.defaults.global.defaultFontSize = 18;
             Chart.defaults.global.defaultFontColor = '#777';
             let massPopChart = new Chart(myChart, {
-                type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                type:'polarArea', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                 data:{
                     labels:labels,
                     datasets:[{
                         label:'Population',
                         data:data,
                         //backgroundColor:'green',
-                        backgroundColor: backgroundColor,
+                        backgroundColor: [
+                            'rgba(64,55,88,0.8)',
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)',
+                            'rgba(255, 159, 64, 0.8)',
+                            'rgba(255, 99, 132, 0.8)'],
                         borderWidth:1,
                         borderColor:'#777',
                         hoverBorderWidth:1,
@@ -212,8 +138,8 @@
                 options:{
                     title:{
                         display:true,
-                        text:text,
-                        fontSize:50,
+                        text:'Languages used',
+                        fontSize:25
                     },
                     legend:{
                         display:true,

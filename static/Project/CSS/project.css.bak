@@ -251,7 +251,6 @@ nav ul li a {
     }
     nav ul {
         max-height: 0px;
-		line-height: 2px;
         background: rgb(64,55,88);
     }
 

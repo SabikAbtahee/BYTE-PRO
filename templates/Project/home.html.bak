@@ -95,6 +95,6 @@
             innerHtml= document.getElementById("mySidenav").innerHTML;
             document.getElementById("mySidenav").innerHTML = ''
         }
-    </script>
+    </script>         
 
 {% endblock %}

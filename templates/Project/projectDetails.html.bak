@@ -170,7 +170,7 @@
     <script src="{% static 'Project/CSS/codemirror/lib/codemirror.js'%}"></script>
     <script src="{% static 'Project/CSS/codemirror/mode/clike/clike.js' %}"></script>
     <script>
-		innerHtml = document.getElementById("mySidenav").innerHTML;
+innerHtml = document.getElementById("mySidenav").innerHTML;
         function openNav() {
 
             document.getElementById("mySidenav").style.width = "250px";

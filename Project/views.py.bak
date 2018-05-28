@@ -887,6 +887,69 @@ class Project(object):
 
         return JsonResponse(data)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	def showAssignedProjects(self, request):
         user = request.user
         if (not self.userIsAuthenticated(user)):

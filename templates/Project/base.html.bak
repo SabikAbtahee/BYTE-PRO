@@ -166,6 +166,14 @@
 
 
     // For opening and closing side nav bar
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("notiContent").style.width = "0";
+    }
+
 
     $(document).ready(function() {
         $(".menu-icon").on("click", function() {
