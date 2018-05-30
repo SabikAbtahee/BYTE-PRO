@@ -95,7 +95,7 @@
                             <p>Your account is not activated. Please enter your email address to activate your account and press
                                 <strong>Activate Your Account</strong> button.</p>
                             <input type="email"  placeholder="Email" id="activateEmail"  name="email_or_username" autocomplete="off"/>
-                            <p id="actEmailerr">#</p>
+                            <p id="actEmailerr"></p>
                             <button type = "submit" id="activateBtn"> Activate Your Account</button>
                             <hr>
                         </form>
@@ -202,9 +202,8 @@
             dataType: 'json',
 
             success: function (data) {
-                console.log(data.isExist);
-                console.log(data.active);
-                alert(data.active);
+
+
                 if (data.isExist===false) {
 
                     document.getElementById('actEmailerr').innerHTML = "Sorry no email exists";

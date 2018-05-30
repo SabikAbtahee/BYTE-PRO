@@ -733,7 +733,8 @@ class Project(object):
                 description = request.POST.get('COMMENT-DESCRIPTION')
                 comment=Database.models.Comment(file=file,commentDescription=description,commentTime=datetime.now(),commentator=user.username)
                 comment.save()
-                Communication().notifiedAllAssignedDevelopers(project, user.username, fileNumbers=0, isMaster=True,
+                print(file.fileName)
+                Communication().notifiedAllAssignedDevelopers(project, user.username, file.id, isMaster=True,
                                                               type="comment")
 
         return redirect('/projectmanagement/' + project.projectName + '/'+id+'/')

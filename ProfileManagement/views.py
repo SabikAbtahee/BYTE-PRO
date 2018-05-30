@@ -3,13 +3,13 @@ from passlib.hash import pbkdf2_sha256
 from django.contrib.auth import authenticate
 from django.contrib import messages
 # Create your views here.
-import Database
+import Database,Authentication
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.http import HttpResponse
-
+from django.contrib.auth import logout
 
 class ProfileManagement(object):
     def userIsAuthenticated(self, user):
@@ -38,7 +38,13 @@ class ProfileManagement(object):
             form = PasswordChangeForm(data=request.POST, user=request.user)
             if form.is_valid():
                 user = form.save()
+
                 user.is_active = False
+                response = logout(request)
+
+                return render(response, 'Authentication/signOut.html')
+
+
             if (len(request.FILES) != 0):
                 pic = request.FILES['pictureUpload']
                 # print(pic)

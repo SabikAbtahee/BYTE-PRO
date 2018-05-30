@@ -510,6 +510,6 @@ class Search(object):
                 comment = Database.models.Comment(file=file, commentDescription=description, commentTime=datetime.now(),
                                                   commentator=user.username)
                 comment.save()
-                Communication().notifiedAllAssignedDevelopers(project, user.username, fileNumbers=0, isMaster=False,
+                Communication().notifiedAllAssignedDevelopers(project, user.username, file.id, isMaster=False,
                                                               type="comment")
         return redirect('/search/' + userProject.username+'/'+project.projectName + '/' + id + '/')

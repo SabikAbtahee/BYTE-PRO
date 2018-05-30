@@ -70,15 +70,29 @@ class Communication(object):
         return JsonResponse(data, safe = False)
 
     def notifiedAllAssignedDevelopers(self, project, sender, fileNumbers, isMaster, type):
-        AssignDev = Database.models.AssignDeveloper.objects.filter(project=project)
-        tempUser = Database.models.User.objects.get(username = sender)
-        for assignDev in AssignDev:
-            if(assignDev.assignDeveloper.username!=tempUser.username):
-                self.addToNotificationTable(sender, assignDev.assignDeveloper, project.projectName, type, fileNumbers, "", isMaster)
-                print("called for loop")
-        if(isMaster==False):
-            self.addToNotificationTable(sender, project.user, project.projectName, type, fileNumbers,"", isMaster)
-            print("called ifelse")
+        if(type=="comment"):
+            AssignDev = Database.models.AssignDeveloper.objects.filter(project=project)
+            tempUser = Database.models.User.objects.get(username=sender)
+            for assignDev in AssignDev:
+                if (assignDev.assignDeveloper.username != tempUser.username):
+                    self.addToNotificationTable(sender, assignDev.assignDeveloper, project.projectName, type,
+                                                fileNumbers, str(fileNumbers), isMaster)
+                    print("called for loop")
+            print(str(fileNumbers))
+            if (isMaster == False):
+                self.addToNotificationTable(sender, project.user, project.projectName, type, fileNumbers, str(fileNumbers), isMaster)
+                print("called ifelse")
+        else:
+            AssignDev = Database.models.AssignDeveloper.objects.filter(project=project)
+            tempUser = Database.models.User.objects.get(username=sender)
+            for assignDev in AssignDev:
+                if (assignDev.assignDeveloper.username != tempUser.username):
+                    self.addToNotificationTable(sender, assignDev.assignDeveloper, project.projectName, type,
+                                                fileNumbers, "", isMaster)
+                    print("called for loop")
+            if (isMaster == False):
+                self.addToNotificationTable(sender, project.user, project.projectName, type, fileNumbers, "", isMaster)
+                print("called ifelse")
 
 
 
