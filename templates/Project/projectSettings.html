@@ -1,0 +1,252 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/projectSettings.css' %}">
+    <link rel="stylesheet" href="{% static 'Project/CSS/CSSLINKS/bootstrap.min.css' %}">
+
+    <script src="{% static 'Project/SCRIPT/chart.js' %}"></script>
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+        <div class= "projectDetailsDiv">
+            <h3>{{project.projectName}}</h3>
+            <h5>{{project.projectDescription}}</h5>
+            <h6>Created At: {{project.projectCreatedAt}} </h6>
+            <hr>
+        </div>
+
+        <div class= "assignDevelopers">
+
+            <form method="post" action="/comm/{{ project.projectName }}/assigndeveloper/" class="form-inline" style = "left: 50%;">
+                <label for="Enter Project Name">Assign Developer: </label>
+                <input type="text" name="assignDeveloper" id='assignDeveloper' class="form-control" list="searchUser" autocomplete="off">
+                <datalist id="searchUser">
+                    {% for user in alluser %}
+                        <option value={{ user.username }}>
+                    {% endfor %}
+                </datalist>
+
+                <button id="search" class = "btn btn-info" class="form-control"><b>Assign Developer</b></button>
+            </form>
+
+
+            <p>Assigned Developrs: {{ assignDevelopers|length }}</p>
+
+
+
+            <hr>
+        </div>
+        <div class="developerMainDiv" name="assignedDeveloper">
+            <h3>Assigned Developers</h3>
+            <table class="table">
+                <tbody>
+                {% for developer in assignDevelopers %}
+                    <tr align="center">
+                        <td align="left">
+                            {%load staticfiles%}
+                            <form action="/search/" method="post">
+                                <input type="text" value="{{ developer.assignDeveloper.username }}" name="searchinput" hidden>
+                                <button style="background: transparent;" class="btn" type="submit">{{ developer.assignDeveloper.username }}</button>
+                            </form>
+                        </td>
+
+                        <td>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        </td>
+
+                        <td align="left">
+                            {{ developer.assignDeveloper.email }}
+                        </td>
+
+                        <td align="left">
+                            <form method="post" action="/search/">
+                                <input type="text" name="searchinput" value="{{ developer.assignDeveloper.username }}" hidden>
+
+                                <button id="search" class = "btn btn-info" >View <b>{{ developer.assignDeveloper.username }}</b></button>
+                            </form>
+                        </td>
+
+                        <td align="right">
+
+                            <a href="/projectmanagement/{{project.projectName}}/{{ developer.id }}/deletedeveloper/"><button class="btn btn-danger">Remove as <b>{{ developer.assignDeveloper.username }}</b></button></a>
+                        </td>
+                    </tr>
+                {%endfor%}
+                </tbody>
+            </table>
+        </div>
+        <a name="languageGraph">
+            <div class="languageRatio" >
+
+                <canvas id="languageChart"></canvas>
+            </div>
+        </a>
+        <a name="Contributions">
+            <div class="contributionRatio" name="Contributions">
+
+                <canvas id="contributionChart"></canvas>
+            </div>
+        </a>
+
+
+    </div>
+
+
+    <script>
+
+        $(document).ready(function(){
+
+            var pid = "{{ project.id }}";
+
+
+            $.ajax({
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                url: '/project/fetchlanguagedata/',
+                data: {
+                    'pid': pid
+
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if(data.success){
+                        addLanguageChart(data);
+                    }
+                }
+            });
+            $.ajax({
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                url: '/project/fetchcontributiondata/',
+                data: {
+                    'pid': pid
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if(data.success){
+
+                        addContributionChart(data);
+                    }
+                }
+            });
+
+        });
+        function addLanguageChart(data){
+            var labels = [];
+            var languageData = [];
+            {% for file in files %}
+                if(!labels.includes("{{ file.fileType }}")){
+                    labels.push("{{ file.fileType }}");
+                    {#languageData.push(data["{{ file.fileType }}"]);#}
+                }
+
+            {% endfor %}
+            for(var i=0;i<labels.length;i++){
+                languageData.push(data[labels[i]]);
+            }
+            backgroundColor =  [
+                'rgba(64,55,88,0.8)',
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 206, 86, 0.8)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(153, 102, 255, 0.8)',
+                'rgba(255, 159, 64, 0.8)',
+                'rgba(255, 99, 132, 0.8)'];
+            text = "Languages Used";
+            makeLanguageChart(labels, languageData, 'languageChart', backgroundColor, text)
+        }
+        function addContributionChart(data) {
+            var labelsContribution = [];
+            var contributionData = [];
+
+            {% for file in files %}
+                if(!labelsContribution.includes("{{ file.uploader }}")){
+                    labelsContribution.push("{{ file.uploader }}");
+                }
+
+            {% endfor %}
+            for(var i=0;i<labelsContribution.length;i++){
+                contributionData.push(data[labelsContribution[i]]);
+            }
+            backgroundColor =  [
+                'rgba(64,55,88,0.8)',
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 206, 86, 0.8)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(153, 102, 255, 0.8)',
+                'rgba(255, 159, 64, 0.8)',
+                'rgba(255, 99, 132, 0.8)'].reverse();
+            text = "Contribution";
+
+            makeLanguageChart(labelsContribution, contributionData, 'contributionChart', backgroundColor, text)
+        }
+
+        function makeLanguageChart(labels, data, chart, backgroundColor) {
+            let myChart = document.getElementById(chart).getContext('2d');
+
+            // Global Options
+            Chart.defaults.global.defaultFontFamily = 'Lato';
+            Chart.defaults.global.defaultFontSize = 18;
+            Chart.defaults.global.defaultFontColor = '#777';
+            let massPopChart = new Chart(myChart, {
+                type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:labels,
+                    datasets:[{
+                        label:'Population',
+                        data:data,
+                        backgroundColor: backgroundColor,
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:1,
+                        hoverBorderColor:'#fff'
+                    }]
+                },
+                options:{
+                    title:{
+                        display:true,
+                        text:text,
+                        fontSize:50,
+                    },
+                    legend:{
+                        display:true,
+                        position:'right',
+                        labels:{
+                            fontColor:'#000'
+                        }
+                    },
+                    layout:{
+                        padding:{
+                            left:50,
+                            right:0,
+                            bottom:0,
+                            top:0
+                        }
+                    },
+                    tooltips:{
+                        enabled:true
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>
+
+
+{% endblock %}

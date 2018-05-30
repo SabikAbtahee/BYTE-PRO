@@ -1,0 +1,224 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/projectDetails.css' %}">
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+        {% if isMaster %}
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <br>
+                <br>
+                <br>
+                <a href="/projectmanagement/" class = "sidenavA"><img src="{% static 'Project/IMAGES/project.png' %}" height = "30" width="30">&nbsp; My Projects</a>
+                <a href="/projectmanagement/{{ project.projectName }}/issues/" class = "sidenavA"><img src="{% static 'Project/IMAGES/issues.png' %}" height = "30" width="30">&nbsp; Project Issues</a>
+                <a href="/projectmanagement/{{ project.projectName }}/projectsettings/#assignedDeveloper" class = "sidenavA"><img src="{% static 'Project/IMAGES/assignedDevelopers.png' %}" height = "30" width="30">&nbsp; Assigned Developers</a>
+                <a href="/projectmanagement/{{ project.projectName }}/projectsettings/#languageGraph" class = "sidenavA"><img src="{% static 'Project/IMAGES/langGraph.png' %}" height = "30" width="30">&nbsp; Programming Languages</a>
+                <a href="/projectmanagement/{{ project.projectName }}/projectsettings/#Contributions" class = "sidenavA"><img src="{% static 'Project/IMAGES/contributions.png' %}" height = "30" width="30">&nbsp; Contributions</a>
+                <a href="/projectmanagement/assignedprojects/" class = "sidenavA"><img src="{% static 'Project/IMAGES/assigned.png' %}" height = "30" width="30">&nbsp;Assigned Projects</a>
+            </div>
+        {% else %}
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <br>
+                <br>
+                <br>
+                <a href="/search/{{ searchedUser.username }}/{{ project.projectName }}/issues/" class = "sidenavA"><img src="{% static 'Project/IMAGES/issues.png' %}" height = "30" width="30">&nbsp; Project Issues</a>
+                <a href="/projectmanagement/" class = "sidenavA"><img src="{% static 'Project/IMAGES/project.png' %}" height = "30" width="30">&nbsp; My Projects</a>
+                <a href="/projectmanagement/assignedprojects/" class = "sidenavA"><img src="{% static 'Project/IMAGES/assigned.png' %}" height = "30" width="30">&nbsp;Assigned Projects</a>
+
+            </div>
+        {% endif %}
+
+
+
+        <span style="font-size:30px;cursor:pointer; color: rgb(64,55,88);margin: auto 50%; " onclick="openNav()">&#9776;</span>
+        <div class= "projectDetailsDiv">
+            {% if isMaster %}
+                <img src="{{userInformation.profilePicture.url}}" class = "porpic">
+            {% else %}
+                <img src="{{searchedUserInformation.profilePicture.url}}" class = "porpic">
+            {% endif %}
+
+            <h3>{{project.projectName}}</h3>
+            <h5>{{project.projectDescription}}</h5>
+            <h6>Created At: {{project.projectCreatedAt}} </h6>
+            <h6>Project Tags:  {{ project.skilltag }}</h6>
+            <hr>
+        </div>
+
+
+        <div class= "assignDevelopers">
+            {%if isMaster%}
+                <form method="post" action="/comm/{{ project.projectName }}/assigndeveloper/" class="form-inline" style = "left: 50%;">
+                    <label for="Enter Project Name">Assign Developer: </label>
+                    <input type="text" name="assignDeveloper" id='assignDeveloper' class="form-control" list="searchUser" autocomplete="off">
+                    <datalist id="searchUser">
+                        {% for user in alluser %}
+                            <option value={{ user.username }}>
+                        {% endfor %}
+                    </datalist>
+
+                    <button id="search" class = "btn btn-info" class="form-control"><b>Assign Developer</b></button>
+                </form>
+            {%endif%}
+
+            <p>Assigned Developrs: {{ assignDevelopers|length }}</p>
+            {%if isAssigned%}
+                <p>You assigned here</p>
+            {%endif%}
+            <hr>
+        </div>
+
+
+        <div class="instruction">
+
+            <div>
+                {% if isMaster%}
+                    <a href="/projectmanagement/{{project.projectName}}/addfiles/">
+                        <button class="btn btn-success">  Upload  </button>
+                    </a>
+                    {% if isDownloadable %}
+                        <a href="/projectmanagement/{{project.projectName}}/downloadfiles/">
+                            <button class="btn btn-primary">Download ZIP</button>
+                        </a>
+
+                    {% endif %}
+                    <a href="/projectmanagement/{{project.projectName}}/projectProgress/">
+                        <button class="btn btn-warning">Project Progress</button>
+                    </a>
+                {%elif isAssigned%}
+                    <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/addfiles/">
+                        <button class="btn btn-success">  Upload  </button>
+                    </a>
+
+                    {% if isDownloadable %}
+                        <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/downloadfiles/">
+                            <button class="btn btn-primary">Download ZIP</button>
+                        </a>
+
+                    {% endif %}
+                {%else%}
+                    {% if isDownloadable %}
+                        <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/downloadfiles/">
+                            <button class="btn btn-primary">Download ZIP</button>
+                        </a>
+
+                    {% endif %}
+                {%endif%}
+
+            </div>
+
+        </div>
+
+
+        <div class="filesMainDiv">
+            <table class="table">
+                <tbody>
+                {%for file in files%}
+                    <tr align="center">
+                        <td align="right">
+                            <img src="#"  height="40" width="40" style="border-style: solid;border-radius: 50%; border-width: 2px;" id="{{ file.id }}" hidden>
+                        </td>
+                        <td align="left">
+                            {{ file.uploader }}
+                        </td>
+
+                        <td align="left">
+                            {%load staticfiles%}
+                            <img src="{% static 'Project/IMAGES/code-file.png' %}" width="15" height="15" >
+                            {%if isMaster%}
+                                <a href="/projectmanagement/{{project.projectName}}/{{file.id}}/">{{file.fileName}}</a>
+                            {%else%}
+                                <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/{{file.id}}/">{{file.fileName}}</a>
+                            {%endif%}
+
+                        </td>
+
+                        <td>
+                            {{file.fileType}}
+                        </td>
+
+                        <td>
+                            {{file.fileSize}}
+                        </td>
+
+                        <td>
+                            {{file.modificationTime}}
+                        </td>
+
+                        <td align="right">
+                            <a href={{ file.file.url }} download><button class="btn btn-info">DOWNLOAD</button></a>
+                            {%if isMaster%}
+                                <a href="/projectmanagement/{{project.projectName}}/{{ file.id }}/deletefile/"><button class="btn btn-danger">DELETE</button></a>
+                            {%endif%}
+                        </td>
+                    </tr>
+                {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% load staticfiles %}
+    <script type ="text/javascript" src="{% static 'Project/SCRIPT/jquery.min.js' %}"></script>
+    <script src="{% static 'Project/CSS/codemirror/lib/codemirror.js'%}"></script>
+    <script src="{% static 'Project/CSS/codemirror/mode/clike/clike.js' %}"></script>
+    <script>
+        innerHtml = document.getElementById("mySidenav").innerHTML;
+        function openNav() {
+
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById('mySidenav').innerHTML = innerHtml
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            innerHtml= document.getElementById("mySidenav").innerHTML;
+            document.getElementById("mySidenav").innerHTML = ''
+        }
+
+        $(document).ready(function(){
+
+            var pid = "{{ project.id }}";
+
+
+            $.ajax({
+
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                url: '/comm/ajx/fetchimg/',
+                data: {
+                    'pid': pid
+
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if(data.success){
+
+                        addPropics(data);
+                        console.log(data);
+                    }
+                }
+            });
+
+        });
+        function addPropics(data) {
+
+            var i=0;
+            {% for file in files %}
+                var img = document.getElementById("{{ file.id }}");
+
+                img.src = data[{{ file.id }}];
+                console.log(data[{{ file.id }}]);
+                img.hidden = false;
+                i++;
+            {% endfor %}
+        }
+
+    </script>
+{% endblock %}

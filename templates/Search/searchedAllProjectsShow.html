@@ -1,0 +1,43 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/projectMain.css' %}">
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+
+        <div class= "totalproject" >
+            <p align="center">Total {{allprojects|length}} projects found.</p>
+        </div>
+
+        <div class="allProjects">
+
+            {% for project in allprojects %}
+
+                {% if  project.accessType  == "Public" %}
+                <div class="projects">
+
+                    <a href="/search/{{ project.user.username }}/{{project.projectName}}/">
+                        <h3>{{project.projectName}}</h3>
+                    </a>
+                    <p>Created By <img src="">{{ project.user.username }}</p>
+                    <p>{{project.projectDescription}}</p>
+                    <p>Access type: {{project.accessType}}</p>
+                    <p>Project Created At: {{project.projectCreatedAt}}</p>
+                </div>
+                {% endif %}
+
+            {%endfor%}
+
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

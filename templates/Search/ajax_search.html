@@ -1,0 +1,54 @@
+
+
+
+{% extends 'Project/base.html' %}
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/projectMain.css' %}">
+
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+        <div class= "userprofile">
+            <a href="/profilemanagement/"><img src="{{userInformation.profilePicture.url}}" class = "porpic"></a>
+            <div class="usernameAndEmail">
+                <a href="/profilemanagement/"><h3>{{user.username}}</h3></a>
+                <p>{{user.email}}</p>
+            </div>
+        </div>
+
+        <div class= "totalproject" >
+            <p align="center">You have total {{projects|length}} projects.</p>
+            {%load staticfiles%}
+            <a href="/projectmanagement/addproject/">
+                <button class="btn btn-success btn-lg" align="center">
+                    Add Project
+                </button>
+            </a>
+        </div>
+
+        <div class="allProjects">
+
+            {% for project in projects %}
+                {% if  project.accessType  == "Public" %}
+
+                <div class="projects">
+                    <a href="/projectmanagement/{{project.projectName}}/">
+                        <h3>{{project.projectName}}</h3>
+                    </a>
+                    <p>{{project.projectDescription}}</p>
+                    <p>Access type: {{project.accessType}}</p>
+                    <p>Project Created At: {{project.projectCreatedAt}}</p>
+                </div>
+                {% endif %}
+
+            {%endfor%}
+
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

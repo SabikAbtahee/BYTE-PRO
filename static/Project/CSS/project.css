@@ -7,6 +7,7 @@ html, body {
 }
 
 body {
+
     font-family: "Helvetica Neue",sans-serif;
     font-weight: lighter;
 }
@@ -17,33 +18,42 @@ header {
 
 }
 .wrapper{
+
+    position: relative;
     width: 100%;
+    z-index: 30;
 }
 
+
 .content {
-    margin-left: 250px;
-    margin-right: 250px;
-    background:gainsboro;
-    
-    color: midnightblue;
+
+    background: rgb(64,55,88);
+    height: 380px;
+    color: white;
     font-size: 20px;
-    font-family: "century gothic";
-    line-height: 30px;
+    font-family: Heavitas;
     text-align: justify;
+    margin-top: 400px;
 
 }
 .content ul{
-    line-height: 60px;
+    margin-left: 255px;
+    margin-right: 255px;
+    line-height: 20px;
     list-style: none;
-    padding: 0;
+    padding: 0px;
     text-align: justify;
-    margin: 0;
+
     padding-right: 40px;
     transition: 1s;
+    text-decoration: none;
+    color: white;
 }
 .content ul li{
+    line-height: 20px;
     margin-left: 200px;
-    padding: 16px 40px;;
+    padding: 16px 80px;;
+    font-size: 15px;
 }
 
 .logo {
@@ -57,22 +67,35 @@ header {
     letter-spacing: 2px;
 
 }
+
+/*.logoImg{*/
+/*width: 3em;*/
+/*height: 3em;*/
+/*margin-left:2em;*/
+/*margin-top: -0.5em;*/
+
+/*}*/
+
 .logoContent{
     margin-top: -0.05em;
     float: right;
-    font-size: 1.5em;
+    font-size: 20px;
+    font-family: "Cooper Black";
+    text-decoration: none;
 }
 
 
 nav {
     position: fixed;
     width: 100%;
+
     /*line-height: 60px;*/
 }
 
 nav ul {
-    /*line-height: 60px;*/
-    list-style: none;
+    line-height: 5px;
+    list-style:none;
+    /*background: rgb(64,55,88);*/
     background: rgb(64,55,88);
     overflow: hidden;
     color: white;
@@ -99,18 +122,19 @@ nav ul li a {
 }
 
 .searchinput{
-    /*width: 100%;*/
+    width: 600px;
     color: black;
     padding: 6px 15px;
     margin: 8px 0;
-    box-sizing: border-box
-    border: 2px solid red;
+    box-sizing: border-box;
+    /*border: 2px solid red;*/
     border-radius: 4px;
 }
 .menu-icon {
-    
+
     line-height: 60px;
     width: 100%;
+    /*background: rgb(64,55,88);*/
     background: rgb(64,55,88);
     text-align: right;
     box-sizing: border-box;
@@ -121,80 +145,91 @@ nav ul li a {
 }
 
 
-/*side nav*/
-  
-.sidenav {
-    margin-top: 6em;
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgb(64,55,88);
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
+/*!*side nav*!*/
 
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 15px;
-    color: white;
-    display: block;
-    transition: 0.3s;
-    text-align: left;
-    /*background-color:;*/
-    
-}
+/*.sidenav {*/
+    /*margin-top: 6em;*/
+    /*height: 100%;*/
+    /*width: 0;*/
+    /*position: fixed;*/
+    /*z-index: 1;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*!*background-color: rgb(64,55,88);*!*/
+    /*background: rgb(64,55,88);*/
+    /*overflow-x: hidden;*/
+    /*transition: 0.5s;*/
+    /*padding-top: 60px;*/
+/*}*/
 
-.sidenav a:hover {
-    color:#ff656c;
-    /*border-style: dashed;*/
-    background-color: rgb(64,55,80);
-    border-bottom: 1px;
-    border-bottom-color: white; 
-    border-bottom-style: solid;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+/*.sidenav a {*/
+    /*padding: 8px 8px 8px 32px;*/
+    /*text-decoration: none;*/
+    /*font-size: 15px;*/
+    /*color: white;*/
+    /*display: block;*/
+    /*transition: 0.3s;*/
+    /*text-align: left;*/
+    /*!*background-color:;*!*/
 
-    /*border-color: #ff656c;*/
-}
+/*}*/
 
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
+/*.sidenav a:hover {*/
+    /*color:#ff656c;*/
+    /*!*border-style: dashed;*!*/
+    /*background-color: rgb(64,55,80);*/
+
+    /*border-bottom: 1px;*/
+    /*border-bottom-color: white;*/
+    /*border-bottom-style: solid;*/
+    /*border-bottom-right-radius: 15px;*/
+    /*border-bottom-left-radius: 15px;*/
+
+    /*!*border-color: #ff656c;*!*/
+/*}*/
+
+/*.sidenav .closebtn {*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 25px;*/
+    /*font-size: 36px;*/
+    /*margin-left: 50px;*/
+/*}*/
 
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
-/**-----------------**/
-  
-/*main content will be here*/
-/*.main {*/
-    /*margin-left: 250px;*/
-    /*margin-right: 250px; */
-    /*font-size: 20px;  */
-    /*padding: 0px 10px;*/
-/*}*/
-/**-----------------**/
 
-@media(max-width: 850px) {
 
-    .logo {
-        position: fixed;
-        top: 0;
-        margin-top: 16px;
+@media(max-width: 1500px) {
+
+    .content{
+        margin-left: 1px;
+        margin-right: -1000px;
     }
 
+    .logo {
+
+        top: 0;
+
+        margin-left: -1px;
+        margin-top: 10px;
+        font-size: 15px;
+
+    }
+
+    .logoimg{
+        height: 1em;
+        width:1em;
+        margin-left: -10px;
+    }
+    .logoContent{
+        font-size: 15px;
+    }
     nav ul {
         max-height: 0px;
+		line-height: 2px;
         background: rgb(64,55,88);
     }
 
@@ -216,5 +251,162 @@ nav ul li a {
     .menu-icon {
         display: block;
     }
+    .searchinput{
+        width:200px;
+    }
+    body{
+        overflow-x: scroll;
+    }
+
 
 }
+
+/*******************************DROPDOWN BUTTON*******************************/
+.dropbtn {
+    background: white;
+    border: none;
+
+}
+
+.dropdown {
+    position: relative;
+
+
+}
+
+.dropdown-content {
+    text-align: center;
+    display: none;
+    position: fixed;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 50;
+    padding: 12px 16px;
+    right: 40px;
+    top: 75px;
+    border-radius: 5px;
+
+
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd;
+    width:100%;
+    transition: 0.3s;
+    border-left-width: 5px;
+    border-left-color: rgb(64,55,88);
+    border-left-style: solid;
+    transition: 0.3s;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show{
+    display:block;
+    transition: 0.5s;
+}
+/**********************************************************************************/
+.notificationBtn {
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.notification {
+    position: relative;
+
+
+}
+
+/* Dropdown Content (Hidden by Default) */
+.notificationDiv {
+    text-align: center;
+    display: none;
+    position: fixed;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 50;
+    padding-top: 12px;
+    right: 80px;
+    top: 75px;
+    border-radius: 5px;
+    min-height:200px;
+    overflow-y: scroll;
+    max-height: 300px;
+    /*!*border-radius: 5px;*!*/
+    /*border-top-left-radius: 50%;*/
+    /*border-top-right-radius: 50%;*/
+
+}
+
+.notificationDiv a {
+    color: dodgerblue;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 15px;
+
+}
+
+/* Change color of dropdown links on hover */
+.notificationDiv a:hover {
+    border-left-width: 5px;
+    border-left-color: rgb(64,55,88);
+    border-left-style: solid;
+    transition: 0.3s;
+}
+
+#notiImage{
+    border: solid black;
+    border-radius: 50%;
+    border-width: 0.5px;
+}
+/*.notificationDiv:before {*/
+/*content: '';*/
+/*display:block;*/
+/*width:0;*/
+/*height:0;*/
+/*!*color:BLUE;*!*/
+/*border: 10px solid #CCC;*/
+/*border-color: white white rgb(64,55,88);*/
+/*margin-top:-10px;*/
+/*margin-left:230px;*/
+/*!*background-color: green;*!*/
+/*}*/
+
+/* Links inside the dropdown */
+/*.notificationDiv table {*/
+/*color: black;*/
+/*padding: 12px 16px;*/
+/*text-decoration: none;*/
+/*display: block;*/
+/*}*/
+
+/* Change color of dropdown links on hover */
+/*.dropdown-content a:hover {*/
+/*background-color: white;*/
+/*border-left-width: 5px;*/
+/*border-left-color: rgb(64,55,88);*/
+/*border-left-style: solid;*/
+/*transition: 0.3s;*/
+/*border-radius: 5px;*/
+
+/*}*/
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;
+    transition: 0.5s;}
+

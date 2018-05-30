@@ -12,4 +12,5 @@ urlpatterns = [
 
     url(r'', views.ProfileManagement().profileView  , name="profileView"),
 
+
 ]

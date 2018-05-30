@@ -1,0 +1,100 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/projectMain.css' %}">
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <br>
+            <br>
+            <br>
+
+            <a href="/projectmanagement/" class = "sidenavA"><img src="{% static 'Project/IMAGES/project.png' %}" height = "30" width="30">&nbsp; My Projects</a>
+
+            <a href="/projectmanagement/assignedprojects/" class = "sidenavA"><img src="{% static 'Project/IMAGES/assigned.png' %}" height = "30" width="30">&nbsp;Assigned Projects</a>
+
+        </div>
+    <span style="font-size:30px;cursor:pointer; color: rgb(64,55,88);margin: auto 50%; " onclick="openNav()">&#9776;</span>
+
+
+        {#    <span style="font-size:30px;cursor:pointer; color: rgb(64,55,88);" onclick="openNav()">&#9776;</span>#}
+        <div class= "userprofile">
+            {%if isMaster%}
+                <a href="/profilemanagement/"><img src="{{userInformation.profilePicture.url}}" class = "porpic"></a>
+                <div class="usernameAndEmail">
+                    <a href="/profilemanagement/"><h3>{{user.username}}</h3></a>
+                    <p>{{user.email}}</p>
+                </div>
+            {%else%}
+                <img src="{{searchedUserInformation.profilePicture.url}}" class = "porpic">
+                <div class="usernameAndEmail">
+                    <h3>{{searchedUser.username}}</h3>
+                    <p>{{searchedUser.email}}</p>
+                </div>
+            {%endif%}
+        </div>
+
+        <div class= "totalproject" >
+            {%if isMaster%}
+                <p align="center">You have total {{projects|length}} projects.</p>
+                {%load staticfiles%}
+                <a href="/projectmanagement/addproject/">
+                    <button class="btn btn-success btn-lg" align="center">
+                        Add Project
+                    </button>
+                </a>
+            {%else%}
+                <p align="center">{{ searchedUser.username }} has total {{projects|length}} projects.</p>
+            {%endif%}
+
+        </div>
+        <div class="allProjects">
+            {% for project in projects %}
+                <div class="projects">
+                    {%if isMaster%}
+                    <a href="/projectmanagement/{{project.projectName}}/">
+                       <h3>{{project.projectName}}</h3>
+                    </a>
+                    {%else%}
+                        <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/">
+                            <h3>{{project.projectName}}</h3>
+                        </a>
+                    {%endif%}
+                    <p>{{project.projectDescription}}</p>
+                    <p>Access type: {{project.accessType}}</p>
+                    <p>Project Created At: {{project.projectCreatedAt}}</p>
+                </div>
+           
+            
+            {%endfor%}
+            
+
+
+            
+        </div>    
+            
+                
+    </div>
+    <script type="text/javascript">
+        innerHtml = document.getElementById("mySidenav").innerHTML;
+        function openNav() {
+
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById('mySidenav').innerHTML = innerHtml
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            innerHtml= document.getElementById("mySidenav").innerHTML;
+            document.getElementById("mySidenav").innerHTML = ''
+        }
+    </script>         
+
+{% endblock %}

@@ -30,27 +30,34 @@ header {
 }
 
 .content {
-    background:gainsboro;
-    width: 100%;
-    color: midnightblue;
+
+    background: rgb(64,55,88);
+    height: 380px;
+    color: white;
     font-size: 20px;
-    font-family: "century gothic";
-    line-height: 30px;
+    font-family: Heavitas;
     text-align: justify;
+
 
 }
 .content ul{
-    line-height: 60px;
+
+    margin-right: 255px;
+    line-height: 20px;
     list-style: none;
-    padding: 0;
+    padding: 0px;
     text-align: justify;
-    margin: 0;
+
     padding-right: 40px;
     transition: 1s;
+    text-decoration: none;
+    color: white;
 }
 .content ul li{
-
-    padding: 16px 40px;;
+    line-height: 20px;
+    margin-left: 200px;
+    padding: 16px 80px;;
+    font-size: 15px;
 }
 
 .logo {
@@ -64,11 +71,15 @@ header {
     letter-spacing: 2px;
 
 }
+
 .logoContent{
     margin-top: -0.05em;
     float: right;
-    font-size: 1.5em;
+    font-size: 20px;
+    font-family: "Cooper Black";
+    text-decoration: none;
 }
+
 
 
 nav {
@@ -91,7 +102,7 @@ nav ul {
 }
 
 nav.black ul {
-    background: #000;
+    background: rgb(64,55,88);
 }
 
 nav ul li {
@@ -118,7 +129,7 @@ nav ul li a {
 }
 
 .btn {
-    /*padding: 14px 24px;*/
+
     border: 0 none;
     font-weight: 700;
     letter-spacing: 1px;
@@ -140,7 +151,7 @@ nav ul li a {
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-    /*background: #33a6cc;*/
+
     border-radius: 20px;
     background: #ffffff;
     color: #4CAF50;
@@ -180,7 +191,6 @@ nav ul li a {
     border: 1px solid #ccc;
     margin-bottom: 20px;
     font-size: 14px;
-    /*font-family: Montserrat;*/
     padding: 0 20px 0 50px;
     outline: none;
 }
@@ -211,8 +221,6 @@ nav ul li a {
     border: 1px solid white;
     color: #fff;
     font-weight: bold;
-    /**/
-    /*text-transform: uppercase;*/
     font-size: 16px;
     font-family: Montserrat;
     outline: none;
@@ -228,13 +236,11 @@ nav ul li a {
     width: 100%;
     text-align: center;
     font-size: 10px;
-    /*font-family: Montserrat;*/
     padding-top: 20px;
 
 }
 
-/**/
-@media(max-width: 786px) {
+@media(max-width: 1000px) {
 
     .logo {
         position: fixed;
@@ -244,11 +250,11 @@ nav ul li a {
 
     nav ul {
         max-height: 0px;
-        background: #000;
+        background: rgb(64,55,88);
     }
 
     nav.black ul {
-        background: #000;
+        background: rgb(64,55,88);
     }
 
     .showing {
@@ -265,5 +271,32 @@ nav ul li a {
     .menu-icon {
         display: block;
     }
+    .content {
+        height: 100%;
+    }
+    .content ul li{
+        font-size: 50%;
+        margin-left: 2%;
+    }.content ul li a{
+        font-size: 50%;
+        margin-left: 2%;
+    }
 
+    .recovery-block{
+        margin-left: 2px;
+        margin-right: 2px;
+        margin-top: 200px;
+    }
+
+    .logoimg{
+        height: 1em;
+        width:1em;
+        margin-left: -10px;
+    }
+    .logoContent{
+        font-size: 15px;
+    }
+    body{
+        overflow-x: hidden;
+    }
 }

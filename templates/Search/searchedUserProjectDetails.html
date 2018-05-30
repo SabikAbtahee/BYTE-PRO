@@ -1,0 +1,65 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/projectDetails.css' %}">
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+        <div class= "projectDetailsDiv">
+            <h3>{{searchedProject.projectName}}</h3>
+            <h5>{{searchedProject.projectDescription}}</h5>
+            <h6>Created At: {{searchedProject.projectCreatedAt}} </h6>
+            <hr>
+        </div>
+
+        <div class="instruction">
+
+            <div>
+
+                <a href="/search/{{ searchedUser.username }}/{{searchedProject.projectName}}/downloadfiles/">
+                    <button class="btn btn-primary">Download ZIP</button>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="filesMainDiv">
+            <table class="table">
+                <tbody>
+                {%for file in files%}
+                    <tr align="center">
+                        <td align="left">
+                            {% load staticfiles %}
+                            <img src="{%  static 'Project/IMAGES/code-file.png'%}" width="15" height="15" >
+                            <a href="/search/{{ searchedUser.username }}/{{searchedProject.projectName}}/{{file.id}}/">{{file.fileName}}</a>
+                        </td>
+
+                        <td>
+                            {{file.fileType}}
+                        </td>
+
+                        <td>
+                             {{file.fileSize}}
+                        </td>
+
+                        <td>
+                            {{file.modificationTime}}
+                        </td>
+
+                        <td align="right">
+                            <a href={{ file.file.url }} download><button class="btn btn-info">DOWNLOAD</button></a>
+                        </td>
+                    </tr>
+                {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}

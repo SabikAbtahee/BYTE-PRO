@@ -1,0 +1,102 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/addProject.css' %}">
+    <script src="{% static 'Project/SCRIPT/addProject.js' %}"></script>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+        <div class="addProjectMainContent">
+            <div class="projectCreateingInstruction">
+                <h3>&emsp;Create Your Project</h3>
+                <p>&emsp;A project contains all the files you upload, including the revision history. </p>
+                <hr>
+
+            </div>
+
+            <div class="addProjectForm">
+                <form action="/projectmanagement/addproject/" method = 'post' onsubmit="return validate()">
+
+                    <label for="projectName">Enter Project Name:</label>
+
+                    <div class="form-inline ">
+                        <label for="projectName"><a href="{{user.username}}">{{user.username}}</a>/</label>
+                        <input type="text" class="form-control" id="projectName" placeholder="Enter Project Name" name="projectName" aria-describedby="helpBlock1">
+                        <i id="correctProjectName" class="hidden"><i  class="fa fa-check" style="color: green;"></i></i>
+                        <i id="wrongProjectName" class="hidden"><i  class="fa fa-close" style="color: red;"></i></i>
+                        <span id="helpBlock1" class="help-block"></span>
+                        <label for="afteradded" hidden></label>
+                    </div>
+
+
+                    <hr>
+
+                    <div class="form-group">
+                        <label for="Project Description">Project Description:</label>
+
+
+                        <textarea class="form-control" id="projDesc" placeholder="Tell about your project" name="projectDescription" aria-describedby="helpBlock2"></textarea>
+                        <span id="helpBlock2" class="help-block"></span>
+
+
+                    </div>
+
+                    <div>
+                        <input type="radio" name="accessType" value="Public" checked> Public<label>[Anyone can see your project]</label>
+
+                        <hr>
+
+                        <input type="radio" name="accessType" value="Private"> Private <label>[Only you  can see your project]</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-success" id="addProjectButton">Add Project</button>
+                </form>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+<script type="text/javascript">
+
+$("#projectName").change(function () {
+    var text = $(this).val();
+    $.ajax({
+        type:"POST",
+        url: "/ajax/projectExists/",
+
+        data: {
+            'projectName': text
+        },
+        dataType: 'json',
+        success: function (data) {
+            if (data.check) {
+                validName();
+            }
+            else{
+                validName2();
+            }
+
+        }
+    });
+
+});
+        </script>
+
+{% endblock %}

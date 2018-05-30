@@ -20,13 +20,6 @@
 
         {%load staticfiles%}
         <link rel="stylesheet" href="{% static 'Authentication/CSS/signIn.css'%}">
-        <!--<link rel="stylesheet" href="../../static/Authentication/CSS/signIn.css">-->
-
-
-
-
-
-        <!--  -->
     </head>
 
 
@@ -54,7 +47,7 @@
 
                             <li><a href="#contact" class="btn">Contact</a></li>
                                                                                                                                  <!--ADDED SIGNUP LINK-->
-                            <li><a href="/authentication/signup/" class="btn btn-primary btn-lg" role="button">Sign up</a></li>
+                            <li><a href="{% url 'reset_password' %}" class="btn btn-primary btn-lg" role="button">Sign up</a></li>
 
                         </ul>
                     </div>
@@ -69,13 +62,14 @@
         <div class="container">
             <div class="login-block">
                 <h1>Sign In</h1>
-                <input type="text" value="" placeholder="Username or Email" id="username_email" />
-                <input type="password" value="" placeholder="Password" id="password" />
+                <input type="text" value="" placeholder="Username or Email" id="username_email" autocomplete="off"/>
+                <input type="password" value="" placeholder="Password" id="password" autocomplete="off"/>
 
                 <button>Sign In</button>
                 <br>
                 <br>
-                <a href="/authentication/recovery/">
+{#                <a href="/authentication/recovery/">#}
+                <a href="{% url 'reset_password' %}">
                                                                                                                                     <!--ADDED RECOVERY LINK-->
                 <button>Forgot your password?</button>
                 </a>

@@ -1,0 +1,37 @@
+TODO
+1. 
+2. Assign developer//
+3. Search//
+4. Comment//[need to fix bug]
+5. Issue[//z-index for label and create issue button]
+6. Rebase//Done
+7. Release//lagbe na
+8. Project Progress//done
+9. MERGE//done
+10. Account recovery//
+11. Notification//done [comment notification remaining]
+12. Project showcasing
+
+
+IN PROGRESS
+1. Project name checking if same exists, space exists
+2. Upload without giving file
+3. Recovery
+4. upload refering project progress and assign developer
+5.
+
+DONE:
+1. Authentication
+2. Upload
+3. Download
+4. Profile management
+5. Version control
+6. DELETE
+
+-------->NEED to make HTML Page<--------
+1. no found [while searching]
+2. not login page [if user is not authenticated]
+
+
+---->>must need to resolve<<------------
+1.login page email exist or not, while activating..

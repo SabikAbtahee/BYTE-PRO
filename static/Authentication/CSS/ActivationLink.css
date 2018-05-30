@@ -37,7 +37,6 @@ html, body {
 
 
 .btn {
-    /*padding: 14px 24px;*/
     
     align-content: center;
     line-height: 30px;
@@ -63,7 +62,6 @@ html, body {
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-    /*background: #33a6cc;*/
     border-radius: 40px;
     background: brown;
     color: #4CAF50;
