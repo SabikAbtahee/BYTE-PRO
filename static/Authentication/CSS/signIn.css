@@ -29,16 +29,7 @@ header {
     background-attachment: fixed;
 }
 
-.content {
-    background:gainsboro;
-    width: 100%;
-    color: midnightblue;
-    font-size: 20px;
-    font-family: "century gothic";
-    line-height: 30px;
-    text-align: justify;
 
-}
 .content {
 
     background: rgb(64,55,88);
@@ -51,7 +42,6 @@ header {
 
 }
 .content ul{
-    /*margin-left: 255px;*/
     margin-right: 255px;
     line-height: 20px;
     list-style: none;
@@ -137,7 +127,6 @@ nav ul li a {
 }
 
 .btn {
-    /*padding: 14px 24px;*/
     border: 0 none;
     font-weight: 700;
     letter-spacing: 1px;
@@ -145,31 +134,6 @@ nav ul li a {
     width: 150px;
 
 }
-
-/*.btn:focus, .btn:active:focus, .btn.active:focus {*/
-    /*outline: 0 none;*/
-
-/*}*/
-
-/*.btn-primary {*/
-    /*border-radius: 20px;*/
-    /*background: #4CAF50;*/
-    /*color: #ffffff;*/
-    /*box-shadow: 0 5px 15px rgba(255, 255, 255, .2);*/
-/*}*/
-
-/*.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {*/
-    /*!*background: #33a6cc;*!*/
-    /*border-radius: 20px;*/
-    /*background: #ffffff;*/
-    /*color: #4CAF50;*/
-/*}*/
-
-/*.btn-primary:active, .btn-primary.active {*/
-    /*background: #007299;*/
-    /*box-shadow: none;*/
-/*}*/
-
 
 .login-block {
     width: 350px;
@@ -199,7 +163,6 @@ nav ul li a {
     border: 1px solid #ccc;
     margin-bottom: 20px;
     font-size: 14px;
-    /*font-family: Montserrat;*/
     padding: 0 20px 0 50px;
     outline: none;
 }
@@ -240,8 +203,6 @@ nav ul li a {
     border: 1px solid white;
     color: #fff;
     font-weight: bold;
-    /**/
-    /*text-transform: uppercase;*/
     font-size: 16px;
     font-family: Montserrat;
     outline: none;
@@ -257,13 +218,12 @@ nav ul li a {
     width: 100%;
     text-align: center;
     font-size: 10px;
-    /*font-family: Montserrat;*/
     padding-top: 20px;
 
 }
 
-/**/
-@media(max-width: 1500px) {
+
+@media(max-width: 1000px) {
 
     .logo {
              /*position: fixed;*/
@@ -300,16 +260,33 @@ nav ul li a {
     /*.container{*/
         /*margin-right: -1200px;*/
     /*}*/
-    .container{
-        /*overflow-x: scroll;*/
-        margin-left: 1px;
-        margin-right: -800px;
+    .content {
+        height: 100%;
     }
-    .content{
-        margin-left: 1px;
-        margin-right: -800px;
-    }body{
-        overflow-x: scroll;
+    .content ul li{
+        font-size: 50%;
+        margin-left: 2%;
+    }.content ul li a{
+        font-size: 50%;
+        margin-left: 2%;
+    }
+
+    .login-block{
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-top: 200px;
+    }
+
+    .logoimg{
+        height: 1em;
+        width:1em;
+        margin-left: -10px;
+    }
+    .logoContent{
+        font-size: 15px;
+    }
+    body{
+        overflow-x: hidden;
     }
 
 

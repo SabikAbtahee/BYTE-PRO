@@ -63,3 +63,14 @@ tr{
     position: relative;
     z-index: -1;
 }
+.selectBox {
+    width: 100%;
+    position: relative;
+}
+
+
+.selectBox select {
+    width: 100%;
+    font-weight: bold;
+    position: relative;
+}

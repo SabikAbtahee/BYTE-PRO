@@ -101,7 +101,7 @@ WSGI_APPLICATION = 'SPL2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'git14',
+        'NAME': 'bytepro2',
         'USER': 'Sabik',
         'PASSWORD' : 'iit123',
     }

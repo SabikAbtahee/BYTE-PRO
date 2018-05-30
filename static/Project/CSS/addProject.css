@@ -52,8 +52,6 @@
 
 .columnx {
     float: left;
-    /*padding: 10px;*/
-    /*height: 300px; !* Should be removed. Only for demonstration *!*/
 }
 
 .leftx {
@@ -64,7 +62,7 @@
   width: 20%;
 }
 
-/* Clear floats after the columns */
+
 .row:after {
     content: "";
     display: table;

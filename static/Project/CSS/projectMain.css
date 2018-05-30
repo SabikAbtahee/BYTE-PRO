@@ -87,7 +87,6 @@
     z-index: 1;
     top: 0;
     left: 0;
-    /*background-color: rgb(64,55,88);*/
     background: rgb(64,55,88);
     overflow-x: hidden;
     transition: 0.5s;
@@ -108,8 +107,6 @@
     border-top: 1px solid white;
     border-bottom: 1px solid white;
 
-    /*background-color:;*/
-
 }
 
 .sidenav .sidenavA:hover {
@@ -119,7 +116,7 @@
     border-top: 1px solid white;
     border-bottom: 1px solid white;
     transition: 0.5s;
-    /*border-color: #ff656c;*/
+
 }
 
 .sidenav .closebtn {

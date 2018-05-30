@@ -33,14 +33,6 @@
                 <i class="fa fa-bars fa-2x"></i>
             </div>
 
-            {#                    <div class="logo">#}
-            {##}
-            {#                        <img src="../../static/Authentication/IMAGES/WoolBug2.png" style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.5em;" >#}
-            {#                       <div class="logoContent">#}
-            {#                        BYTE PRO#}
-            {#                       </div>#}
-            {##}
-            {#                    </div>#}
             <div class="logo">
                 <img class="logoimg" style="width: 3em; height: 3em; margin-left:2em; margin-top: -0.5em;" src={% static "Authentication/IMAGES/3.png" %}>
                 <div class="logoContent">
@@ -185,7 +177,7 @@
             },
             dataType: 'json',
             success: function (data) {
-                alert(data.isExist);
+
                 if (data.isExist==false) {
 
                     document.getElementById('actEmailerr').innerHTML = "Sorry no email exists";
@@ -210,10 +202,17 @@
             dataType: 'json',
 
             success: function (data) {
-                alert(data.isExist);
-                if (data.isExist==false) {
+                console.log(data.isExist);
+                console.log(data.active);
+                alert(data.active);
+                if (data.isExist===false) {
 
                     document.getElementById('actEmailerr').innerHTML = "Sorry no email exists";
+
+                    return false;
+                }
+                if(data.active===true){
+                    document.getElementById('actEmailerr').innerHTML = "Sorry You have given another email";
 
                     return false;
                 }

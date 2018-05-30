@@ -11,119 +11,149 @@
 
 
     <script type="text/javascript" src="{% static 'ProfileManagement/SCRIPT/profileManagement.js'%}"></script>
+
+    <script>
+        innerHtml = document.getElementById("mySidenav").innerHTML;
+        function openNav() {
+
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById('mySidenav').innerHTML = innerHtml
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            innerHtml= document.getElementById("mySidenav").innerHTML;
+            document.getElementById("mySidenav").innerHTML = ''
+        }
+    </script>
 {% endblock %}
 
 {% block content %}
 
+
     <div class="main container2">
+        <h3 align="center">Project Progress</h3>
+        <div class="selectBox">
 
-        <div class="row">
-            <div class="cellContainer"><div class="columnss" >TO-DO</div></div>
-            <div class="cellContainer"><div class="columnss" >IN-PROGRESS</div></div>
-            <div class="cellContainer"><div class="columnss" >DONE</div></div>
+            <a href="/projectmanagement/{{ project.projectName }}/">Back to Project</a>
+
+
         </div>
-
-
-        <div class="row">
-            <div class="cellContainer"><hr style="height:2px;border:none;color:#333;background-color:#333;"></div>
-            <div class="cellContainer"><hr style="height:2px;border:none;color:#333;background-color:#333;"></div>
-            <div class="cellContainer"><hr style="height:2px;border:none;color:#333;background-color:#333;"></div>
-        </div>
-
-
+        <hr>
         <div class="row">
             <div class="cellContainer">
+                {% load staticfiles %}
+                <h4 align="center"><img src="{% static 'Project/IMAGES/todo.png' %}" height="30" width="30"> &nbsp;To-Do</h4>
+                <hr>
+                <div class="content-holder">
+                    {% if todo|length == 0 %}
+                        <h5 align="center">No <strong>"To-do"</strong> list</h5>
+                    {% endif %}
+                    <table class="table">
+                        <tbody>
+                        {% for i in todo %}
+                            <tr>
+                                <td class="left" style="font-weight: lighter;">
+                                    [{{ forloop.counter }}] &nbsp;&nbsp;&nbsp;{{ i.todo_description }}
+                                </td>
+                                <td align="left">
+                                    <form method="post">
+                                        <textarea  name="todoDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.todo_description }}</textarea>
+                                        <button name="CHECK-BUTTON-TODO" value="CHECK-BUTTON-TODO" id='CHECK-BUTTON-TODO' type="submit" class="btn btn-success" title="Mark as Done"> <i class="fa fa-check"></i></button>
+                                    </form>
+                                </td>
 
+                                <td align="right">
+                                    <form method="post">
+                                        <textarea  name="todoDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.todo_description }}</textarea>
+                                        <button name="DELETE-BUTTON-TODO" value="DELETE-BUTTON-TODO" id='DELETE-BUTTON-TODO' type="submit" class="btn btn-danger" title="Delete the content"> <i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
 
-                <table class="table">
-                    <tbody>
-                    {% for i in todo %}<tr align="center">
-                        <td class="left" >
-                            {{ i.todo_description }}
-                        </td>
-                        <td class="right">
-                            <form method="post" class="form-group">
-                                <textarea  name="todoDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.todo_description }}</textarea>
-                                <button name="DELETE-BUTTON-TODO" value="DELETE-BUTTON-TODO" id='DELETE-BUTTON-TODO' type="submit" class="btn customBTN" title="Delete the content"> <i class="fa fa-trash"></i></button>
-                                <button name="CHECK-BUTTON-TODO" value="CHECK-BUTTON-TODO" id='CHECK-BUTTON-TODO' type="submit" class="btn customBTN" title="Mark as Done"> <i class="fa fa-check"></i></button>
-                            </form>
-                        </td>
-
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="columnButton" >
                     <form method="post" class="form-group" name="TO-DO" id="TO-DO">
-
-                        <textarea  name="todoDescription" class="textAreaa" placeholder="Enter Description" ></textarea>
-
-
-
-                        <div class="columnButton" ><button name="TO-DO-BUTTON" value="TO-DO-BUTTON" id='TO-DO-BUTTON' type="submit" class="btn btn-danger x" style="background-color: maroon;">+</button></div>
+                        <textarea  name="todoDescription" class="form-control" placeholder="Enter Todo description" style="border-width:1px; font-size: 15px; font-weight: lighter; margin-top: 67px;"></textarea>
+                        <div class="columnButton" ><button name="TO-DO-BUTTON" value="TO-DO-BUTTON" id='TO-DO-BUTTON' type="submit" class="btn btn-info x" style="width: 100%;">Add<strong> To-Do</strong></button></div>
                     </form>
                 </div>
 
             </div>
 
             <div class="cellContainer">
+                <h4 align="center"><img src="{% static 'Project/IMAGES/inprogress.png' %}" height="30" width="30"> &nbsp;In-Progress</h4>
+                <hr>
+                <div class="content-holder">
+                    {% if inprogress|length == 0 %}
+                        <h5 align="center">No <strong>"In Progress"</strong> list</h5>
+                    {% endif %}
+                    <table class="table">
+                        <tbody>
+                        {% for i in inprogress %}
+                            <tr align="center">
+                                <td class="left" style="font-weight: lighter;">
+                                    [{{ forloop.counter }}]&nbsp;&nbsp;&nbsp;{{ i.inProgress_description }}
+
+                                    {% if i.fileNames %}
+                                        <hr>
+                                        <p style="color:#0b51c5;">Attached-Files:</p>
+                                    {% endif %}
+                                    {{ i.fileNames }}
+                                    <hr>
+
+                                </td>
+                                <td class="left">
+
+                                    <form method="post" class="form-group">
+                                        <textarea name="inProgressFilesDelete" class="textAreaa" hidden>{{ i.fileNames }}</textarea>
+                                        <textarea  name="inProgressDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.inProgress_description }}</textarea>
+                                        {#                                        <button name="DELETE-BUTTON-IN" value="DELETE-BUTTON-IN" id='DELETE-BUTTON-IN' type="submit" class="btn customBTN" title="Delete the content"> <i class="fa fa-trash"></i></button>#}
+                                        <button name="CHECK-BUTTON-IN" value="CHECK-BUTTON-IN" id='CHECK-BUTTON-IN' type="submit" class="btn btn-success" title="Mark as Done"> <i class="fa fa-check"></i></button>
+                                    </form>
 
 
+                                </td>
+                                <td class="left">
 
-                <table class="table">
-                    <tbody>
-                    {% for i in inprogress %}
-                        <tr align="center">
-                            <td class="left" >
-                                {{ i.inProgress_description }}
-                                <br>
-                                {% if i.fileNames %}
-                                    <p style="color: maroon;">ATTACHED FILES:</p>
-                                {% endif %}
-                                {{ i.fileNames }}
-                            </td>
-                            <td class="right">
-
-                                <form method="post" class="form-group">
-                                    <textarea name="inProgressFilesDelete" class="textAreaa" hidden>{{ i.fileNames }}</textarea>
-                                    <textarea  name="inProgressDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.inProgress_description }}</textarea>
-                                    <button name="DELETE-BUTTON-IN" value="DELETE-BUTTON-IN" id='DELETE-BUTTON-IN' type="submit" class="btn customBTN" title="Delete the content"> <i class="fa fa-trash"></i></button>
-                                    <button name="CHECK-BUTTON-IN" value="CHECK-BUTTON-IN" id='CHECK-BUTTON-IN' type="submit" class="btn customBTN" title="Mark as Done"> <i class="fa fa-check"></i></button>
-                                </form>
+                                    <form method="post" class="form-group">
+                                        <textarea name="inProgressFilesDelete" class="textAreaa" hidden>{{ i.fileNames }}</textarea>
+                                        <textarea  name="inProgressDescriptionDelete" class="textAreaa" placeholder="Enter Description" hidden>{{ i.inProgress_description }}</textarea>
+                                        <button name="DELETE-BUTTON-IN" value="DELETE-BUTTON-IN" id='DELETE-BUTTON-IN' type="submit" class="btn btn-danger" title="Delete the content"> <i class="fa fa-trash"></i></button>
+                                        {#                                        <button name="CHECK-BUTTON-IN" value="CHECK-BUTTON-IN" id='CHECK-BUTTON-IN' type="submit" class="btn customBTN" title="Mark as Done"> <i class="fa fa-check"></i></button>#}
+                                    </form>
 
 
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
 
 
                 <div class="columnButton" >
-                    <form class="form-group" method="post" class="form-group" name="IN-PROGRESS" id="IN-PROGRESS">
+                    <form class="form-group" method="post"  name="IN-PROGRESS" id="IN-PROGRESS">
 
-                        <textarea  name="inProgressDescription" class="textAreaa" placeholder="Enter Description"></textarea>
-
+                        <textarea  name="inProgressDescription" class="form-control" placeholder="Enter In-Progress description" style="border-width:1px; font-size: 15px; font-weight: lighter;"></textarea>
+                        <br>
                         <div >
-
-
                             <div>
                                 <div  class="selectBox" onclick="showcheckboxes2()">
                                     <select class="box">
-                                        {#                                        <option>#}
-                                        {#                                            {% for value in userInformation.skilltag %}#}
-                                        {#                                                {{ value }},#}
-                                        {#                                            {% endfor %}#}
-                                        {#                                        </option>#}
-
                                     </select>
                                     <div class="overSelect"></div>
                                 </div>
                                 <div id="checkboxes2" class="check scrollable">
 
                                     {% for f in file %}
-                                        <label> <input type="checkbox" name="filenames1" id="{{ f.fileName }}" value="{{ f.fileName }}" />  {{ f.fileName }}  </label>
+
+                                        <label> <input type="checkbox" name="filenames1" class="" id="{{ f.fileName }}" value="{{ f.fileName }}" />  {{ f.fileName }}  </label>
+
                                     {% endfor %}
 
 
@@ -131,48 +161,53 @@
                             </div>
                         </div>
 
-                        <div class="columnButton" ><button name="IN-PROGRESS-BUTTON" value="IN-PROGRESS-BUTTON" type="submit" id='IN-PROGRESS-BUTTON'  class="btn btn-danger x" style="background-color: darkblue;">+</button></div>
+                        <div class="columnButton" ><button name="IN-PROGRESS-BUTTON" value="IN-PROGRESS-BUTTON" type="submit" id='IN-PROGRESS-BUTTON'  class="btn btn-info x">Add<strong> In-Progress</strong></button></div>
                     </form>
                 </div>
 
             </div>
 
             <div class="cellContainer">
-
-                <table class="table">
-                    <tbody>
-                    {% for i in done %}
-                        <tr align="center">
-                            <td class="left" >
-                                {{ i.done_description }}
-                                <br>
-                                {% if i.fileNames %}
-                                    <p style="color: maroon;">ATTACHED FILES:</p>
-                                {% endif %}
-                                {{ i.fileNames }}
-                            </td>
-                            <td class="right">
-                                <form method="post" class="form-group">
-                                    <textarea  name="doneDescriptionDelete" class="textAreaa" hidden>{{ i.done_description }}</textarea>
-                                    <textarea name="doneFilesDelete" class="textAreaa" hidden>{{ i.fileNames }}</textarea>
-                                    <button name="DELETE-BUTTON-DONE" value="DELETE-BUTTON-DONE" id='DELETE-BUTTON-DONE' type="submit" class="btn customBTN" title="Delete the content"> <i class="fa fa-trash"></i></button>
-{#                                    <button name="CHECK-BUTTON-DONE" value="CHECK-BUTTON-DONE" id='CHECK-BUTTON-DONE' type="submit" class="btn customBTN"> <i class="fa fa-check"></i></button>#}
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                <h4 align="center"><img src="{% static 'Project/IMAGES/done.png' %}" height="30" width="30"> &nbsp;Done</h4>
+                <hr>
+                <div class="content-holder">
+                    {% if done|length == 0 %}
+                        <h5 align="center">No <strong>"Done"</strong> list</h5>
+                    {% endif %}
+                    <table class="table">
+                        <tbody>
+                        {% for i in done %}
+                            <tr align="center">
+                                <td class="left" style="font-weight: lighter;">
+                                    [{{ forloop.counter }}]&nbsp;&nbsp;&nbsp;{{ i.done_description }}
+                                    <br>
+                                    {% if i.fileNames %}
+                                        <hr>
+                                        <p style="color: #0b51c5;">Attached-Files:</p>
+                                    {% endif %}
+                                    {{ i.fileNames }}
+                                    <hr>
+                                </td>
+                                <td class="right">
+                                    <form method="post" class="form-group">
+                                        <textarea  name="doneDescriptionDelete" class="textAreaa" hidden>{{ i.done_description }}</textarea>
+                                        <textarea name="doneFilesDelete" class="textAreaa" hidden>{{ i.fileNames }}</textarea>
+                                        <button name="DELETE-BUTTON-DONE" value="DELETE-BUTTON-DONE" id='DELETE-BUTTON-DONE' type="submit" class="btn btn-danger" title="Delete the content"> <i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="columnButton" >
-                    <form class="form-group" method="post" class="form-group" name="DONE" id="DONE">
+                    <form class="form-group" method="post"  name="DONE" id="DONE">
 
 
-                        <textarea name="doneDescription" class="textAreaa" placeholder="Enter Description"></textarea>
-
-                        <div >
-
-
+                        <textarea name="doneDescription" class="textArea form-control" placeholder="Enter Done Description" style="border-width:1px; font-size: 15px; font-weight: lighter;"></textarea>
+                        <br>
+                        <div>
                             <div>
                                 <div  class="selectBox" onclick="showCheckboxes()">
                                     <select class="box">
@@ -191,7 +226,7 @@
 
 
 
-                        <div  class="columnButton" ><button name="DONE-BUTTON" value="DONE-BUTTON" id='DONE-BUTTON'  type="submit" class="btn btn-danger x" style="background-color: darkgreen;">+</button></div>
+                        <div  class="columnButton" ><button name="DONE-BUTTON" value="DONE-BUTTON" id='DONE-BUTTON'  type="submit" class="btn btn-info x">Add<strong> Done</strong></button></div>
                     </form>
                 </div>
             </div>

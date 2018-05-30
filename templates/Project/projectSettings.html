@@ -166,7 +166,6 @@
             {% for file in files %}
                 if(!labelsContribution.includes("{{ file.uploader }}")){
                     labelsContribution.push("{{ file.uploader }}");
-                    {#languageData.push(data["{{ file.fileType }}"]);#}
                 }
 
             {% endfor %}
@@ -201,7 +200,6 @@
                     datasets:[{
                         label:'Population',
                         data:data,
-                        //backgroundColor:'green',
                         backgroundColor: backgroundColor,
                         borderWidth:1,
                         borderColor:'#777',

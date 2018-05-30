@@ -30,8 +30,7 @@
 .additionSection .addition{
     background-color: rgb(205,255,216);
 }
-/*rgb(205,255,216)
-            rgb(230,255,237)*/
+
 .deletationSection .deletation:hover{
     font-style: italic;
     transition: 0.3s;
@@ -65,8 +64,7 @@
 }
 
 .deletationSection, .additionSection{
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
+
     overflow-x: scroll;
 }
 

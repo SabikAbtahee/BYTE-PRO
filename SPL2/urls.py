@@ -29,9 +29,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^authentication/', include('Authentication.urls')),
     url(r'^profilemanagement/', include('ProfileManagement.urls')),
+    url(r'^$', Project.views.Project().homePage, name="homePage"),
     url(r'^projectmanagement/', include('Project.urls')),
     url(r'^ajax/passwordCheck/$', ProfileManagement.views.ProfileManagement().passwordCheck , name="passwordCheck"),
-	url(r'^ajax/projectExists/$', Project.views.Project().projectCheck , name="projectCheck"),
+    url(r'^ajax/projectExists/$', Project.views.Project().projectCheck , name="projectCheck"),
     url(r'^ajax/projectAccessType/$', Project.views.Project().projectAccessType, name="projectAccessType"),
     url(r'^pro/ajx/close/$', Project.views.Project().closeIssue, name="closeIssue"),
     url(r'^ajax/getnotifications$', Communication.views.Communication().getNotifications, name="getNotifications"),
@@ -40,7 +41,7 @@ urlpatterns = [
     url(r'^comm/', include('Communication.urls')),
     url(r'^ajax/checkemail/$', Authentication.views.Authentication().checkEmail, name="checkEmail"),
     url(r'^project/fetchlanguagedata/$', Project.views.Project().fetchLanguage, name="fetchLanguage"),
-	url(r'^project/fetchcontributiondata/$', Project.views.Project().fetchContributionData, name="fetchContributionData"),
+    url(r'^project/fetchcontributiondata/$', Project.views.Project().fetchContributionData, name="fetchContributionData"),
 
 ]
 

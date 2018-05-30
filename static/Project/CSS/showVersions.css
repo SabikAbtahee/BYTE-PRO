@@ -22,8 +22,6 @@
 	border-color: rgb(223,226,229);
 	border-width: 1px;
 	border-style: solid;
-
-
 	text-align: justify;
 	padding-left: 10px;
 	padding-top: 5px;
@@ -46,9 +44,9 @@
 	border-left-color: rgb(64,55,88);
 	border-left-style: solid;
 	transition: 0.3s;
-
-
 }
+
+
 .codeDiv{
 	text-align: justify;
 	font-size: 50px;

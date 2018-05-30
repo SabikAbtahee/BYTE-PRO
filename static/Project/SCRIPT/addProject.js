@@ -1,6 +1,4 @@
-/**
- * Created by sabik on 5/24/2018.
- */
+
 nameExists=true;
 $("#projectName").change(function () {
     var text = $(this).val();
@@ -52,7 +50,7 @@ function validate() {
     }
 
     if (/\s/.test(text1)) {
-        // It has any kind of whitespace
+
         WrongName.className = "unhidden";
         CorrectName.className = "hidden";
         helpName.textContent = "No space allowed";
@@ -85,6 +83,7 @@ function validName() {
     helpName.textContent = "Same name exists try different one";
     document.getElementById("addProjectButton").disabled = true;
 }
+
 function validName2(){
     CorrectName=document.getElementById("correctProjectName");
     WrongName=document.getElementById("wrongProjectName");
@@ -94,22 +93,4 @@ function validName2(){
     helpName.textContent = "";
     document.getElementById("addProjectButton").disabled = false;
 }
-
-
-// CorrectName.className="unhidden";
-
-// if(age=="Sabik"){
-//     Correct.style.display="inline";
-//     Wrong.style.display="none";
-// }
-// else{
-//     Correct.style.display="none";
-//     Wrong.style.display="inline";
-// }
-
-
-// var age = $('#projectName').val();
-
-
-// Correct.style.display="none";
-// Wrong.style.display="inline";
+le.display="inline";

@@ -8,7 +8,20 @@
 {% endblock %}
 
 {% block content %}
+    <div class="main">
+        <div class="IssueCreatorDiv">
+            {% if isMaster %}
+                <a href="/projectmanagement/{{ project.projectName }}/"><h3>Back to Project</h3></a>
+            {% else %}
+                <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/"><h3>Back to Project</h3></a>
+            {% endif %}
+        </div>
+    </div>
+    <br>
     <div class="main container2">
+
+
+
         <div class="IssueCreatorDiv">
             <form
                     {% if isMaster %}
@@ -25,6 +38,8 @@
                         {% endif %}
                     {% endif %}
                             method= 'post' id="issueFrom" onsubmit="return validate()">
+
+
                 <h3>Create Issue</h3>
 
                 <div class="form-group">
@@ -99,12 +114,10 @@
     </div>
     {% load staticfiles %}
     <script type="text/javascript" src="{% static 'Project/SCRIPT/js/jquery.min.js' %}"></script>
-    {#    <script type="text/javascript" src="{% static 'Project/SCRIPT/plugin/tinymce/tinymce.min.js' %}"></script>#}
-    {#    <script type="text/javascript" src="{% static 'Project/SCRIPT/plugin/tinymce/init-tinymce.js' %}"></script>#}
 
     <script>
         $(document).ready(function(){
-{#            document.getElementById("createIssueBtn").disabled = true;#}
+            {#            document.getElementById("createIssueBtn").disabled = true;#}
             {% for issue in Issues %}
                 var label= "{{ issue.label }}";
                 if(label==="Help Wanted"){
@@ -133,9 +146,7 @@
 
             {% endfor %}
         });
-{#        $("#projDesc").change(function () {#}
-{#            document.getElementById("createIssueBtn").disabled = false;#}
-{#        });#}
+
 
         $("button").click(function () {
             var issueId = this.name;

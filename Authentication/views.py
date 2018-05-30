@@ -57,7 +57,7 @@ class Authentication(object):
 
                 to_email = form.cleaned_data.get('email')
                 subject = "Activate your BYTE PRO account."
-                # self.sendEmail(message, to_email , subject)
+                self.sendEmail(message, to_email , subject)
                 print(message)
 
                 return render(request, 'Authentication/ActivationLink.html', {'email': user.email, 'pk': user.pk})
@@ -153,19 +153,31 @@ class Authentication(object):
 
             to_email = email
             subject = "Activate your BYTE PRO account."
-            # self.sendEmail(message, to_email , subject)
+            self.sendEmail(message, to_email , subject)
             print(to_email)
             print(message)
-            return render(request, 'Authentication/ActivationLink.html', {'email': email})
+        return render(request, 'Authentication/ActivationLink.html', {'email': email})
 
     def checkEmail(self, request):
         print("called")
         email = request.GET.get('email', None)
+
+
         isExist = Database.models.User.objects.filter(email = email).count() > 0
-        print(email)
-        print(isExist)
+        active = False
+        if(isExist):
+            print("asd")
+            user = Database.models.User.objects.get(email=email)
+
+            if(user.is_active):
+                print("Active")
+                active=True
+        # print(email)
+        # print(isExist)
+        print(active)
         data = {
-            'isExist': isExist
+            'isExist': isExist,
+            'active':active,
         }
         return JsonResponse(data)
 
@@ -195,14 +207,14 @@ class ResetPasswordRequestView(FormView):
         except ValidationError:
             return False
 
-    def send_email(self, body, reciever):
+    def send_email(self, body, reciever,subject):
         fromaddr = "bytepro123@gmail.com"
 
-        toaddr = reciever
+        toaddr = str(reciever)
         msg = MIMEMultipart()
         msg['From'] = fromaddr
         msg['To'] = toaddr
-        msg['Subject'] = "Reset Your Password"
+        msg['Subject'] = subject
 
         body = body
         msg.attach(MIMEText(body, 'plain'))
@@ -211,10 +223,27 @@ class ResetPasswordRequestView(FormView):
         server.starttls()
         server.login(fromaddr, "cs819829")
         text = msg.as_string()
-        print(text)
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
-        # return HttpResponse("Your email sent")
+        # fromaddr = "bytepro123@gmail.com"
+        #
+        # toaddr = reciever
+        # msg = MIMEMultipart()
+        # msg['From'] = fromaddr
+        # msg['To'] = toaddr
+        # msg['Subject'] = "Reset Your Password"
+        #
+        # body = body
+        # msg.attach(MIMEText(body, 'plain'))
+        #
+        # server = smtplib.SMTP('smtp.gmail.com', 587)
+        # server.starttls()
+        # server.login(fromaddr, "cs819829")
+        # text = msg.as_string()
+        # print(text)
+        # server.sendmail(fromaddr, toaddr, text)
+        # server.quit()
+        # # return HttpResponse("Your email sent")
 
 
     def resendEmailPasswordRecovery(self):
@@ -240,15 +269,10 @@ class ResetPasswordRequestView(FormView):
 
         subject = ''.join(subject.splitlines())
 
-
         email = loader.render_to_string(email_template_name, c)
 
-        print('The email is')
-        print('emailbody:', email)
-        print('------------')
 
-
-        #send_mail(email_body, user.email)
+        Authentication().sendEmail(email, user.email,subject)
 
 
 

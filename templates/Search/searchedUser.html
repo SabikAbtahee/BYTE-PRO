@@ -25,7 +25,7 @@
 
             {% for project in searchedUserProjects %}
 
-
+                {% if  project.accessType  == "Public" %}
                 <div class="projects">
                     <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/">
                         <h3>{{project.projectName}}</h3>
@@ -35,7 +35,7 @@
                     <p>Project Created At: {{project.projectCreatedAt}}</p>
                 </div>
 
-
+                {% endif %}
             {%endfor%}
 
         </div>

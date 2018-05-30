@@ -10,26 +10,30 @@
 
 {% block content %}
     <div class="main">
-		{% if isMaster %}
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <br>
-            <br>
-            <br>
-            <a href="/projectmanagement/" class = "sidenavA"><img src="{% static 'Project/IMAGES/project.png' %}" height = "30" width="30">&nbsp; My Projects</a>
-            <a href="/projectmanagement/{{ project.projectName }}/issues/" class = "sidenavA"><img src="{% static 'Project/IMAGES/issues.png' %}" height = "30" width="30">&nbsp; Project Issues</a>
-            <a href="/projectmanagement/{{ project.projectName }}/projectsettings/#assignedDeveloper" class = "sidenavA"><img src="{% static 'Project/IMAGES/assignedDevelopers.png' %}" height = "30" width="30">&nbsp; Assigned Developers</a>
-            <a href="/projectmanagement/{{ project.projectName }}/projectsettings/#languageGraph" class = "sidenavA"><img src="{% static 'Project/IMAGES/langGraph.png' %}" height = "30" width="30">&nbsp; Programming Languages</a>
-            <a href="/projectmanagement/{{ project.projectName }}/projectsettings/#Contributions" class = "sidenavA"><img src="{% static 'Project/IMAGES/contributions.png' %}" height = "30" width="30">&nbsp; Contributions</a>
-        </div>
-    {% else %}
+        {% if isMaster %}
             <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <br>
-            <br>
-            <br>
-            <a href="/projectmanagement/" class = "sidenavA"><img src="{% static 'Project/IMAGES/project.png' %}" height = "30" width="30">&nbsp; My Projects</a>
-        </div>
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <br>
+                <br>
+                <br>
+                <a href="/projectmanagement/" class = "sidenavA"><img src="{% static 'Project/IMAGES/project.png' %}" height = "30" width="30">&nbsp; My Projects</a>
+                <a href="/projectmanagement/{{ project.projectName }}/issues/" class = "sidenavA"><img src="{% static 'Project/IMAGES/issues.png' %}" height = "30" width="30">&nbsp; Project Issues</a>
+                <a href="/projectmanagement/{{ project.projectName }}/projectsettings/#assignedDeveloper" class = "sidenavA"><img src="{% static 'Project/IMAGES/assignedDevelopers.png' %}" height = "30" width="30">&nbsp; Assigned Developers</a>
+                <a href="/projectmanagement/{{ project.projectName }}/projectsettings/#languageGraph" class = "sidenavA"><img src="{% static 'Project/IMAGES/langGraph.png' %}" height = "30" width="30">&nbsp; Programming Languages</a>
+                <a href="/projectmanagement/{{ project.projectName }}/projectsettings/#Contributions" class = "sidenavA"><img src="{% static 'Project/IMAGES/contributions.png' %}" height = "30" width="30">&nbsp; Contributions</a>
+                <a href="/projectmanagement/assignedprojects/" class = "sidenavA"><img src="{% static 'Project/IMAGES/assigned.png' %}" height = "30" width="30">&nbsp;Assigned Projects</a>
+            </div>
+        {% else %}
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <br>
+                <br>
+                <br>
+                <a href="/search/{{ searchedUser.username }}/{{ project.projectName }}/issues/" class = "sidenavA"><img src="{% static 'Project/IMAGES/issues.png' %}" height = "30" width="30">&nbsp; Project Issues</a>
+                <a href="/projectmanagement/" class = "sidenavA"><img src="{% static 'Project/IMAGES/project.png' %}" height = "30" width="30">&nbsp; My Projects</a>
+                <a href="/projectmanagement/assignedprojects/" class = "sidenavA"><img src="{% static 'Project/IMAGES/assigned.png' %}" height = "30" width="30">&nbsp;Assigned Projects</a>
+
+            </div>
         {% endif %}
 
 
@@ -100,10 +104,6 @@
                         </a>
 
                     {% endif %}
-                    <a href="#">
-                        <button class="btn btn-warning">Project Progress</button>
-                    </a>
-
                 {%else%}
                     {% if isDownloadable %}
                         <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/downloadfiles/">
@@ -170,7 +170,7 @@
     <script src="{% static 'Project/CSS/codemirror/lib/codemirror.js'%}"></script>
     <script src="{% static 'Project/CSS/codemirror/mode/clike/clike.js' %}"></script>
     <script>
-		innerHtml = document.getElementById("mySidenav").innerHTML;
+        innerHtml = document.getElementById("mySidenav").innerHTML;
         function openNav() {
 
             document.getElementById("mySidenav").style.width = "250px";
@@ -182,15 +182,8 @@
             innerHtml= document.getElementById("mySidenav").innerHTML;
             document.getElementById("mySidenav").innerHTML = ''
         }
-        // toLowerCase()
-        $(document).ready(function(){
-            /*var code = $(".codemirror-textarea")[0];
-            var editor = CodeMirror.fromTextArea(code,{
-                lineNumbers: true,
-                theme: 'paraiso-light',
-                mode: 'clike'
 
-            });*/
+        $(document).ready(function(){
 
             var pid = "{{ project.id }}";
 
@@ -215,8 +208,7 @@
 
         });
         function addPropics(data) {
-            //var str = "12345.00";
-            {#str = str.substring(0, str.length - 1); #}
+
             var i=0;
             {% for file in files %}
                 var img = document.getElementById("{{ file.id }}");
@@ -228,7 +220,5 @@
             {% endfor %}
         }
 
-
     </script>
-
 {% endblock %}

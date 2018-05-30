@@ -21,9 +21,9 @@
         {%else%}
         <div class = "fileContentsAndCode">
             {%for version in  versions%}
-            
 
-            
+
+
             <div class="filesDetailsDiv">
                 <div class="filenameAndImage">
                    {{version.versionFilename}}
@@ -51,7 +51,7 @@
             <code class={{ version.file.fileType }}>{{version.fileContent}}</code>
         </pre>
             </div>
-        {%endfor%}    
+        {%endfor%}
         </div>
         {%endif%}
 

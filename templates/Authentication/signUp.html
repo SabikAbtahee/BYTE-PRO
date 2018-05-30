@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Sign Up</title>
-<!--CHANGE TITLE HERE-->
+    <!--CHANGE TITLE HERE-->
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,9 +21,9 @@
     <!--CHANGE LINK TO CSS HERE-->
     {%load staticfiles%}
     <link rel="stylesheet" href="{% static 'Authentication/CSS/signUp.css'%}">
-    <!--<link rel="stylesheet" href="../../static/Authentication/CSS/signUp.css">-->
 
-    <!--  -->
+
+
 </head>
 
 
@@ -37,14 +37,6 @@
                 <i class="fa fa-bars fa-2x"></i>
             </div>
 
-            {#                    <div class="logo">#}
-            {##}
-            {#                        <img src="../../static/Authentication/IMAGES/WoolBug2.png" style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.5em;" >#}
-            {#                       <div class="logoContent">#}
-            {#                        BYTE PRO#}
-            {#                       </div>#}
-            {##}
-            {#                    </div>#}
             <div class="logo">
                 <img class="logoimg" style="width: 3em; height: 3em; margin-left:2em; margin-top: -0.5em;" src={% static "Authentication/IMAGES/3.png" %}>
                 <div class="logoContent">
@@ -57,7 +49,6 @@
                 <ul>
 
                     <li><a href="#contact" class="btn">Contact</a></li>
-{#                    <li><a href="{% url 'signUp2' %}" class="btn btn" role="button" style="background: rgb(68,55,88); border-radius: 20px;">Sign up</a></li>#}
                     <li><a href="{% url 'login' %}" class="btn btn" role="button" style="background: rgb(68,55,88); border-radius: 20px;">Sign In</a></li>
 
                 </ul>
@@ -66,34 +57,6 @@
         </nav>
 
     </header>
-{#    <header>#}
-{#        <nav>#}
-{#            <div class="menu-icon">#}
-{#                <i class="fa fa-bars fa-2x"></i>#}
-{#            </div>#}
-{##}
-{#            <div class="logo">#}
-{##}
-{#                <img src="../../static/Authentication/IMAGES/WoolBug2.png" style="width: 4em; height: 4em; margin-left:-2em;margin-top: -0.5em;" >#}
-{#                <div class="logoContent">#}
-{#                    BYTE PRO#}
-{#                </div>#}
-{##}
-{#            </div>#}
-{##}
-{#            <div class="menu">#}
-{#                <ul>#}
-{##}
-{#                    <li><a href="#contact" class="btn">Contact</a></li>#}
-{#                                                                                                                            #}
-{#                    <li><a href="{% url 'login' %}" class="btn btn-primary btn-lg" role="button">Sign In</a></li>#}
-{##}
-{#                </ul>#}
-{#            </div>#}
-{##}
-{#        </nav>#}
-{##}
-{#    </header>#}
 </div>
 
 
@@ -103,22 +66,22 @@
         <h1>Sign Up</h1>
         <form  action="/authentication/signup/" method="POST">
             {% csrf_token %}
-            
+
             {% if form.errors %}
                 <p>Something Wrong</p>
             {% endif %}
 
-           <!--  <input type="text" value="" placeholder="Name" id="name" name="name" required id = ""/> -->
+            <!--  <input type="text" value="" placeholder="Name" id="name" name="name" required id = ""/> -->
 
             <input type="text" value="" placeholder="Username" id="username" name="{{form.username.name}}"  required id = "{{form.username.id}}"/>
             {% if form.username.errors %}<li>{{ form.username.label }}: {{ form.username.errors|striptags }}</li>
             {% endif %}
-            
+
 
             <input type="email" value="" placeholder="Email" id="email" name="{{form.email.name}}"  required id = "{{form.email.id}}""/>
             {% if form.email.errors %}<li>{{ form.email.label }}: {{ form.email.errors|striptags }}</li>
             {% endif %}
-            
+
 
             <input type="password" value="" placeholder="Password" id="password" name="{{form.password1.name}}"  required id = "{{form.password1.id}}" autocomplete="off"/>
             {% if form.password1.errors %}<li>{{ form.password1.label }}: {{ form.password1.errors|striptags }}</li>
@@ -132,11 +95,10 @@
             <br>
         </form>
 
-{#        <a href="/authentication/reset_password/">#}
-         <a href="{% url 'reset_password' %}">
+        <a href="{% url 'reset_password' %}">
             <button>Forgot your password?</button>
         </a>
-            <!--<a >forget your password</a>-->
+
     </div>
 
 </div>
@@ -145,13 +107,26 @@
 
 <!--/* LOWER CONTACT SPACE*/-->
 <div class="content">
-    <a name="contact">
-        <div class="contact">
-            <ul>
-                <li>Chinmoy Acharjee</li>
-                <li>Sabik Abtahee</li>
-            </ul>
-    </a>
+    <div class="contact" id="contact">
+        <ul>
+            <li>
+
+            <li>
+                <img  style="width: 5em; height: 5em;" src={% static "Authentication/IMAGES/3.png" %}>
+                <a href="{% url 'homepage' %}" style="color: white; text-decoration: none; font-size: 20px">BYTE <span style="background-color: #ff656c; border: solid #ff656c; border-width:5px; border-radius: 6px; ">PRO</span></a>
+                <hr style="width: 400px; font-size: 50px;">
+            </li>
+
+            <li>Chinmoy Acharjee: (chinmoyacharjee15@gmail.com)</li>
+            <li>Sabik Abtahee: (sabikchamp@gmail.com)</li>
+            <li>©Chinmoy Sabik</li>
+
+            </li>
+
+        </ul>
+
+
+    </div>
 </div>
 
 

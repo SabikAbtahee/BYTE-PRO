@@ -38,7 +38,7 @@ class Search(object):
         numberofProjects = Database.models.Project.objects.filter(projectName=searchInput)
         if(numberOfUsers.count()>0):
             searchedUser=numberOfUsers[0]
-            searchedUserProjects = Database.models.Project.objects.filter(user=searchedUser).order_by('-projectCreatedAt')
+            searchedUserProjects = Database.models.Project.objects.filter(user=searchedUser, accessType="Public").order_by('-projectCreatedAt')
             searchedUserInformation = Database.models.UserInformation.objects.get(user=searchedUser)
             isMaster= False
 
@@ -87,9 +87,17 @@ class Search(object):
         alluser, allprojects = self.returnAllUserANdProjects()
 
         searchedUser = Database.models.User.objects.get(username=username)
+
         searchedUserInformation = Database.models.UserInformation.objects.get(user=searchedUser)
         searchedProject = Database.models.Project.objects.get(user=searchedUser, projectName=projectname)
-
+        __isAssignInPrivateProject = Database.models.AssignDeveloper.objects.filter(project = searchedProject, assignDeveloper = user).count() > 0
+        if (searchedProject.accessType=="Private" and  __isAssignInPrivateProject==False ):
+            context = {'userInformation': userInformation,
+                       'user': user,
+                       'alluser': alluser,
+                       'allprojects': allprojects
+                       }
+            return render(request, 'Search/accessDenied.html', context)
         files = Database.models.File.objects.filter(user=searchedUser, project=searchedProject).order_by('-id')
         isMaster = False
         isDownloadable = True
@@ -253,6 +261,7 @@ class Search(object):
                 context = {'userInformation': userInformation,
                            'user': user,
                            'alluser': alluser,
+                           'allprojects':allprojects
                            }
                 return render(request, 'Search/accessDenied.html', context)
 

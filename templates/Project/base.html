@@ -8,12 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Byte Pro</title>
 
-    {#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">#}
-    {#    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>#}
-    {#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">#}
-    {#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>#}
-    {#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
-    {#    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>#}
+{#        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">#}
+{#        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>#}
+{#        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">#}
+{#        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>#}
+{#        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+{#        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>#}
 
     {%load staticfiles%}
     <link rel="icon" href="{% static 'Authentication/IMAGES/3.png' %}">
@@ -113,18 +113,6 @@
         </nav>
 
     </header>
-    <!-- side Nav -->
-{#    <div id="mySidenav" class="sidenav">#}
-{#        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>#}
-{#        <a href="#">Projects</a>#}
-{##}
-{#        <a href="#">Code</a>#}
-{#        <a href="#">Issues</a>#}
-{#        <a href="#">Comments</a>#}
-{#        <a href="#">Assigned Developers</a>#}
-{#    </div>#}
-{##}
-{#    <span style="font-size:30px;cursor:pointer; color: rgb(64,55,88);" onclick="openNav()">&#9776;</span>#}
 
     {% block content %}
 
@@ -163,9 +151,6 @@
 
 <!--/* SCRIPT PART*/-->
 <script type="text/javascript">
-
-
-    // For opening and closing side nav bar
 
     $(document).ready(function() {
         $(".menu-icon").on("click", function() {

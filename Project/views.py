@@ -335,7 +335,7 @@ class Project(object):
         userInformation = Database.models.UserInformation.objects.get(user=user)
         project = Database.models.Project.objects.get(user=user, projectName=projectname)
         file = Database.models.File.objects.get(pk=id)
-        comment=Database.models.Comment.objects.filter(file=file)
+        comment=Database.models.Comment.objects.filter(file=file).order_by('-id')
         fileUrl = file.file.path
         linesInFile = self.replaceNewLine(self.readFile(fileUrl))
         numberOfLines = len(linesInFile)

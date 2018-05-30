@@ -18,6 +18,11 @@ class ProfileManagement(object):
     def get_pro_pic(self, pic):
         return 'pro_pic.' + pic.name.split('.')[1]
 
+    def returnAllUserANdProjects(self):
+        allprojects = Database.models.Project.objects.all()
+        alluser = Database.models.User.objects.all()
+        return alluser, allprojects
+
     def profileView(self, request):
         user = request.user
 
@@ -25,7 +30,9 @@ class ProfileManagement(object):
             return render(request,'Authentication/loggedOut.html')
 
         userInformation = Database.models.UserInformation.objects.get(user=user)
-        context = {'userInformation': userInformation, 'user': user}
+        alluser, allprojects = self.returnAllUserANdProjects()
+        context = {'userInformation': userInformation, 'user': user,'allprojects':allprojects,
+                   'alluser':alluser}
         if (request.method == 'POST'):
             # ##################################PASSWORD CHANGE FORM#######################
             form = PasswordChangeForm(data=request.POST, user=request.user)

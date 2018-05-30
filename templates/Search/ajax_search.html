@@ -1,18 +1,4 @@
-{#{% if content.count > 0 %}#}
-{#{% for con in content %}#}
-{#    <li>hi</li>#}
-{#    {% endfor %}#}
-{##}
-{#    <h1>x</h1>#}
-{#    <h1>y</h1>#}
-{#    <h1>z</h1>#}
-{#{% else %}#}
-{#    <h1>{{ y.email }}</h1>#}
-{#    <h1>{{ y }}</h1>#}
-{#    <h1>{{ y }}</h1>#}
-{#    <h1>{{ z.projectDescription }}</h1>#}
-{#<li>None to show</li>#}
-{#{% endif %}#}
+
 
 
 {% extends 'Project/base.html' %}
@@ -45,7 +31,7 @@
         <div class="allProjects">
 
             {% for project in projects %}
-
+                {% if  project.accessType  == "Public" %}
 
                 <div class="projects">
                     <a href="/projectmanagement/{{project.projectName}}/">
@@ -55,7 +41,7 @@
                     <p>Access type: {{project.accessType}}</p>
                     <p>Project Created At: {{project.projectCreatedAt}}</p>
                 </div>
-
+                {% endif %}
 
             {%endfor%}
 

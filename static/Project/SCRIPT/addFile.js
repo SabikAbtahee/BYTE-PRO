@@ -1,6 +1,3 @@
-/**
- * Created by sabik on 5/24/2018.
- */
 
 function validate() {
     valid=false;

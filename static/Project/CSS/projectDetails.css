@@ -94,7 +94,6 @@ tr:hover{
     z-index: 1;
     top: 0;
     left: 0;
-    /*background-color: rgb(64,55,88);*/
     background: rgb(64,55,88);
     overflow-x: hidden;
     transition: 0.5s;
@@ -115,7 +114,6 @@ tr:hover{
     border-top: 1px solid white;
     border-bottom: 1px solid white;
 
-    /*background-color:;*/
 
 }
 
@@ -126,7 +124,7 @@ tr:hover{
     border-top: 1px solid white;
     border-bottom: 1px solid white;
     transition: 0.5s;
-    /*border-color: #ff656c;*/
+
 }
 
 .sidenav .closebtn {
@@ -137,17 +135,11 @@ tr:hover{
     margin-left: 50px;
 }
 
-@media(max-width: 1500px) {
+@media(max-width: 1000px) {
 
-    /*.main {*/
-    	/*margin-right: 5px;*/
-    	/*margin-left: 5px;*/
-    	/*font-size: 20px;*/
-    	/*padding: 10px 10px;*/
-    /*}*/
     .main{
         margin-left: 1px;
-        margin-right: -1200px;
+        margin-right: -1000px;
     }
 
 }

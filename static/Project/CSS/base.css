@@ -26,7 +26,7 @@ header {
     margin-right: 250px;
     background:gainsboro;
 
-    color: midnightblue;
+    color: rgb(64,55,88);
     font-size: 20px;
     font-family: "century gothic";
     line-height: 30px;
@@ -68,11 +68,11 @@ header {
 nav {
     position: fixed;
     width: 100%;
-    /*line-height: 60px;*/
+
 }
 
 nav ul {
-    /*line-height: 60px;*/
+
     list-style: none;
     background: rgb(64,55,88);
     overflow: hidden;
@@ -100,7 +100,7 @@ nav ul li a {
 }
 
 .searchinput{
-    /*width: 100%;*/
+
     color: black;
     padding: 6px 15px;
     margin: 8px 0;
@@ -146,20 +146,12 @@ nav ul li a {
     display: block;
     transition: 0.3s;
     text-align: left;
-    /*background-color:;*/
 
 }
 
 .sidenav a:hover {
     color:White;
-
     background-color: rgb(64,55,80);
-    /*border-bottom: 1px;*/
-    /*border-bottom-color: white;*/
-    /*border-bottom-style: solid;*/
-    /*border-bottom-right-radius: 15px;*/
-    /*border-bottom-left-radius: 15px;*/
-
 }
 
 .sidenav .closebtn {
@@ -174,18 +166,9 @@ nav ul li a {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
-/**-----------------**/
 
-/*main content will be here*/
-/*.main {*/
-    /*margin-left: 250px;*/
-    /*margin-right: 250px; */
-    /*font-size: 20px;  */
-    /*padding: 0px 10px;*/
-/*}*/
-/**-----------------**/
 
-@media(max-width: 850px) {
+@media(max-width: 800px) {
 
     .logo {
         position: fixed;

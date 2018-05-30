@@ -11,7 +11,6 @@
 {% block content %}
     <div class="main">
 
-
         <div class= "totalproject" >
             <p align="center">Total {{allprojects|length}} projects found.</p>
         </div>
@@ -20,7 +19,7 @@
 
             {% for project in allprojects %}
 
-
+                {% if  project.accessType  == "Public" %}
                 <div class="projects">
 
                     <a href="/search/{{ project.user.username }}/{{project.projectName}}/">
@@ -31,7 +30,7 @@
                     <p>Access type: {{project.accessType}}</p>
                     <p>Project Created At: {{project.projectCreatedAt}}</p>
                 </div>
-
+                {% endif %}
 
             {%endfor%}
 

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'Project/CSS/styles/github.css' %}">
     <script src="{% static 'Project/SCRIPT/highlight.pack.js' %}"></script>
     <script src="{% static 'Project/SCRIPT/highlightjs-line-numbers.min.js' %}"></script>
+    <script src="{% static 'Project/SCRIPT/fileDetails.js' %}"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script>hljs.initLineNumbersOnLoad();</script>
 {% endblock %}
@@ -15,6 +16,38 @@
 
 {% block content %}
     <div class="main">
+        {% if isMaster %}
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <br>
+                <br>
+                <br>
+                <a href="/projectmanagement/" class = "sidenavA"><img src="{% static 'Project/IMAGES/project.png' %}" height = "30" width="30">&nbsp; My Projects</a>
+                <a href="/projectmanagement/{{ project.projectName }}/issues/" class = "sidenavA"><img src="{% static 'Project/IMAGES/issues.png' %}" height = "30" width="30">&nbsp; Project Issues</a>
+                <a href="/projectmanagement/{{ project.projectName }}/projectsettings/#assignedDeveloper" class = "sidenavA"><img src="{% static 'Project/IMAGES/assignedDevelopers.png' %}" height = "30" width="30">&nbsp; Assigned Developers</a>
+                <a href="/projectmanagement/{{ project.projectName }}/projectsettings/#languageGraph" class = "sidenavA"><img src="{% static 'Project/IMAGES/langGraph.png' %}" height = "30" width="30">&nbsp; Programming Languages</a>
+                <a href="/projectmanagement/{{ project.projectName }}/projectsettings/#Contributions" class = "sidenavA"><img src="{% static 'Project/IMAGES/contributions.png' %}" height = "30" width="30">&nbsp; Contributions</a>
+                <a href="/projectmanagement/assignedprojects/" class = "sidenavA"><img src="{% static 'Project/IMAGES/assigned.png' %}" height = "30" width="30">&nbsp;Assigned Projects</a>
+                <a href="/projectmanagement/{{ project.projectName }}/" class = "sidenavA"><img src="{% static 'Project/IMAGES/back.png' %}" height = "30" width="30">&nbsp; Back To "<strong>{{ project.projectName }}</strong>"</a>
+
+
+            </div>
+        {% else %}
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <br>
+                <br>
+                <br>
+                <a href="/projectmanagement/" class = "sidenavA"><img src="{% static 'Project/IMAGES/project.png' %}" height = "30" width="30">&nbsp; My Projects</a>
+                <br>
+                <br>
+                <a href="/search/{{ searchedUser.username }}/{{ project.projectName }}/" class = "sidenavA"><img src="{% static 'Project/IMAGES/back.png' %}" height = "30" width="30">&nbsp; Back To "<strong>{{ project.projectName }}</strong>"</a>
+
+
+            </div>
+        {% endif %}
+        <span style="font-size:30px;cursor:pointer; color: rgb(64,55,88);margin: auto 50%; " onclick="openNav()">&#9776;</span>
+
         <div class = "fileContentsAndCode">
             <div class="filesDetailsDiv">
                 <div class="filenameAndImage">
@@ -34,6 +67,12 @@
                 </div>
                 <span class="fix"></span>
 
+            </div>
+            <div class="filesDetailsDiv">
+                <h4>File Description:</h4>
+
+                {{ file.fileDescription }}
+                <hr>
             </div>
             <hr>
             {% if isMaster %}
@@ -136,7 +175,7 @@
 
 
         {% if isMaster %}
-            <form  method="post" action="/projectmanagement/{{ project.projectName }}/{{ file.id }}/comment/" class="form-group">
+            <form  method="post" action="/projectmanagement/{{ project.projectName }}/{{ file.id }}/comment/" class="form-group" onsubmit="return validate()">
                 {% csrf_token %}
                 <textarea name="COMMENT-DESCRIPTION" class = "fileContentsAndCode" aria-label="With textarea" id="COMMENT-DESCRIPTION" style="box-sizing: border-box;width: 100%;border-radius: 10px;" placeholder="Comment About file"></textarea>
                 <div align="center">
@@ -173,6 +212,20 @@
         {% endif %}
 
     </div>
+    <script>
+        innerHtml = document.getElementById("mySidenav").innerHTML;
+        function openNav() {
+
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById('mySidenav').innerHTML = innerHtml
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            innerHtml= document.getElementById("mySidenav").innerHTML;
+            document.getElementById("mySidenav").innerHTML = ''
+        }
+    </script>
 
 
 {% endblock %}
