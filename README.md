@@ -24,9 +24,13 @@ This is a project to implement version control. There is still many upgrades to 
 
 Installation:
 1.Install python3.6.x
+
 2.Install virtualenv
+
 3.Install django1.11.8
+
 4.Install mysql5.7
+
 5.Install passlib,multiselectfield
 
 Run:
