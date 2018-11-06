@@ -1,0 +1,9 @@
+1. project progress div must be static -- done
+2. side-nav button needs to be fixed -- done
+3. skill tag color will be changed
+4. tag-wise search
+5. js table
+6. issue mention
+7. project progress for all
+8. comment mention
+9. time manipulation
