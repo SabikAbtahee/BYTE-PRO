@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	
+	<ul id="list">		
+		<li><a href="link1.html" class="link_one">Link Number One</a></li>
+		<li><a href="link2.html">Link Number Two</a></li>
+		<li><a href="link3.html">Link Number Three</a></li>
+		<li><a href="link4.html">Link Number Four</a></li>
+	</ul>
+	<button onclick="f()">click to show</button>
+	<script type="text/javascript">
+		function f(){
+			var myLinkList = document.getElementById("list");
+			var myFirstLink = myLinkList.childNodes[0].childNodes[0];
+			console.log(myFirstLink.className);
+	
+		}
+		
+	</script>
+</body>
+</html>
