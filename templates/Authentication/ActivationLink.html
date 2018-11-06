@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+
+    <title>ActivationLink</title>
+
+    {%load staticfiles%}
+    <link rel="stylesheet" href="{% static 'Authentication/CSS/ActivationLink.css'%}">
+    <link rel="stylesheet" href="../../static/Authentication/CSS/ActivationLink.css">
+
+
+</head>
+<body >
+
+<br>
+<br>
+<br>
+<div class="upper">Congratulations</div>
+<br>
+<div class="mid">You have successfully created an account in BYTE PRO. Please check your email and verify your account to signin into the system.</div>
+<br>
+<div class="lower">Thank You.</div>
+<br>
+<div class="wrapper">
+    <a href="/authentication/signup/" class="btn btn-primary btn-lg" role="button" >Sign Up</a>
+
+    <br>
+    <br>
+    <form action="/authentication/resendactivation/" method="post">
+        <p>If you did not receive your email yet. Press the <strong>Re-Send Email</strong> button</p>
+        <input type="email" name = "email_or_username" value="{{ email }}" hidden/>
+        <input type="text" name = "pk" value="{{ pk }}" hidden/>
+        <button class="btn btn-danger btn-lg" type="submit" >Re-Send Email</button>
+    </form>
+
+</div>
+
+
+</body>
+</html>

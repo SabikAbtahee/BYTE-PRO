@@ -1,0 +1,47 @@
+{% extends 'Project/base.html' %}
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/projectMain.css' %}">
+
+{% endblock %}
+
+{% block content %}
+   <div class="main">
+        <div class= "userprofile">
+            <img src="{{searchedUserInformation.profilePicture.url}}" class = "porpic">
+            <div class="usernameAndEmail">
+               <h3>{{searchedUser.username}}</h3>
+                <p>{{searchedUser.email}}</p>
+            </div>
+        </div>
+
+        <div class= "totalproject" >
+            <p align="center">{{ searchedUser.username }} has total {{searchedUserProjects|length}} projects.</p>
+            
+
+        </div>
+
+        <div class="allProjects">
+
+            {% for project in searchedUserProjects %}
+
+                {% if  project.accessType  == "Public" %}
+                <div class="projects">
+                    <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/">
+                        <h3>{{project.projectName}}</h3>
+                    </a>
+                    <p>{{project.projectDescription}}</p>
+                    <p>Access type: {{project.accessType}}</p>
+                    <p>Project Created At: {{project.projectCreatedAt}}</p>
+                </div>
+
+                {% endif %}
+            {%endfor%}
+
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

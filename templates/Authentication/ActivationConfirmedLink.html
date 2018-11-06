@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+
+    <title>ActivationConfirmedLink</title>
+
+    {%load staticfiles%}
+    <link rel="stylesheet" href="{% static 'Authentication/CSS/ActivationLink.css'%}">
+    <link rel="stylesheet" href="../../static/Authentication/CSS/ActivationLink.css">
+
+
+</head>
+<body >
+
+<br>
+<br>
+<br>
+<div class="upper">Congratulations</div>
+<br>
+<div class="mid">Your account is verified . Go to sign in page to signin into your account.</div>
+<br>
+<div class="lower">Thank You.</div>
+<br>
+
+<div class="wrapper">
+    <a href="/authentication/signin/" class="btn btn-primary btn-lg" role="button" >Sign In</a>
+</div>
+
+
+</body>
+</html>

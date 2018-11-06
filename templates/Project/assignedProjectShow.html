@@ -1,0 +1,41 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/projectMain.css' %}">
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+
+
+        <div class= "totalproject" >
+            <p align="center">You assigned in {{ASSIGNPROJECT|length}} projects.</p>
+        </div>
+
+        <div class="allProjects">
+
+            {% for assignedProject in ASSIGNPROJECT %}
+
+
+                <div class="projects">
+                    <a href="/search/{{ assignedProject.project.user.username }}/{{assignedProject.project.projectName}}/">
+                        <h3>{{assignedProject.project.projectName}}</h3>
+                    </a>
+                    <p>Created By <img src="">{{ assignedProject.project.user.username }}</p>
+                    <p>{{assignedProject.project.projectDescription}}</p>
+                    <p>Access type: {{assignedProject.project.accessType}}</p>
+                    <p>Project Created At: {{assignedProject.project.projectCreatedAt}}</p>
+                </div>
+            {%endfor%}
+
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

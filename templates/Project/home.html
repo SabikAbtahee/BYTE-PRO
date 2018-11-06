@@ -1,0 +1,194 @@
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'Project/CSS/projectMain.css' %}">
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <br>
+            <br>
+            <br>
+
+            <a href="/projectmanagement/" class = "sidenavA"><img src="{% static 'Project/IMAGES/project.png' %}" height = "30" width="30">&nbsp; My Projects</a>
+
+            <a href="/projectmanagement/assignedprojects/" class = "sidenavA"><img src="{% static 'Project/IMAGES/assigned.png' %}" height = "30" width="30">&nbsp;Assigned Projects</a>
+
+        </div>
+        <span class="sidenavspan" title="Open side bar" onclick="openNav()"><img src="{% static 'Project/IMAGES/sidearrow.png' %}" height="30" width="20"></span>
+
+        <div class= "userprofile">
+            {%if isMaster%}
+                <a href="/profilemanagement/"><img src="{{userInformation.profilePicture.url}}" class = "porpic"></a>
+                <div class="usernameAndEmail">
+                    <a href="/profilemanagement/"><h3>{{user.username}}</h3></a>
+                    <p>{{user.email}}</p>
+                </div>
+            {%else%}
+                <img src="{{searchedUserInformation.profilePicture.url}}" class = "porpic">
+                <div class="usernameAndEmail">
+                    <h3>{{searchedUser.username}}</h3>
+                    <p>{{searchedUser.email}}</p>
+                </div>
+            {%endif%}
+        </div>
+
+        <div class= "totalproject" >
+            {%if isMaster%}
+                <p align="center">You have total {{projects|length}} projects.</p>
+                {%load staticfiles%}
+                <a href="/projectmanagement/addproject/">
+                    <button class="btn btn-success btn-lg" align="center">
+                        Add Project
+                    </button>
+                </a>
+            {%else%}
+                <p align="center">{{ searchedUser.username }} has total {{projects|length}} projects.</p>
+            {%endif%}
+
+        </div>
+        <div class="allProjects">
+            {% for project in projects %}
+                {% if isMaster %}
+                <div class="projects">
+                    {%if isMaster%}
+                    <a href="/projectmanagement/{{project.projectName}}/">
+                       <h3>{{project.projectName}}</h3>
+                    </a>
+                    {%else%}
+                        <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/">
+                            <h3>{{project.projectName}}</h3>
+                        </a>
+                    {%endif%}
+                    <h4 style="font-weight: normal; font-family: Roboto;">"{{project.projectDescription}}"</h4>
+                    <h6>
+                        {% if  project.accessType == "Public"  %}
+                        <span style="background: #00c853; border-radius: 50%;padding-left: 2px; padding-right: 2px; font-size: 10px;">
+                            &nbsp;&nbsp;
+                        </span>
+                        {% elif project.accessType == "Private" %}
+                            <span style="background: #ff1c1c; border-radius: 50%;padding-left: 2px; padding-right: 2px; font-size: 10px;">
+                            &nbsp;&nbsp;
+                        </span>
+                        {% endif %}
+                        &nbsp;
+                        {{ project.accessType }}
+                    </h6>
+
+                    <div>
+                        <span style="font-size:12px;">Tags: </span>
+                        {% for skilltag in project.skilltag %}
+                            <div class="skilltag {{ skilltag }}" id="{{ skilltag }}">{{ skilltag }}</div>
+                        {% endfor %}
+                    </div>
+                    <h6>Created At: {{project.projectCreatedAt}} </h6>
+
+                </div>
+                    {% else %}
+                {% if  project.accessType  == "Public" %}
+                    <div class="projects">
+                    {%if isMaster%}
+                    <a href="/projectmanagement/{{project.projectName}}/">
+                       <h3>{{project.projectName}}</h3>
+                    </a>
+                    {%else%}
+                        <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/">
+                            <h3>{{project.projectName}}</h3>
+                        </a>
+                    {%endif%}
+                     <h4 style="font-weight: normal; font-family: Roboto;">"{{project.projectDescription}}"</h4>
+                    <div>
+                        <span style="font-size:12px;">Tags: </span>
+                        {% for skilltag in project.skilltag %}
+                            <div class="skilltag {{ skilltag }}" id="{{ skilltag }}">{{ skilltag }}</div>
+                        {% endfor %}
+                    </div>
+                    <h6>Created At: {{project.projectCreatedAt}} </h6>
+                </div>
+
+                    {% endif %}
+                {%  endif %}
+           
+            
+            {%endfor%}
+
+        </div>    
+            
+                
+    </div>
+    {% load staticfiles %}
+    <script>
+        innerHtml = document.getElementById("mySidenav").innerHTML;
+        function openNav() {
+
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById('mySidenav').innerHTML = innerHtml
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0px";
+            innerHtml= document.getElementById("mySidenav").innerHTML;
+            document.getElementById("mySidenav").innerHTML = ''
+        }
+        $(document).ready(function(){
+            skillTagBackground();
+        });
+
+        function skillTagBackground() {
+            {% for project in projects %}
+                {% for skilltag in project.skilltag %}
+                    var st = "skilltag {{ skilltag }}";
+                    tagAttributes = document.getElementsByClassName(st);
+                    var color;
+
+                    if(st==="skilltag PYTHON"){
+                        color = "#394ba0";
+                    }
+                    else if(st==="skilltag C++"){
+                        color = "#d54770";
+                    }
+                    else if(st==="skilltag HTML"){
+                        color = "#009575";
+                    }
+                    else if(st==="skilltag JAVA"){
+                        color = "#faa31b";
+                    }
+                    else if(st==="skilltag C"){
+                        color = "#581845";
+                    }
+                    else if(st==="skilltag RUBY"){
+                        color = "#88c6ed";
+                    }
+                    else if(st==="skilltag C#"){
+                        color = "#454000";
+                    }
+                    else if(st==="skilltag RUBY"){
+                        color = "#88c6ed";
+                    }
+                    else if(st==="skilltag FORTRAN"){
+                        color = "#ba7894";
+                    }
+                    else if(st==="skilltag JAVASCRIPT"){
+                        color = "#111111";
+                    }
+                    else if(st==="skilltag CSS"){
+                        color = "#ef4444";
+                    }
+                    else if(st==="skilltag PHP"){
+                        color = "#5d478b";
+                    }
+                    for(var i=0;i<tagAttributes.length;i++){
+                        tagAttributes[i].style.backgroundColor = color;
+                    }
+                {% endfor %}
+            {% endfor %}
+        }
+    </script>
+
+{% endblock %}

@@ -1,0 +1,127 @@
+
+{% extends 'Project/base.html' %}
+
+{% block css_link %}
+    {% load staticfiles %}
+
+
+    <link rel="stylesheet" href="{% static 'Project/CSS/styles/github.css' %}">
+    <script src="{% static 'Project/SCRIPT/highlight.pack.js' %}"></script>
+    <script src="{% static 'Project/SCRIPT/highlightjs-line-numbers.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'Project/CSS/codemirror/lib/codemirror.css'%}">
+    <!-- themes -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Project/CSS/codemirror/theme/neo.css'%}">
+    <link rel="stylesheet" href="{% static 'Project/CSS/merge.css' %}">
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>hljs.initLineNumbersOnLoad();</script>
+{% endblock %}
+{% block content %}
+
+    <div class="main">
+        {% for fileVersionUser in FileWithUsersAndContent%}
+            <div id="successmsg" hidden></div>
+
+            {%if fileVersionUser.isConflict%}
+                    <div class = "fileContentsAndCode" id = "fileContentsAndCode{{ fileVersionUser.fileBeforeInDatabase.id }}">
+                        <div class="mergeConflictEditor">
+                            <textarea class="codemirror-textarea" name="code" id = "{{ fileVersionUser.fileBeforeInDatabase.id }}">
+
+
+<<<<<<<<<< {{ fileVersionUser.tempVersion.version.uploader }}
+
+{{ fileVersionUser.previousFileContent }}
+>>>>>>>>>>
+====================================================
+<<<<<<<<<< You
+
+{% for line in fileVersionUser.currentFileContent %}{{line}}
+{%endfor%}
+>>>>>>>>>>
+</textarea>
+                        </div>
+                        <div style="background: white; padding-top:20px;  padding-bottom:20px; border-radius: 5px;border-color: rgb(223,226,229); border-width: 2px;	border-style: solid;">
+                            <button type="submit" class="btn btn-success" id = "{{ fileVersionUser.fileBeforeInDatabase.id }}" style="margin-left: 45%;">
+                            Update <strong>{{ fileVersionUser.fileBeforeInDatabase.fileName }}</strong>
+                        </button>
+                        </div>
+
+                    </div>
+            {% endif %}
+
+        {% endfor %}
+    {% if isMaster %}
+        <div id="backbtn" hidden>
+            <a href="/projectmanagement/{{project.projectName}}/" style="text-decoration: none;">Back to Project</a>
+        </div>
+    {% else %}
+        <div id="backbtn" hidden>
+            <a href="/search/{{ searchedUser.username }}/{{project.projectName}}/" style="text-decoration: none;">Back to Project</a>
+        </div>
+    {% endif %}
+    </div>
+
+
+    {% load staticfiles %}
+    <script type ="text/javascript" src="{% static 'Project/SCRIPT/jquery.min.js' %}"></script>
+    <script src="{% static 'Project/CSS/codemirror/lib/codemirror.js'%}"></script>
+    <script src="{% static 'Project/CSS/codemirror/mode/clike/clike.js' %}"></script>
+    <script>
+        //this is for code-mirror code editor
+        var editor = [];
+        var totalFileContent;
+        $(document).ready(function(){
+            totalFileContent = document.getElementsByClassName('fileContentsAndCode').length;
+            var code = $(".codemirror-textarea");
+            for (i = 0; i < code.length; i++) {
+                editor[i] = CodeMirror.fromTextArea(code[i],{
+                    lineNumbers: true,
+                    theme: 'neo',
+                    mode: 'clike'
+
+                });
+            }
+        });
+
+        //this is ajax call
+        $('button').click(function () {
+            for (i = 0; i < editor.length; i++) {
+                editor[i].save()
+            }
+
+            var code = $('textarea#'+this.id);
+            var codeContent = code.val();
+            var fileContentCode = document.getElementById('fileContentsAndCode'+this.id);
+
+            console.log(fileContentCode.innerHTML);
+
+            $.ajax({
+		      	type:"POST",
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                url: '/search/ajx/merge/',
+		      	data: {
+		        	'code': codeContent,
+                    'fileId': this.id
+		     	},
+		      	dataType: 'json',
+		      	success: function (data) {
+                    if(data.success){
+                        var MainSuccessMsgDiv = document.getElementById("successmsg");
+                        MainSuccessMsgDiv.hidden = false;
+                        var scssDiv = document.createElement("div");
+                        scssDiv.className="alert alert-success";
+                        scssDiv.id = "success";
+                        scssDiv.innerHTML = data.success;
+                        MainSuccessMsgDiv.appendChild(scssDiv);
+                        fileContentCode.hidden = true;
+                        totalFileContent-=1;
+                        console.log(totalFileContent);
+                        if(totalFileContent===0){
+                            document.getElementById("backbtn").hidden = false;
+                        }
+
+                    }
+		     	}
+			});
+		});
+    </script>
+{% endblock %}

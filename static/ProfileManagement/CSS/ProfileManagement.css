@@ -1,0 +1,121 @@
+html, body {
+
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+
+}
+.container2{
+    position: relative;
+    z-index: -1;
+}
+
+.main {
+
+
+    margin-left: -15%;
+    margin-right: -15%;
+    font-size: 20px;
+    padding: 30px 10px;
+    margin-top: 5px;
+    font-family: "Courier New";
+    font-weight: bold;
+    border-radius: 10px;
+    border-color: rgb(223,226,229);
+    border-width: 2px;
+    border-style: solid;
+    background-color: whitesmoke;
+
+}
+
+.box{
+    border-radius: 10px;
+    margin-right: -1%;
+}
+
+.selectBox {
+    position: relative;
+}
+
+.selectBox select {
+    width: 100%;
+    font-weight: bold;
+}
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+#checkboxes label {
+    display: block;
+}
+
+#checkboxes label:hover {
+    background-color: #1e90ff;
+}
+
+.name{
+    margin-left: 20%;
+}
+
+.column {
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+#upload-photo {
+    opacity: 0;
+
+    z-index: -1;
+}
+
+.btn-file{
+    border-radius: 0;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: lighter;
+}
+
+
+.check{
+    text-align: left;
+}
+.selectBox{
+
+}
+.col-sm-2{
+    text-align: right;
+}
+.scrollable {
+    height: 100px; /* or any value */
+    overflow-y: auto;
+}
+.btn-file{
+    background-color: darkgreen;
+}
+.btn-save{
+    background-color: darkorange;
+}

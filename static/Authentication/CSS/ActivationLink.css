@@ -1,0 +1,78 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    background: url(../IMAGES/tree.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+
+.upper{
+    text-align: center;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 5em;
+}
+
+
+.mid{
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align: center;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 3em;
+
+}
+
+.lower{
+    text-align: center;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 4em;
+
+}
+
+
+.btn {
+    
+    align-content: center;
+    line-height: 30px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 250px;
+    height: 40px;
+
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+
+}
+
+.btn-primary {
+    border-radius: 40px;
+    background: mediumblue;
+    color: #ffffff;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, .2);
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    border-radius: 40px;
+    background: brown;
+    color: #4CAF50;
+}
+
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
+
+.wrapper{
+    text-align: center;
+
+}
